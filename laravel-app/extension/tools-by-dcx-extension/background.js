@@ -1046,7 +1046,7 @@ async function handleWebAuthSync(opts = {}) {
           deviceId: deviceId || undefined,
           mode: effectiveMode
         })
-      });
+      }, flowToken);
 
       if (!res.ok || !data?.success || !data.token) {
         if ((res.status === 401 && data?.code === "WEB_LOGGED_OUT") || (res.status === 403 && data?.code === "PLAN_EXPIRED")) {
