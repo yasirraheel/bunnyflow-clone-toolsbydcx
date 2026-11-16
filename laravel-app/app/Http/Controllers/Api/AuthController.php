@@ -177,18 +177,41 @@ class AuthController extends Controller
 
     public function publicUser(User $user): array
     {
+        $assignedAccounts = DB::table('plan_shared_accounts as psa')
+            ->join('shared_accounts as sa', 'sa.id', '=', 'psa.shared_account_id')
+            ->leftJoin('platforms as p', 'p.id', '=', 'sa.platform_id')
+            ->where('psa.plan', $user->plan)
+            ->where('sa.enabled', true)
+            ->orderBy('sa.account_title')
+            ->get([
+                'sa.id',
+                'sa.account_title as accountTitle',
+                'p.name as platformName',
+                'p.url as platformUrl',
+            ])
+            ->map(fn ($account) => (array) $account)
+            ->values()
+            ->all();
+
+        $planExpiresAt = $user->plan_expires_at?->toISOString();
+        $daysRemaining = $user->plan_expires_at
+            ? max(0, (int) ceil(now()->diffInSeconds($user->plan_expires_at, false) / 86400))
+            : null;
+
         return [
             'id' => $user->id,
             'email' => $user->email,
             'username' => $user->username,
             'role' => $user->role,
             'plan' => $user->plan,
-            'planActive' => $user->plan !== 'free',
+            'planActive' => $user->plan !== 'free' && ($daysRemaining === null || $daysRemaining > 0),
+            'planExpiresAt' => $planExpiresAt,
             'emailVerified' => (bool) $user->email_verified,
             'onboardingCompleted' => (bool) $user->onboarding_completed,
             'onboardingAccepted' => (bool) $user->onboarding_completed,
             'credits' => (int) $user->credits,
-            'daysRemaining' => 0,
+            'daysRemaining' => $daysRemaining,
+            'assignedAccounts' => $assignedAccounts,
         ];
     }
 }

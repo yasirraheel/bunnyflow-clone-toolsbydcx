@@ -32,7 +32,7 @@ class AdminController extends Controller
         }
         $page = max(1, (int) $request->query('page', 1));
         $limit = min(100, max(1, (int) $request->query('limit', 50)));
-        $result = $query->orderByDesc('id')->paginate($limit, ['id','username','email','role','plan','email_verified','status','credits','created_at'], 'page', $page);
+        $result = $query->orderByDesc('id')->paginate($limit, ['id','username','email','role','plan','plan_expires_at','email_verified','status','credits','created_at'], 'page', $page);
         return response()->json(['users' => collect($result->items())->map(fn ($u) => $this->user($u),), 'total' => $result->total(), 'page' => $page, 'limit' => $limit]);
     }
 
@@ -44,9 +44,14 @@ class AdminController extends Controller
             'username' => ['sometimes', 'alpha_dash', 'min:3', 'max:32', 'unique:users,username,' . $id],
             'role' => ['sometimes', 'in:user,admin'],
             'plan' => ['sometimes', 'string', 'max:32'],
+            'planExpiresAt' => ['sometimes', 'nullable', 'date'],
             'status' => ['sometimes', 'in:active,suspended'],
             'credits' => ['sometimes', 'integer', 'min:0'],
         ]);
+        if (array_key_exists('planExpiresAt', $data)) {
+            $data['plan_expires_at'] = $data['planExpiresAt'];
+            unset($data['planExpiresAt']);
+        }
         $user->fill($data)->save();
         return response()->json(['user' => $this->user($user->fresh())]);
     }
@@ -65,14 +70,58 @@ class AdminController extends Controller
 
     public function plans(): JsonResponse
     {
-        return response()->json(['plans' => DB::table('plans')->orderByRaw("FIELD(plan, 'free', 'basic', 'pro', 'ultra')")->get()]);
+        $plans = DB::table('plans')->orderByRaw("FIELD(plan, 'free', 'basic', 'pro', 'ultra')")->get()->map(function ($plan) {
+            return array_merge((array) $plan, [
+                'features' => json_decode($plan->features_json ?: '[]', true) ?: [],
+                'accountIds' => DB::table('plan_shared_accounts')
+                    ->where('plan', $plan->plan)
+                    ->pluck('shared_account_id')
+                    ->map(fn ($id) => (int) $id)
+                    ->values(),
+            ]);
+        });
+        $accounts = SharedAccount::with('platform')->where('enabled', true)->orderBy('account_title')->get()->map(fn (SharedAccount $account) => $this->account($account));
+        return response()->json(['plans' => $plans, 'accounts' => $accounts]);
     }
 
     public function updatePlan(Request $request, string $plan): JsonResponse
     {
         abort_unless(in_array($plan, ['free', 'basic', 'pro', 'ultra'], true), 404);
-        $data = $request->validate(['price' => ['required', 'numeric', 'min:0'], 'cutPrice' => ['nullable', 'numeric', 'min:0'], 'visible' => ['required', 'boolean'], 'durationDays' => ['required', 'integer', 'min:0']]);
-        DB::table('plans')->where('plan', $plan)->update(['price' => $data['price'], 'cut_price' => $data['cutPrice'] ?? null, 'visible' => $data['visible'], 'duration_days' => $data['durationDays'], 'updated_at' => now()]);
+        abort_unless(DB::table('plans')->where('plan', $plan)->exists(), 404);
+        $data = $request->validate([
+            'price' => ['required', 'numeric', 'min:0'],
+            'cutPrice' => ['nullable', 'numeric', 'min:0'],
+            'visible' => ['required', 'boolean'],
+            'durationDays' => ['required', 'integer', 'min:0'],
+            'features' => ['sometimes', 'array', 'max:30'],
+            'features.*' => ['string', 'max:180'],
+            'accountIds' => ['sometimes', 'array'],
+            'accountIds.*' => ['integer', 'exists:shared_accounts,id'],
+        ]);
+        DB::transaction(function () use ($plan, $data) {
+            DB::table('plans')->where('plan', $plan)->update([
+                'price' => $data['price'],
+                'cut_price' => $data['cutPrice'] ?? null,
+                'visible' => $data['visible'],
+                'duration_days' => $data['durationDays'],
+                'features_json' => array_key_exists('features', $data)
+                    ? json_encode(array_values(array_filter(array_map('trim', $data['features'] ?? []))), JSON_UNESCAPED_UNICODE)
+                    : DB::raw('features_json'),
+                'updated_at' => now(),
+            ]);
+            if (array_key_exists('accountIds', $data)) {
+                DB::table('plan_shared_accounts')->where('plan', $plan)->delete();
+                $now = now();
+                foreach (array_unique($data['accountIds'] ?? []) as $accountId) {
+                    DB::table('plan_shared_accounts')->insert([
+                        'plan' => $plan,
+                        'shared_account_id' => $accountId,
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]);
+                }
+            }
+        });
         return response()->json(['ok' => true]);
     }
 
@@ -195,7 +244,7 @@ class AdminController extends Controller
     {
         return [
             'id' => $user->id, 'username' => $user->username, 'email' => $user->email,
-            'role' => $user->role, 'plan' => $user->plan, 'emailVerified' => (bool) $user->email_verified,
+            'role' => $user->role, 'plan' => $user->plan, 'planExpiresAt' => optional($user->plan_expires_at)->toISOString(), 'emailVerified' => (bool) $user->email_verified,
             'status' => $user->status, 'credits' => (int) $user->credits, 'createdAt' => $user->created_at,
         ];
     }

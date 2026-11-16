@@ -32586,6 +32586,7 @@ function t5() {
             const He = Number(t.pricing.free.durationDays || V.durationDays || 3);
             return { ...V,
                 hidden: Ve,
+                ...Array.isArray(t.pricing.free.features) && t.pricing.free.features.length ? { features: t.pricing.free.features.map(oe => ({ text: oe, ok: !0 })) } : {},
                 durationDays: He,
                 duration: `${He} Days`,
                 sublabel: `${He}-Day Free Trial`
@@ -32601,6 +32602,7 @@ function t5() {
                 sublabel: `${Q}-Day Access`,
                 price: t.pricing.vibe.price,
                 priceLabel: `Rs. ${t.pricing.vibe.price.toLocaleString()}`,
+                ...Array.isArray(t.pricing.vibe.features) && t.pricing.vibe.features.length ? { features: t.pricing.vibe.features.map(oe => ({ text: oe, ok: !0 })) } : {},
                 ...He !== void 0 && {
                     cutPrice: He
                 }
@@ -32616,6 +32618,7 @@ function t5() {
                 sublabel: `${Q}-Day Access`,
                 price: t.pricing.plus.price,
                 priceLabel: `Rs. ${t.pricing.plus.price.toLocaleString()}`,
+                ...Array.isArray(t.pricing.plus.features) && t.pricing.plus.features.length ? { features: t.pricing.plus.features.map(oe => ({ text: oe, ok: !0 })) } : {},
                 ...He !== void 0 && {
                     cutPrice: He
                 }
@@ -32631,6 +32634,7 @@ function t5() {
                 sublabel: `${Q}-Day Access`,
                 price: t.pricing.max.price,
                 priceLabel: `Rs. ${t.pricing.max.price.toLocaleString()}`,
+                ...Array.isArray(t.pricing.max.features) && t.pricing.max.features.length ? { features: t.pricing.max.features.map(oe => ({ text: oe, ok: !0 })) } : {},
                 ...He !== void 0 && {
                     cutPrice: He
                 }
@@ -44375,6 +44379,15 @@ function Zs({
     }, [n]), D4();
     const T = i ?.hasTeam ? "team" : (i ?.plan || "free").toLowerCase();
     T === "heavy" || i ?.isHeavy, T === "heavy" && i ?.planActive, T === "heavy" && i ?.planActive;
+    const assignedPlatformKeys = new Set((i ?.assignedAccounts || []).map(M => `${M.platformName || ""} ${M.platformUrl || ""} ${M.accountTitle || ""}`.toLowerCase())),
+        hasAssignedPlatforms = Array.isArray(i ?.assignedAccounts),
+        hasPlatformAccess = M => {
+            if (!hasAssignedPlatforms) return !0;
+            const J = `${M.href || ""} ${M.label || ""}`.toLowerCase();
+            if (["/dashboard", "/prompt-library", "/help", "/refer"].includes(M.href)) return !0;
+            const re = J.includes("generate/video") || J.includes("google flow") || J.includes("veo") ? /google flow|flow\.google|veo/ : J.includes("nano-banana") || J.includes("nano banana") ? /nano|banana|whisk|imagen/ : J.includes("chatgpt") ? /chatgpt|openai/ : J.includes("meta-ai") || J.includes("meta ai") ? /meta/ : J.includes("fire-tts") || J.includes("tts") || J.includes("voice-clone") || J.includes("voice clone") ? /tts|voice|eleven/ : J.includes("surfshark") ? /surfshark|vpn/ : null;
+            return !re || [...assignedPlatformKeys].some(ce => re.test(ce))
+        };
     const L = [{
             title: null,
             items: [{
@@ -44439,7 +44452,10 @@ function Zs({
                 icon: $a,
                 badge: null
             }]
-        }]],
+        }]].map(M => ({
+            ...M,
+            items: M.items.filter(J => hasPlatformAccess(J))
+        })).filter(M => M.items.length > 0),
         B = {
             href: "/extension",
             label: "Extension",
@@ -57432,6 +57448,70 @@ function AdminPlatformsPage({
     })
 }
 
+function AdminPlansPageV2({
+    adminApi: t
+}) {
+    const {
+        toast: s
+    } = yt(), [a, n] = h.useState([]), [o, d] = h.useState(!0), [u, p] = h.useState(null), [accounts, setAccounts] = h.useState([]), m = {
+        free: "Free Trial",
+        basic: "Vibe",
+        pro: "Plus",
+        ultra: "Max"
+    }, theme = {
+        free: { accent: "#a855f7", tint: "147,51,234", label: "3-Day Free Trial" },
+        basic: { accent: "#3b82f6", tint: "59,130,246", label: "Starter Access" },
+        pro: { accent: "#a855f7", tint: "168,85,247", label: "Most Popular" },
+        ultra: { accent: "#facc15", tint: "250,204,21", label: "Top Tier" }
+    }, f = async () => {
+        d(!0);
+        try {
+            const g = await t.fetch("/plans");
+            n(Array.isArray(g ?.plans) ? g.plans.map(C => ({ ...C, features: Array.isArray(C.features) ? C.features : [] })) : []), setAccounts(Array.isArray(g ?.accounts) ? g.accounts : [])
+        } catch (g) {
+            s({ title: "Could not load plans", description: g.message, variant: "destructive" })
+        } finally {
+            d(!1)
+        }
+    };
+    h.useEffect(() => { f() }, []);
+    const g = (C, P, A) => n(I => I.map(E => E.plan === C ? { ...E, [P]: A } : E)), toggleAccount = (C, id, checked) => n(I => I.map(E => {
+        if (E.plan !== C) return E;
+        const ids = Array.isArray(E.accountIds) ? E.accountIds.map(Number) : [];
+        return { ...E, accountIds: checked ? [...new Set([...ids, Number(id)])] : ids.filter(A => A !== Number(id)) }
+    })), v = async C => {
+        p(C.plan);
+        try {
+            await t.fetch(`/plans/${C.plan}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    price: Number(C.price || 0),
+                    cutPrice: C.cut_price === "" || C.cut_price === null ? null : Number(C.cut_price),
+                    visible: Boolean(C.visible),
+                    durationDays: Number(C.duration_days || 0),
+                    features: (C.features || []).map(A => typeof A === "string" ? A.trim() : "").filter(Boolean),
+                    accountIds: (C.accountIds || []).map(Number)
+                })
+            });
+            s({ title: `${m[C.plan] || C.plan} plan updated`, description: "Pricing, highlights and assigned accounts are now live." }), await f()
+        } catch (P) {
+            s({ title: "Could not update plan", description: P.message, variant: "destructive" })
+        } finally {
+            p(null)
+        }
+    };
+    return e.jsxs("div", {
+        className: "space-y-6",
+        children: [e.jsxs("div", {
+            className: "flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3",
+            children: [e.jsxs("div", { children: [e.jsx("h2", { className: "text-xl font-black text-white", children: "Plans" }), e.jsx("p", { className: "text-gray-500 text-sm mt-1", children: "Frontend-matched plans. Edit pricing, highlights, visibility and the accounts included with each plan." })] }), e.jsxs("button", { type: "button", onClick: f, className: "h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 border border-white/10 flex items-center gap-1.5", children: [e.jsx(Pt, { className: "h-3.5 w-3.5" }), " Refresh"] })]
+        }), e.jsx("div", { className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-4 text-sm text-gray-400", children: "Changes are stored in the database and are used by the public pricing page and user access rules. Cookie values are never displayed here." }), o ? e.jsx("div", { className: "py-12 text-center text-gray-500", children: "Loading plans…" }) : e.jsx("div", { className: "grid gap-5 xl:grid-cols-2", children: a.map(C => {
+            const T = theme[C.plan] || theme.basic, ids = Array.isArray(C.accountIds) ? C.accountIds.map(Number) : [];
+            return e.jsxs("article", { className: "rounded-3xl border border-white/10 bg-[#0d0b14] overflow-hidden shadow-2xl", style: { boxShadow: `0 18px 60px rgba(${T.tint},.12)` }, children: [e.jsxs("div", { className: "p-5 border-b border-white/10", style: { background: `linear-gradient(135deg, rgba(${T.tint},.23), rgba(13,11,20,.1) 70%)` }, children: [e.jsxs("div", { className: "flex items-start justify-between gap-3", children: [e.jsxs("div", { children: [e.jsx("span", { className: "text-[10px] uppercase tracking-[.22em] font-black", style: { color: T.accent }, children: T.label }), e.jsx("h3", { className: "text-2xl font-black text-white mt-1", children: m[C.plan] || C.plan }), e.jsx("p", { className: "text-xs text-gray-500 mt-1", children: `Frontend plan · ${C.plan}` })] }), e.jsx("button", { type: "button", onClick: () => g(C.plan, "visible", !C.visible), className: `px-3 py-1.5 rounded-full text-xs font-black border ${C.visible ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" : "bg-white/5 text-gray-500 border-white/10"}`, children: C.visible ? "Visible" : "Hidden" })] }), e.jsxs("div", { className: "flex items-end gap-3 mt-5", children: [e.jsxs("div", { children: [e.jsx("div", { className: "text-3xl font-black text-white", children: Number(C.price || 0) === 0 ? "Free" : `Rs. ${Number(C.price || 0).toLocaleString()}` }), e.jsxs("div", { className: "text-xs text-gray-500 mt-1", children: [C.cut_price ? e.jsxs("span", { className: "line-through mr-2", children: ["Rs. ", Number(C.cut_price).toLocaleString()] }) : null, `${Number(C.duration_days || 0)} days access`] })] }), e.jsx("span", { className: "text-xs text-gray-500 pb-1", children: "same pricing source as frontend" })] })] }), e.jsxs("div", { className: "p-5 space-y-5", children: [e.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-3", children: [e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Sale Price (PKR)" }), e.jsx("input", { type: "number", min: "0", value: C.price ?? 0, onChange: P => g(C.plan, "price", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]" })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Original Price" }), e.jsx("input", { type: "number", min: "0", value: C.cut_price ?? "", onChange: P => g(C.plan, "cut_price", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]", placeholder: "Optional" })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Duration (days)" }), e.jsx("input", { type: "number", min: "0", value: C.duration_days ?? 0, onChange: P => g(C.plan, "duration_days", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]" })] })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Frontend highlights (one per line)" }), e.jsx("textarea", { rows: 5, value: (C.features || []).join("\n"), onChange: P => g(C.plan, "features", P.target.value.split(/\r?\n/)), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed] resize-y", placeholder: "25,000 Google Flow Credits Included\nPrompt Library" })] }), e.jsxs("div", { className: "rounded-2xl border border-white/10 bg-white/[.02] p-4", children: [e.jsxs("div", { className: "flex items-center justify-between gap-3 mb-3", children: [e.jsx("div", { className: "text-sm font-black text-white", children: "Assigned platform accounts" }), e.jsx("span", { className: "text-xs text-gray-500", children: `${ids.length} selected` })] }), accounts.length ? e.jsx("div", { className: "grid gap-2", children: accounts.map(A => e.jsxs("label", { className: "flex items-center gap-3 rounded-xl border border-white/10 bg-[#12101a] px-3 py-2.5 cursor-pointer hover:border-purple-500/50", children: [e.jsx("input", { type: "checkbox", checked: ids.includes(Number(A.id)), onChange: P => toggleAccount(C.plan, A.id, P.target.checked), className: "accent-purple-500" }), e.jsxs("span", { className: "min-w-0", children: [e.jsx("span", { className: "block text-sm text-white font-semibold truncate", children: A.accountTitle }), e.jsx("span", { className: "block text-xs text-gray-500 truncate", children: `${A.platform?.name || "Platform"} · ${A.platform?.url || ""}` })] })] }, A.id)) }) : e.jsx("p", { className: "text-xs text-gray-500", children: "No enabled platform accounts yet. Add one from Accounts first." })] }), e.jsx("div", { className: "flex justify-end", children: e.jsx("button", { type: "button", onClick: () => v(C), disabled: u === C.plan, className: "px-5 py-2.5 rounded-xl text-white text-sm font-bold disabled:opacity-50", style: { backgroundColor: T.accent }, children: u === C.plan ? "Saving…" : "Save Plan Changes" }) })] })] }, C.plan)
+        }) })]
+    })
+}
+
 function AdminPlansPage({
     adminApi: t
 }) {
@@ -58031,9 +58111,242 @@ function Sr({
     })
 }
 
+function AdminEditUserPage({
+    adminApi: t
+}) {
+    const {
+        toast: s
+    } = yt(), [, a] = ha(), [n, i] = h.useState(null), [o, d] = h.useState([]), [u, p] = h.useState([]), [m, f] = h.useState(!0), [g, v] = h.useState(!1), [N, k] = h.useState(!1);
+    const w = String(window.location.pathname.match(/\/admin\/users\/(\d+)\/edit/)?.[1] || "");
+    const S = {
+        free: "Free Trial",
+        basic: "Vibe",
+        pro: "Plus",
+        ultra: "Max"
+    };
+    const C = async () => {
+        if (!w) return;
+        f(!0);
+        try {
+            const [P, A] = await Promise.all([t.fetch(`/users/${w}`), t.fetch("/plans")]);
+            const I = P.user || P;
+            i({
+                ...I,
+                planExpiresAt: I.planExpiresAt ? String(I.planExpiresAt).slice(0, 10) : ""
+            }), d(Array.isArray(A.plans) ? A.plans : []), p(Array.isArray(A.accounts) ? A.accounts : [])
+        } catch (P) {
+            s({
+                title: "Could not load user",
+                description: P.message,
+                variant: "destructive"
+            })
+        } finally {
+            f(!1)
+        }
+    };
+    h.useEffect(() => {
+        C()
+    }, [w]);
+    const P = async A => {
+        A.preventDefault(), k(!0);
+        try {
+            await t.fetch(`/users/${w}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    username: n.username,
+                    role: n.role,
+                    status: n.status,
+                    plan: n.plan,
+                    planExpiresAt: n.planExpiresAt ? `${n.planExpiresAt}T23:59:59` : null
+                })
+            }), s({
+                title: "User updated",
+                description: "Plan and account access have been refreshed."
+            }), await C()
+        } catch (I) {
+            s({
+                title: "Could not update user",
+                description: I.message,
+                variant: "destructive"
+            })
+        } finally {
+            k(!1)
+        }
+    };
+    if (m) return e.jsx("div", {
+        className: "py-20 text-center text-gray-500",
+        children: "Loading user…"
+    });
+    if (!n) return e.jsxs("div", {
+        className: "space-y-4",
+        children: [e.jsx("p", {
+            className: "text-red-400",
+            children: "User could not be found."
+        }), e.jsx(Me, {
+            href: "/admin/users",
+            className: "inline-flex px-4 py-2 rounded-xl bg-white/10 text-white font-bold text-sm",
+            children: "Back to Users"
+        })]
+    });
+    const A = o.find(I => I.plan === n.plan), I = A ? u.filter(E => (A.accountIds || []).includes(Number(E.id))) : [];
+    return e.jsxs("div", {
+        className: "max-w-4xl space-y-6",
+        children: [e.jsxs("div", {
+            className: "flex items-start justify-between gap-3",
+            children: [e.jsxs("div", {
+                children: [e.jsx("h2", {
+                    className: "text-xl font-black text-white",
+                    children: "Edit User"
+                }), e.jsx("p", {
+                    className: "text-gray-500 text-sm mt-1",
+                    children: n.email
+                })]
+            }), e.jsx(Me, {
+                href: "/admin/users",
+                className: "px-4 py-2 rounded-xl border border-white/10 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-bold",
+                children: "Back to Users"
+            })]
+        }), e.jsxs("form", {
+            onSubmit: P,
+            className: "rounded-2xl border border-[#7c3aed]/30 bg-[#1a1528] p-6 space-y-5",
+            children: [e.jsxs("div", {
+                className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+                children: [e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Username"
+                    }), e.jsx("input", {
+                        required: !0,
+                        value: n.username || "",
+                        onChange: E => i({ ...n,
+                            username: E.target.value
+                        }),
+                        className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]"
+                    })]
+                }), e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Email"
+                    }), e.jsx("input", {
+                        value: n.email || "",
+                        readOnly: !0,
+                        className: "w-full rounded-xl bg-[#0d0b14]/60 border border-white/10 px-4 py-3 text-sm text-gray-500"
+                    })]
+                }), e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Role"
+                    }), e.jsxs("select", {
+                        value: n.role || "user",
+                        onChange: E => i({ ...n,
+                            role: E.target.value
+                        }),
+                        className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]",
+                        children: [e.jsx("option", {
+                            value: "user",
+                            children: "User"
+                        }), e.jsx("option", {
+                            value: "admin",
+                            children: "Admin"
+                        })]
+                    })]
+                }), e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Status"
+                    }), e.jsxs("select", {
+                        value: n.status || "active",
+                        onChange: E => i({ ...n,
+                            status: E.target.value
+                        }),
+                        className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]",
+                        children: [e.jsx("option", {
+                            value: "active",
+                            children: "Active"
+                        }), e.jsx("option", {
+                            value: "suspended",
+                            children: "Suspended"
+                        })]
+                    })]
+                })]
+            }), e.jsxs("label", {
+                className: "block",
+                children: [e.jsx("span", {
+                    className: "block text-xs font-bold text-gray-400 mb-1.5",
+                    children: "Plan"
+                }), e.jsx("select", {
+                    value: n.plan || "free",
+                    onChange: E => i({ ...n,
+                        plan: E.target.value
+                    }),
+                    className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]",
+                    children: o.map(E => e.jsx("option", {
+                        value: E.plan,
+                        children: `${S[E.plan] || E.plan} (${E.duration_days} Days)`
+                    }, E.plan))
+                })]
+            }), e.jsxs("label", {
+                className: "block",
+                children: [e.jsx("span", {
+                    className: "block text-xs font-bold text-gray-400 mb-1.5",
+                    children: "Expiry Date Override"
+                }), e.jsx("p", {
+                    className: "text-xs text-gray-500 mb-2",
+                    children: "Blank uses the plan's normal access rule."
+                }), e.jsx("input", {
+                    type: "date",
+                    value: n.planExpiresAt || "",
+                    onChange: E => i({ ...n,
+                        planExpiresAt: E.target.value
+                    }),
+                    className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed] [color-scheme:dark]"
+                })]
+            }), e.jsxs("div", {
+                className: "rounded-xl border border-white/10 bg-[#0d0b14] p-4",
+                children: [e.jsx("p", {
+                    className: "text-xs font-black text-gray-400 uppercase tracking-widest mb-3",
+                    children: `Accounts assigned to ${S[n.plan] || n.plan}`
+                }), I.length ? e.jsx("div", {
+                    className: "grid gap-2",
+                    children: I.map(E => e.jsxs("div", {
+                        className: "rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2",
+                        children: [e.jsx("p", {
+                            className: "text-sm text-white font-bold",
+                            children: E.accountTitle
+                        }), e.jsxs("p", {
+                            className: "text-xs text-gray-500",
+                            children: [E.platform ?.name || "Platform", " · ", E.platform ?.url || ""]
+                        })]
+                    }, E.id))
+                }) : e.jsx("p", {
+                    className: "text-sm text-gray-600",
+                    children: "No platform accounts assigned to this plan yet."
+                })]
+            }), e.jsxs("div", {
+                className: "flex justify-end gap-3",
+                children: [e.jsx(Me, {
+                    href: "/admin/users",
+                    className: "px-5 py-2.5 rounded-xl border border-white/10 text-gray-300 font-bold text-sm",
+                    children: "Cancel"
+                }), e.jsx("button", {
+                    type: "submit",
+                    disabled: N,
+                    className: "px-5 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold text-sm disabled:opacity-50",
+                    children: N ? "Saving…" : "Save Changes"
+                })]
+            })]
+        })]
+    })
+}
+
 function M$() {
     const adminSectionFromPath = () => {
             const path = window.location.pathname.replace(/\/+$/, "") || "/";
+            if (/^\/admin\/users\/\d+\/edit$/.test(path)) return "user-edit";
             return ({
                 "/admin/dashboard": "overview",
                 "/admin/users": "users",
@@ -59356,7 +59669,9 @@ This will:
                 })]
             }), e.jsxs("div", {
                 className: "p-4 md:p-6 space-y-6",
-                children: [m === "analytics" && (() => {
+                children: [m === "user-edit" && e.jsx(AdminEditUserPage, {
+                    adminApi: Fe
+                }), m === "analytics" && (() => {
                     const y = Xe,
                         q = Ge => Number(Ge || 0).toLocaleString(),
                         ae = Ge => `PKR ${Number(Ge||0).toLocaleString(void 0,{maximumFractionDigits:0})}`,
@@ -61866,7 +62181,7 @@ Continue?`)) try {
                                             children: e.jsxs("div", {
                                                 className: "flex items-center gap-2",
                                                 children: [e.jsx("button", {
-                                                    onClick: () => Dn(y),
+                                                    onClick: () => window.location.assign(`/admin/users/${y.id}/edit`),
                                                     title: "Edit user",
                                                     className: "h-8 w-8 rounded-lg bg-[#7c3aed]/15 hover:bg-[#7c3aed]/30 flex items-center justify-center text-[#a855f7] transition-colors border border-[#7c3aed]/25",
                                                     children: e.jsx(xr, {
@@ -63715,7 +64030,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             })
                         })
                     })]
-                }), m === "plans" && e.jsx(AdminPlansPage, {
+                }), m === "plans" && e.jsx(AdminPlansPageV2, {
                     adminApi: Fe
                 }), m === "extension" && e.jsxs("div", {
                     className: "space-y-6",
@@ -86229,6 +86544,9 @@ function pz() {
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
             path: "/admin/dashboard",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/users/:id/edit",
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
             path: "/admin/users",

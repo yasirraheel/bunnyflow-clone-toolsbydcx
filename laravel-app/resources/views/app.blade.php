@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="ToolsByDcx — AI video and image generation platform">
     <title>ToolsByDcx</title>
-    <link rel="stylesheet" href="{{ asset('assets/index-CHk3_bF4.css') }}?v=plans-v3-20261116">
+    <link rel="stylesheet" href="{{ asset('assets/index-CHk3_bF4.css') }}?v=plans-v4-20261116">
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="{{ asset('assets/index-r9MtYj7Z.js') }}?v=plans-v3-20261116"></script>
+    <script type="module" src="{{ asset('assets/index-r9MtYj7Z.js') }}?v=plans-v4-20261116"></script>
 </body>
 </html>

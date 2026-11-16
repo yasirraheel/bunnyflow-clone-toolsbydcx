@@ -16,6 +16,7 @@ class BrandConfigController extends Controller
             'cutPrice' => isset($plans[$id]) ? ($plans[$id]->cut_price === null ? null : (float) $plans[$id]->cut_price) : $cut,
             'visible' => (bool) ($plans[$id]->visible ?? true),
             'durationDays' => (int) ($plans[$id]->duration_days ?? 0),
+            'features' => json_decode($plans[$id]->features_json ?? '[]', true) ?: [],
         ];
         return response()->json(['brand' => [
             'tenantId' => null,

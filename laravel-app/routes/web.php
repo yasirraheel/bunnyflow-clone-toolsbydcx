@@ -6,6 +6,7 @@ Route::view('/', 'app');
 Route::get('/settings/{path?}', fn () => view('pages.settings'))->where('path', '.*');
 Route::view('/admin/dashboard', 'app')->name('admin.dashboard');
 Route::view('/admin/users', 'app')->name('admin.users');
+Route::view('/admin/users/{id}/edit', 'app')->whereNumber('id')->name('admin.users.edit');
 Route::view('/admin/orders', 'app')->name('admin.orders');
 Route::view('/admin/accounts', 'app')->name('admin.accounts');
 Route::view('/admin/platforms', 'app')->name('admin.platforms');

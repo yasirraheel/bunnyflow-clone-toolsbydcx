@@ -14,7 +14,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'username', 'email', 'password_hash', 'role', 'plan',
+        'username', 'email', 'password_hash', 'role', 'plan', 'plan_expires_at',
         'email_verified', 'onboarding_completed', 'credits', 'status',
     ];
 
@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email_verified' => 'boolean',
         'onboarding_completed' => 'boolean',
         'credits' => 'integer',
+        'plan_expires_at' => 'datetime',
     ];
 
     public function getAuthPassword(): string
