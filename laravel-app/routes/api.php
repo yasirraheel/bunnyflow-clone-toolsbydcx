@@ -40,6 +40,7 @@ Route::prefix('admin')->middleware(['flow.auth', 'role:admin'])->group(function 
     Route::delete('/platforms/{id}', [AdminController::class, 'deletePlatform']);
     Route::get('/accounts', [AdminController::class, 'accounts']);
     Route::post('/accounts', [AdminController::class, 'storeAccount']);
+    Route::get('/accounts/{id}', [AdminController::class, 'showAccount']);
     Route::patch('/accounts/{id}', [AdminController::class, 'updateAccount']);
     Route::delete('/accounts/{id}', [AdminController::class, 'deleteAccount']);
 });

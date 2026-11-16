@@ -57051,6 +57051,7 @@ function AdminAccountsPage({
     const {
         toast: s
     } = yt(), [a, n] = h.useState([]), [o, d] = h.useState([]), [u, p] = h.useState(!0), [m, f] = h.useState(!1), [g, v] = h.useState({
+        id: null,
         accountTitle: "",
         platformId: "",
         cookie: ""
@@ -57077,12 +57078,14 @@ function AdminAccountsPage({
         C.preventDefault(), k(!0);
         try {
             JSON.parse(g.cookie);
-            await t.fetch("/accounts", {
-                method: "POST",
-                body: JSON.stringify(g)
+            const { id: C, ...P } = g;
+            await t.fetch(C ? `/accounts/${C}` : "/accounts", {
+                method: C ? "PATCH" : "POST",
+                body: JSON.stringify(P)
             }), s({
-                title: "Account added"
+                title: C ? "Account updated" : "Account added"
             }), f(!1), v({
+                id: null,
                 accountTitle: "",
                 platformId: "",
                 cookie: ""
@@ -57095,6 +57098,23 @@ function AdminAccountsPage({
             })
         } finally {
             k(!1)
+        }
+    };
+    const E = async P => {
+        try {
+            const C = await t.fetch(`/accounts/${P}`), A = C.account;
+            f(!0), v({
+                id: A.id,
+                accountTitle: A.accountTitle || "",
+                platformId: String(A.platformId || ""),
+                cookie: A.cookie || ""
+            })
+        } catch (C) {
+            s({
+                title: "Could not load account",
+                description: C.message,
+                variant: "destructive"
+            })
         }
     };
     const X = async P => {
@@ -57126,7 +57146,14 @@ function AdminAccountsPage({
                 })]
             }), e.jsx("button", {
                 type: "button",
-                onClick: () => f(!0),
+                onClick: () => {
+                    v({
+                        id: null,
+                        accountTitle: "",
+                        platformId: "",
+                        cookie: ""
+                    }), f(!0)
+                },
                 disabled: o.length === 0,
                 className: "px-4 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] disabled:opacity-40 text-white text-sm font-bold",
                 children: "Add Account"
@@ -57135,7 +57162,7 @@ function AdminAccountsPage({
             className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-5",
             children: [e.jsx("h3", {
                 className: "text-white font-black mb-1",
-                children: "Add platform account"
+                children: g.id ? "Edit platform account" : "Add platform account"
             }), e.jsx("p", {
                 className: "text-gray-500 text-xs mb-5",
                 children: "Only the account title, platform and cookie JSON are required. Cookie data is encrypted and never shown in the list."
@@ -57205,7 +57232,7 @@ function AdminAccountsPage({
                         type: "submit",
                         disabled: N,
                         className: "px-5 py-2 rounded-xl bg-[#7c3aed] text-white text-sm font-bold disabled:opacity-50",
-                        children: N ? "Saving…" : "Save Account"
+                        children: N ? "Saving…" : g.id ? "Update Account" : "Save Account"
                     })]
                 })]
             })]
@@ -57228,11 +57255,19 @@ function AdminAccountsPage({
                         className: "text-[11px] text-emerald-400 mt-2",
                         children: C.cookieSaved ? "Cookie saved securely" : "Cookie missing"
                     })]
-                }), e.jsx("button", {
-                    type: "button",
-                    onClick: () => X(C.id),
-                    className: "px-3 py-1.5 rounded-lg border border-red-500/25 text-red-400 text-xs font-bold hover:bg-red-500/10",
-                    children: "Delete"
+                }), e.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [e.jsx("button", {
+                        type: "button",
+                        onClick: () => E(C.id),
+                        className: "px-3 py-1.5 rounded-lg border border-white/10 text-gray-300 text-xs font-bold hover:bg-white/10",
+                        children: "Edit"
+                    }), e.jsx("button", {
+                        type: "button",
+                        onClick: () => X(C.id),
+                        className: "px-3 py-1.5 rounded-lg border border-red-500/25 text-red-400 text-xs font-bold hover:bg-red-500/10",
+                        children: "Delete"
+                    })]
                 })]
             }, C.id)) : e.jsx("div", {
                 className: "py-12 text-center rounded-2xl border border-dashed border-white/10 text-gray-500",

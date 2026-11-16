@@ -155,6 +155,14 @@ class AdminController extends Controller
         return response()->json(['account' => $this->account($account->load('platform'))], 201);
     }
 
+    public function showAccount(int $id): JsonResponse
+    {
+        $account = SharedAccount::with('platform')->findOrFail($id);
+        return response()->json([
+            'account' => $this->account($account) + ['cookie' => Crypt::decryptString($account->cookie_payload)],
+        ]);
+    }
+
     public function updateAccount(Request $request, int $id): JsonResponse
     {
         $account = SharedAccount::findOrFail($id);
