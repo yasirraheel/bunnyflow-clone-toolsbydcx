@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Keep the legacy api directory from taking precedence over Laravel routes.
+RewriteRule ^api(?:/|$) laravel-app/public/index.php [END,QSA]
+
 # Existing frontend assets are kept at the document root so Apache can serve
 # them directly without exposing the nested Laravel public path.
 RewriteRule ^(?:assets|videos)(?:/|$) - [L]
