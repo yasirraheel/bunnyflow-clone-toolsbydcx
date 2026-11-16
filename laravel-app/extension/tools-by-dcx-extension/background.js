@@ -233,6 +233,91 @@ async function clearConflictingFlowCookies() {
   } catch (_) {}
 }
 
+
+// ToolsByDcx: also write the session cookies into the browser cookie jar,
+// WeMate-style. DNR header injection alone leaves accounts.google.com checks
+// seeing an empty jar, so Flow redirects to the sign-in page. Writing the jar
+// makes every Google domain see the shared session.
+const JAR_AUTH_COOKIE_NAMES = new Set([
+  "__Secure-1PSID", "__Secure-3PSID", "__Secure-1PSIDTS", "__Secure-3PSIDTS",
+  "__Secure-1PAPISID", "__Secure-3PAPISID", "__Secure-1PSIDCC", "__Secure-3PSIDCC",
+  "SID", "SAPISID", "APISID", "HSID", "SSID", "LSID",
+  "__Host-GAPS", "NID", "OSID", "__Secure-OSID", "SIDCC"
+]);
+
+async function clearSharedAuthCookiesFromJar() {
+  try {
+    if (!chrome.cookies?.getAll) return;
+    for (const domain of ["google.com", "accounts.google.com", "labs.google", "flow.google.com"]) {
+      const cookies = await chrome.cookies.getAll({ domain }).catch(() => []);
+      for (const c of cookies || []) {
+        if (!JAR_AUTH_COOKIE_NAMES.has(c.name)) continue;
+        const protocol = c.secure ? "https://" : "http://";
+        const host = (c.domain && c.domain.startsWith(".")) ? c.domain.slice(1) : (c.domain || domain);
+        await chrome.cookies.remove({ url: protocol + host + (c.path || "/"), name: c.name, storeId: c.storeId }).catch(() => {});
+      }
+    }
+  } catch (_) {}
+}
+
+function jarSetCookieAttempt(initialOpts, targetUrl) {
+  return new Promise((resolve) => {
+    function runAttempt(attemptOpts, attemptNum) {
+      chrome.cookies.set(attemptOpts, (res) => {
+        if (chrome.runtime.lastError && attemptNum < 4) {
+          const next = { ...attemptOpts };
+          if (attemptNum === 0) {
+            if (targetUrl) next.url = targetUrl;
+            delete next.domain;
+          } else if (attemptNum === 1) {
+            next.sameSite = "lax";
+          } else if (attemptNum === 2) {
+            next.sameSite = "unspecified";
+          } else {
+            next.value = encodeURIComponent(String(next.value || "")).replace(/[!'()*]/g, (ch) => "%" + ch.charCodeAt(0).toString(16).toUpperCase());
+          }
+          if ((attemptOpts.name.startsWith("__Secure-") || attemptOpts.name.startsWith("__Host-")) && !next.secure) {
+            next.secure = true;
+          }
+          runAttempt(next, attemptNum + 1);
+        } else {
+          resolve(!!res);
+        }
+      });
+    }
+    runAttempt(initialOpts, 0);
+  });
+}
+
+async function writePreparedCookiesToJar(prepared) {
+  if (!Array.isArray(prepared) || !prepared.length) return { applied: 0, failed: 0 };
+  if (!chrome.cookies?.set) return { applied: 0, failed: prepared.length };
+  await clearSharedAuthCookiesFromJar();
+  let applied = 0, failed = 0;
+  for (const item of prepared) {
+    try {
+      const d = item?.details;
+      if (!d || !d.name) { failed++; continue; }
+      const opts = {
+        url: d.url,
+        name: d.name,
+        value: String(d.value ?? ""),
+        path: d.path || "/",
+        secure: Boolean(d.secure),
+        httpOnly: Boolean(d.httpOnly)
+      };
+      if (d.domain) opts.domain = d.domain;
+      if (d.sameSite) opts.sameSite = d.sameSite;
+      if (typeof d.expirationDate === "number" && Number.isFinite(d.expirationDate)) opts.expirationDate = d.expirationDate;
+      if (d.partitionKey) opts.partitionKey = d.partitionKey;
+      try { await chrome.cookies.remove({ url: opts.url, name: opts.name }); } catch (_) {}
+      const ok = await jarSetCookieAttempt(opts, FLOW_HOME);
+      if (ok) applied++; else failed++;
+    } catch (_) { failed++; }
+  }
+  return { applied, failed };
+}
+
 async function applyDeclarativeSession(prepared) {
   if (!chrome.declarativeNetRequest?.updateSessionRules || !Array.isArray(prepared)) {
     throw new Error("This Chrome version cannot hold session rules in memory.");
@@ -296,6 +381,10 @@ async function applyDeclarativeSession(prepared) {
   };
   dnrQueue = dnrQueue.then(runDnr, runDnr);
   await dnrQueue;
+  // Also write the cookies into the browser cookie jar so accounts.google.com
+  // and every other Google domain see the shared session. Never fail the
+  // DNR apply because of a jar write problem.
+  try { await writePreparedCookiesToJar(prepared); } catch (_) {}
 }
 
 async function sessionRulesActive() {
