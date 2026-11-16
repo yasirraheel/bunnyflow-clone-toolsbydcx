@@ -34,6 +34,14 @@ Route::prefix('admin')->middleware(['flow.auth', 'role:admin'])->group(function 
     Route::patch('/plans/{plan}', [AdminController::class, 'updatePlan']);
     Route::get('/settings', [AdminController::class, 'settings']);
     Route::patch('/settings', [AdminController::class, 'updateSettings']);
+    Route::get('/platforms', [AdminController::class, 'platforms']);
+    Route::post('/platforms', [AdminController::class, 'storePlatform']);
+    Route::patch('/platforms/{id}', [AdminController::class, 'updatePlatform']);
+    Route::delete('/platforms/{id}', [AdminController::class, 'deletePlatform']);
+    Route::get('/accounts', [AdminController::class, 'accounts']);
+    Route::post('/accounts', [AdminController::class, 'storeAccount']);
+    Route::patch('/accounts/{id}', [AdminController::class, 'updateAccount']);
+    Route::delete('/accounts/{id}', [AdminController::class, 'deleteAccount']);
 });
 
 // Existing feature pages still use the original module endpoints while those

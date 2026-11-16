@@ -57045,6 +57045,337 @@ function R$({
     })
 }
 
+function AdminAccountsPage({
+    adminApi: t
+}) {
+    const {
+        toast: s
+    } = yt(), [a, n] = h.useState([]), [o, d] = h.useState([]), [u, p] = h.useState(!0), [m, f] = h.useState(!1), [g, v] = h.useState({
+        accountTitle: "",
+        platformId: "",
+        cookie: ""
+    }), [N, k] = h.useState(!1);
+    const w = async () => {
+        p(!0);
+        try {
+            const [C, P] = await Promise.all([t.fetch("/accounts"), t.fetch("/platforms")]);
+            n(Array.isArray(C ?.accounts) ? C.accounts : []), d(Array.isArray(P ?.platforms) ? P.platforms : [])
+        } catch (C) {
+            s({
+                title: "Could not load accounts",
+                description: C.message,
+                variant: "destructive"
+            })
+        } finally {
+            p(!1)
+        }
+    };
+    h.useEffect(() => {
+        w()
+    }, []);
+    const S = async C => {
+        C.preventDefault(), k(!0);
+        try {
+            JSON.parse(g.cookie);
+            await t.fetch("/accounts", {
+                method: "POST",
+                body: JSON.stringify(g)
+            }), s({
+                title: "Account added"
+            }), f(!1), v({
+                accountTitle: "",
+                platformId: "",
+                cookie: ""
+            }), await w()
+        } catch (P) {
+            s({
+                title: "Could not add account",
+                description: P instanceof SyntaxError ? "Cookie data must be valid JSON." : P.message,
+                variant: "destructive"
+            })
+        } finally {
+            k(!1)
+        }
+    };
+    const X = async P => {
+        if (confirm("Delete this account?")) try {
+            await t.fetch(`/accounts/${P}`, {
+                method: "DELETE"
+            }), s({
+                title: "Account deleted"
+            }), await w()
+        } catch (A) {
+            s({
+                title: "Could not delete account",
+                description: A.message,
+                variant: "destructive"
+            })
+        }
+    };
+    return e.jsxs("div", {
+        className: "space-y-6",
+        children: [e.jsxs("div", {
+            className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+            children: [e.jsxs("div", {
+                children: [e.jsx("h2", {
+                    className: "text-xl font-black text-white",
+                    children: "Accounts"
+                }), e.jsx("p", {
+                    className: "text-gray-500 text-sm mt-1",
+                    children: "Manage authorized platform sessions for your users."
+                })]
+            }), e.jsx("button", {
+                type: "button",
+                onClick: () => f(!0),
+                disabled: o.length === 0,
+                className: "px-4 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] disabled:opacity-40 text-white text-sm font-bold",
+                children: "Add Account"
+            })]
+        }), e.jsxs("div", {
+            className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-5",
+            children: [e.jsx("h3", {
+                className: "text-white font-black mb-1",
+                children: "Add platform account"
+            }), e.jsx("p", {
+                className: "text-gray-500 text-xs mb-5",
+                children: "Only the account title, platform and cookie JSON are required. Cookie data is encrypted and never shown in the list."
+            }), !f && e.jsx("p", {
+                className: "text-gray-500 text-sm",
+                children: o.length ? "Click Add Account to open the account form." : "Create a platform first so it appears in the account selector."
+            }), f && e.jsxs("form", {
+                onSubmit: S,
+                className: "space-y-4",
+                children: [e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Account Title"
+                    }), e.jsx("input", {
+                        required: !0,
+                        value: g.accountTitle,
+                        onChange: C => v({ ...g,
+                            accountTitle: C.target.value
+                        }),
+                        placeholder: "e.g. Google Flow Account 1",
+                        className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]"
+                    })]
+                }), e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Platform"
+                    }), e.jsx("select", {
+                        required: !0,
+                        value: g.platformId,
+                        onChange: C => v({ ...g,
+                            platformId: C.target.value
+                        }),
+                        className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white outline-none focus:border-[#7c3aed]",
+                        children: [e.jsx("option", {
+                            value: "",
+                            children: "Select platform"
+                        }), o.filter(C => C.enabled).map(C => e.jsxs("option", {
+                            value: C.id,
+                            children: [C.name, " — ", C.url]
+                        }, C.id))]
+                    })]
+                }), e.jsxs("label", {
+                    className: "block",
+                    children: [e.jsx("span", {
+                        className: "block text-xs font-bold text-gray-400 mb-1.5",
+                        children: "Cookie JSON"
+                    }), e.jsx("textarea", {
+                        required: !0,
+                        rows: 9,
+                        value: g.cookie,
+                        onChange: C => v({ ...g,
+                            cookie: C.target.value
+                        }),
+                        placeholder: "Paste cookie session JSON here",
+                        className: "w-full resize-y rounded-xl bg-[#0d0b14] border border-white/10 px-4 py-3 text-sm text-white font-mono outline-none focus:border-[#7c3aed]"
+                    })]
+                }), e.jsxs("div", {
+                    className: "flex justify-end gap-3",
+                    children: [e.jsx("button", {
+                        type: "button",
+                        onClick: () => f(!1),
+                        className: "px-4 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white",
+                        children: "Cancel"
+                    }), e.jsx("button", {
+                        type: "submit",
+                        disabled: N,
+                        className: "px-5 py-2 rounded-xl bg-[#7c3aed] text-white text-sm font-bold disabled:opacity-50",
+                        children: N ? "Saving…" : "Save Account"
+                    })]
+                })]
+            })]
+        }), u ? e.jsx("div", {
+            className: "py-12 text-center text-gray-500",
+            children: "Loading accounts…"
+        }) : e.jsx("div", {
+            className: "grid gap-3",
+            children: a.length ? a.map(C => e.jsxs("div", {
+                className: "rounded-2xl border border-white/10 bg-[#0d0b14] p-4 flex items-center justify-between gap-4",
+                children: [e.jsxs("div", {
+                    className: "min-w-0",
+                    children: [e.jsx("div", {
+                        className: "text-white font-bold truncate",
+                        children: C.accountTitle
+                    }), e.jsxs("div", {
+                        className: "text-xs text-gray-500 mt-1",
+                        children: [C.platform ?.name || "Unknown platform", " · ", C.platform ?.url || ""]
+                    }), e.jsx("div", {
+                        className: "text-[11px] text-emerald-400 mt-2",
+                        children: C.cookieSaved ? "Cookie saved securely" : "Cookie missing"
+                    })]
+                }), e.jsx("button", {
+                    type: "button",
+                    onClick: () => X(C.id),
+                    className: "px-3 py-1.5 rounded-lg border border-red-500/25 text-red-400 text-xs font-bold hover:bg-red-500/10",
+                    children: "Delete"
+                })]
+            }, C.id)) : e.jsx("div", {
+                className: "py-12 text-center rounded-2xl border border-dashed border-white/10 text-gray-500",
+                children: "No accounts added yet."
+            })
+        })]
+    })
+}
+
+function AdminPlatformsPage({
+    adminApi: t
+}) {
+    const {
+        toast: s
+    } = yt(), [a, n] = h.useState([]), [o, d] = h.useState({
+        name: "",
+        url: ""
+    }), [u, p] = h.useState(!1);
+    const m = async () => {
+        try {
+            const f = await t.fetch("/platforms");
+            n(Array.isArray(f ?.platforms) ? f.platforms : [])
+        } catch (f) {
+            s({
+                title: "Could not load platforms",
+                description: f.message,
+                variant: "destructive"
+            })
+        }
+    };
+    h.useEffect(() => {
+        m()
+    }, []);
+    const f = async g => {
+        g.preventDefault(), p(!0);
+        try {
+            await t.fetch("/platforms", {
+                method: "POST",
+                body: JSON.stringify(o)
+            }), d({
+                name: "",
+                url: ""
+            }), s({
+                title: "Platform created"
+            }), await m()
+        } catch (v) {
+            s({
+                title: "Could not create platform",
+                description: v.message,
+                variant: "destructive"
+            })
+        } finally {
+            p(!1)
+        }
+    };
+    const g = async v => {
+        if (confirm("Delete this platform and its accounts?")) try {
+            await t.fetch(`/platforms/${v}`, {
+                method: "DELETE"
+            }), await m()
+        } catch (N) {
+            s({
+                title: "Could not delete platform",
+                description: N.message,
+                variant: "destructive"
+            })
+        }
+    };
+    return e.jsxs("div", {
+        className: "space-y-6",
+        children: [e.jsxs("div", {
+            children: [e.jsx("h2", {
+                className: "text-xl font-black text-white",
+                children: "Platforms"
+            }), e.jsx("p", {
+                className: "text-gray-500 text-sm mt-1",
+                children: "Create platforms once; their names and URLs appear dynamically in Accounts."
+            })]
+        }), e.jsxs("form", {
+            onSubmit: f,
+            className: "rounded-2xl border border-white/10 bg-[#1a1528] p-5 grid md:grid-cols-[1fr_2fr_auto] gap-3 items-end",
+            children: [e.jsxs("label", {
+                children: [e.jsx("span", {
+                    className: "block text-xs font-bold text-gray-400 mb-1.5",
+                    children: "Platform Name"
+                }), e.jsx("input", {
+                    required: !0,
+                    value: o.name,
+                    onChange: v => d({ ...o,
+                        name: v.target.value
+                    }),
+                    className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]",
+                    placeholder: "Google Flow"
+                })]
+            }), e.jsxs("label", {
+                children: [e.jsx("span", {
+                    className: "block text-xs font-bold text-gray-400 mb-1.5",
+                    children: "Platform URL"
+                }), e.jsx("input", {
+                    required: !0,
+                    type: "url",
+                    value: o.url,
+                    onChange: v => d({ ...o,
+                        url: v.target.value
+                    }),
+                    className: "w-full rounded-xl bg-[#0d0b14] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]",
+                    placeholder: "https://flow.google.com/"
+                })]
+            }), e.jsx("button", {
+                type: "submit",
+                disabled: u,
+                className: "px-4 py-2.5 rounded-xl bg-[#7c3aed] text-white text-sm font-bold disabled:opacity-50",
+                children: u ? "Saving…" : "Create Platform"
+            })]
+        }), e.jsx("div", {
+            className: "grid gap-3",
+            children: a.length ? a.map(v => e.jsxs("div", {
+                className: "rounded-2xl border border-white/10 bg-[#0d0b14] p-4 flex items-center justify-between gap-4",
+                children: [e.jsxs("div", {
+                    children: [e.jsx("div", {
+                        className: "text-white font-bold",
+                        children: v.name
+                    }), e.jsx("a", {
+                        href: v.url,
+                        target: "_blank",
+                        rel: "noreferrer",
+                        className: "text-xs text-purple-400 hover:underline",
+                        children: v.url
+                    })]
+                }), e.jsx("button", {
+                    type: "button",
+                    onClick: () => g(v.id),
+                    className: "px-3 py-1.5 rounded-lg border border-red-500/25 text-red-400 text-xs font-bold hover:bg-red-500/10",
+                    children: "Delete"
+                })]
+            }, v.id)) : e.jsx("div", {
+                className: "py-12 text-center rounded-2xl border border-dashed border-white/10 text-gray-500",
+                children: "No platforms created yet."
+            })
+        })]
+    })
+}
+
 function D$({
     adminApi: t
 }) {
@@ -58544,7 +58875,7 @@ This will:
             label: "Pool",
             icon: o0
         }, {
-            id: "flow-browser",
+            id: "platforms",
             label: "Platforms",
             icon: fc
         }, {
@@ -58631,7 +58962,7 @@ This will:
             id: "plans",
             label: "Plans",
             icon: dr
-        }].filter(q => ["overview", "users", "orders", "vids-accounts", "flow-browser", "settings", "plans"].includes(q.id)),
+        }].filter(q => ["overview", "users", "orders", "vids-accounts", "platforms", "settings", "plans"].includes(q.id)),
         qi = y => e.jsx("nav", {
             className: "flex-1 overflow-y-auto py-3 px-2 space-y-0.5",
             children: zi.map(q => {
@@ -62486,6 +62817,8 @@ Optional reason (audit log):`, "shared WiFi / household");
                 }), m === "harvester" && e.jsx($$, {
                     adminApi: Fe,
                     toast: t
+                }), m === "platforms" && e.jsx(AdminPlatformsPage, {
+                    adminApi: Fe
                 }), m === "flow-browser" && e.jsx(I$, {
                     adminApi: Fe,
                     toast: t
@@ -62493,7 +62826,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                     adminApi: Fe
                 }), m === "flow-auto-login" && e.jsx(E$, {
                     adminApi: Fe
-                }), m === "vids-accounts" && e.jsx(R$, {
+                }), m === "vids-accounts" && e.jsx(AdminAccountsPage, {
                     adminApi: Fe
                 }), m === "stripe-activations" && e.jsx(U$, {
                     adminApi: Fe,
