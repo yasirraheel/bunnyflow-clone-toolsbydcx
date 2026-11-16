@@ -5,7 +5,7 @@
   "version": "2.4.6",
   "version_name": "v2.4.6",
   "description": "Tools By DCX \u2014 Google Flow Video & Nano Banana Image access manager.",
-  "minimum_chrome_version": 119,
+  "minimum_chrome_version": "119",
   "permissions": [
     "storage",
     "cookies",
