@@ -4,11 +4,20 @@ use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandConfigController;
 use App\Http\Controllers\Api\ExtensionController;
+use App\Http\Controllers\Api\ExtensionSessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/brand-config', BrandConfigController::class);
 Route::get('/stats/public', [AdminController::class, 'publicStats']);
 Route::get('/extension/download', [ExtensionController::class, 'download'])->middleware('flow.auth');
+
+// Browser extension session endpoints (same protocol as the Bunny Flow
+// extension): the extension exchanges the website token, then fetches the
+// shared Google account's cookies for the requested mode.
+Route::middleware('flow.auth')->group(function () {
+    Route::post('/extension/web-sso', [ExtensionSessionController::class, 'webSso']);
+    Route::get('/extension/session/{id?}', [ExtensionSessionController::class, 'session']);
+});
 
 Route::prefix('auth')->middleware('throttle:30,1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
