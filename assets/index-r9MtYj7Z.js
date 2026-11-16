@@ -30356,8 +30356,8 @@ function WN() {
     } = yt(), [p, m] = h.useState(!1), f = b4({
         resolver: w4(eL),
         defaultValues: {
-            email: "demo@toolsbydcx.local",
-            password: "ToolsByDCX123"
+            email: "",
+            password: ""
         }
     }), g = lR(), v = h.useRef(null);
     h.useEffect(() => {
@@ -30376,23 +30376,6 @@ function WN() {
         } catch {}
     }, []);
     const N = k => {
-        if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-            const C = k.email || "demo@toolsbydcx.local",
-                P = {
-                    id: "local-demo-user",
-                    email: C,
-                    username: C.split("@")[0],
-                    plan: "Max",
-                    planActive: !0,
-                    emailVerified: !0,
-                    onboardingCompleted: !0,
-                    credits: 9999,
-                    daysRemaining: 9999
-                };
-            return d("local-demo-token", P), u({
-                title: "Welcome back!"
-            }), void o("/dashboard")
-        }
         const w = { ...k,
             fingerprint: v.current,
             deviceId: ml()
@@ -30410,24 +30393,6 @@ function WN() {
                 const C = S ?.data,
                     A = S ?.response ?.status ?? S ?.status ?? 0,
                     I = `${S ?.message || ""} ${C ?.message || ""}`;
-                if (A === 404 || /<!doctype|<html|HTTP 404/i.test(I)) {
-                    const P = f.getValues("email") || "demo@toolsbydcx.local",
-                        R = {
-                            id: "preview-demo-user",
-                            email: P,
-                            username: P.split("@")[0],
-                            plan: "Max",
-                            planActive: !0,
-                            emailVerified: !0,
-                            onboardingCompleted: !0,
-                            credits: 9999,
-                            daysRemaining: 9999
-                        };
-                    return d("preview-demo-token", R), u({
-                        title: "Demo login successful",
-                        description: "Backend API is not connected; preview mode opened."
-                    }), void o("/dashboard")
-                }
                 if (C ?.error === "account_suspended") {
                     u({
                         title: "Account suspended",
