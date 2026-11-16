@@ -30387,7 +30387,7 @@ function WN() {
                 d(S.token, S.user);
                 u({
                     title: "Welcome back!"
-                }), o(S.user ?.role === "admin" ? "/admin" : "/dashboard")
+                }), o(S.user ?.role === "admin" ? "/admin/dashboard" : "/user/dashboard")
             },
             onError: S => {
                 const C = S ?.data,
@@ -30772,7 +30772,7 @@ function nL() {
                         U > 0 && localStorage.setItem("bf_welcome_credits_popup", String(U)), u({
                             title: `Welcome to ${s}! 🎉`,
                             description: U > 0 ? `You have received ${U} Free Welcome Credits in your account!` : D.message
-                        }), o("/dashboard");
+                        }), o("/user/dashboard");
                         return
                     }
                     u({
@@ -31120,7 +31120,7 @@ function lL() {
                         L > 0 && localStorage.setItem("bf_welcome_credits_popup", String(L)), n({
                             title: `Welcome to ${t.brandName||"Tools By DCX"}! 🎉`,
                             description: L > 0 ? `You have received ${L} Free Welcome Credits in your account!` : `Welcome to ${t.brandName||"Tools By DCX"}.`
-                        }), s("/dashboard")
+                        }), s("/user/dashboard")
                     }
                 } catch (D) {
                     C(D ?.message || "Network error. Please try again.")
@@ -31442,7 +31442,7 @@ function KN() {
             a(O.token, O.user), n({
                 title: "Password updated!",
                 description: "You're now signed in."
-            }), s(O.user ?.role === "admin" ? "/admin" : "/dashboard")
+            }), s(O.user ?.role === "admin" ? "/admin/dashboard" : "/user/dashboard")
         } catch (E) {
             w(E ?.message || "Network error. Please try again.")
         } finally {
@@ -85452,6 +85452,16 @@ function pz() {
                 children: e.jsx(gU, {})
             })
         }), e.jsx(Qe, {
+            path: "/user",
+            children: e.jsx($t, {
+                children: e.jsx(gU, {})
+            })
+        }), e.jsx(Qe, {
+            path: "/user/dashboard",
+            children: e.jsx($t, {
+                children: e.jsx(gU, {})
+            })
+        }), e.jsx(Qe, {
             path: "/generate/video",
             children: e.jsx($t, {
                 children: e.jsx(kU, {})
@@ -85623,6 +85633,9 @@ function pz() {
             })
         }), e.jsx(Qe, {
             path: "/admin",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/dashboard",
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
             path: "/reseller",
