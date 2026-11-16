@@ -1,9 +1,9 @@
 RewriteEngine On
 
-RewriteRule ^laravel-app/public/ - [L]
+# Existing frontend assets are kept at the document root so Apache can serve
+# them directly without exposing the nested Laravel public path.
+RewriteRule ^(?:assets|videos)(?:/|$) - [L]
+RewriteRule ^(?:bunny-logo\.png|support-icon\.png|hero-characters\.png|favicon\.ico)$ - [L]
 
-# Laravel is the only backend entrypoint. Frontend assets stay pixel-identical
-# but are served from Laravel's public directory.
-RewriteRule ^(?:assets|videos)(?:/|$) laravel-app/public/$0 [L]
-RewriteRule ^(?:bunny-logo\.png|support-icon\.png|hero-characters\.png|favicon\.ico)$ laravel-app/public/$0 [L]
+# All application routes, including /api/*, go through Laravel.
 RewriteRule ^ laravel-app/public/index.php [L,QSA]
