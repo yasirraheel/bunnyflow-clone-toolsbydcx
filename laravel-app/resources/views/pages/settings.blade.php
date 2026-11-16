@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/index-CHk3_bF4.css') }}?v=admin-routes-20261116">
+    <link rel="stylesheet" href="{{ asset('assets/index-CHk3_bF4.css') }}?v=admin-routes-v2-20261116">
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="{{ asset('assets/index-r9MtYj7Z.js') }}?v=admin-routes-20261116"></script>
+    <script type="module" src="{{ asset('assets/index-r9MtYj7Z.js') }}?v=admin-routes-v2-20261116"></script>
 </body>
 </html>

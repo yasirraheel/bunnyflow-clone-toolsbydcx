@@ -86050,6 +86050,24 @@ function pz() {
             path: "/admin/dashboard",
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
+            path: "/admin/users",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/orders",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/accounts",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/platforms",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/settings",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/plans",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
             path: "/reseller",
             children: s ? e.jsx(q0, {}) : e.jsx(Z$, {})
         }), e.jsx(Qe, {
