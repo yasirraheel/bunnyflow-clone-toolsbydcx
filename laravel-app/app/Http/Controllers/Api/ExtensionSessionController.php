@@ -85,6 +85,8 @@ class ExtensionSessionController extends Controller
                 'cookiesUnchanged' => false,
                 'maintenance' => false,
                 'limitReached' => true,
+                'noAccount' => false,
+                'noValidCookies' => false,
                 'pool' => ['serverNumber' => 1, 'totalServers' => 1],
             ]);
         }
@@ -99,6 +101,8 @@ class ExtensionSessionController extends Controller
                 'cookiesUnchanged' => false,
                 'maintenance' => false,
                 'limitReached' => false,
+                'noAccount' => true,
+                'noValidCookies' => false,
                 'pool' => ['serverNumber' => 1, 'totalServers' => 1],
             ]);
         }
@@ -129,6 +133,8 @@ class ExtensionSessionController extends Controller
             'cookiesUnchanged' => false,
             'maintenance' => false,
             'limitReached' => false,
+            'noAccount' => false,
+            'noValidCookies' => count($cookies) === 0,
             'pool' => ['serverNumber' => 1, 'totalServers' => 1],
         ]);
     }

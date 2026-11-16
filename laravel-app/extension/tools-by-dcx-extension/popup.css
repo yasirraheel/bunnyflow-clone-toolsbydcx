@@ -376,6 +376,10 @@ html, body {
   background: #eab308;
 }
 
+.session-dot.err {
+  background: #ef4444;
+}
+
 .session-slot-name {
   font-size: 11px;
   font-weight: 700;
@@ -397,6 +401,11 @@ html, body {
 .session-badge.wait {
   background: rgba(234, 179, 8, 0.14);
   color: #fde047;
+}
+
+.session-badge.err {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
 }
 
 .session-sub {

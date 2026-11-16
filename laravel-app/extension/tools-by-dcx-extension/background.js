@@ -531,6 +531,8 @@ async function syncSessionsFromPortalInner(force = false, preferredSlotId = null
     let cookiesUnchanged = false;
     let respCookieSig = null;
     let isMaintenance = false;
+    let noAccount = false;
+    let noValidCookies = false;
     let maintenanceUrl = getMaintenanceUrl(flowMode);
     let isLimitReached = false;
 
@@ -573,6 +575,8 @@ async function syncSessionsFromPortalInner(force = false, preferredSlotId = null
         respCookieSig = data.cookieSig || sessions?.[0]?.cookieSig || null;
         cookiesUnchanged = Boolean(data.cookiesUnchanged);
         isMaintenance = Boolean(data.maintenance);
+        noAccount = Boolean(data.noAccount);
+        noValidCookies = Boolean(data.noValidCookies);
         maintenanceUrl = data.maintenanceUrl || getMaintenanceUrl(flowMode);
         isLimitReached = Boolean(data.limitReached);
         if (Array.isArray(data.data)) {
@@ -653,6 +657,8 @@ async function syncSessionsFromPortalInner(force = false, preferredSlotId = null
         maintenance: isMaintenance || !isLimitReached,
         maintenanceUrl,
         limitReached: isLimitReached,
+        noAccount,
+        noValidCookies,
         syncSchedule
       };
 
@@ -1655,6 +1661,28 @@ chrome.runtime.onMessage.addListener((req, _sender, sendResponse) => {
           return;
         }
         if (!meta || Number(meta.cookieCount) === 0 || meta.maintenance) {
+          if (meta?.noAccount) {
+            sendResponse({
+              ok: false,
+              noAccount: true,
+              mode: nextMode,
+              error: nextMode === "image"
+                ? "No shared Nano Banana account is set up for your plan yet. Please ask the admin to add one."
+                : "No shared Google Flow account is set up for your plan yet. Please ask the admin to add one."
+            });
+            return;
+          }
+          if (meta?.noValidCookies) {
+            sendResponse({
+              ok: false,
+              noValidCookies: true,
+              mode: nextMode,
+              error: nextMode === "image"
+                ? "The shared Nano Banana account's cookies have expired. Please ask the admin to refresh the shared account cookies."
+                : "The shared Google Flow account's cookies have expired. Please ask the admin to refresh the shared account cookies."
+            });
+            return;
+          }
           if (meta?.limitReached) {
             sendResponse({
               ok: false,

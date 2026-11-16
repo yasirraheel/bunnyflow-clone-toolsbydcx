@@ -391,6 +391,22 @@
         : (isFreePool ? `Free Trial (Slow Queue) · ${count} cookies active` : `Auto-Synced · ${count} Video cookies active`);
       badge.className = "session-badge ok";
       badge.textContent = "READY";
+    } else if (meta?.noAccount) {
+      dot.className = "session-dot err";
+      title.textContent = isImgMode
+        ? "Nano Banana AI (No Account)"
+        : "Google Flow Video (No Account)";
+      sub.textContent = "No shared account is set up for your plan, ask the admin to add one";
+      badge.className = "session-badge err";
+      badge.textContent = "NO ACCOUNT";
+    } else if (meta?.noValidCookies) {
+      dot.className = "session-dot err";
+      title.textContent = isImgMode
+        ? "Nano Banana AI (Cookies Expired)"
+        : "Google Flow Video (Cookies Expired)";
+      sub.textContent = "The shared account's cookies have expired, ask the admin to refresh them";
+      badge.className = "session-badge err";
+      badge.textContent = "EXPIRED";
     } else if (meta?.maintenance) {
       dot.className = "session-dot wait";
       title.textContent = isImgMode
