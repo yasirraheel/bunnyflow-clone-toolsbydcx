@@ -203,7 +203,31 @@ function adminRoute(PDO $pdo, array $config, string $method, string $route, arra
             respond(['ok' => true]);
         }
     }
-    if ($method === 'GET' && $route === 'settings') respond(['settings' => []]);
+    if ($method === 'GET' && $route === 'settings') {
+        $rows = $pdo->query('SELECT plan, price, cut_price, visible, duration_days FROM plans ORDER BY FIELD(plan, "basic", "pro", "ultra")')->fetchAll();
+        $settings = [];
+        foreach ($rows as $row) {
+            $prefix = 'plan_' . $row['plan'];
+            $settings[] = ['key' => $prefix . '_price', 'value' => (float) $row['price']];
+            $settings[] = ['key' => $prefix . '_cut_price', 'value' => $row['cut_price'] === null ? '' : (float) $row['cut_price']];
+            $settings[] = ['key' => $prefix . '_duration_days', 'value' => (int) $row['duration_days']];
+            $settings[] = ['key' => $prefix . '_visible', 'value' => (bool) $row['visible']];
+        }
+        respond(['settings' => $settings]);
+    }
+    if ($method === 'PATCH' && $route === 'settings') {
+        foreach ($input as $key => $value) {
+            if (preg_match('/^plan_(basic|pro|ultra)_(price|cut_price|duration_days|visible)$/', (string) $key, $match)) {
+                $field = $match[2];
+                $column = $field === 'cut_price' ? 'cut_price' : $field;
+                $parsed = $field === 'visible' ? (!empty($value) ? 1 : 0) : ($value === '' && $field === 'cut_price' ? null : max(0, (float) $value));
+                if ($field === 'duration_days') $parsed = max(0, (int) $value);
+                $stmt = $pdo->prepare("UPDATE plans SET {$column} = :value WHERE plan = :plan");
+                $stmt->execute(['value' => $parsed, 'plan' => $match[1]]);
+            }
+        }
+        respond(['ok' => true]);
+    }
     if ($method === 'GET' && $route === 'analytics') respond(['overview' => [], 'analytics' => []]);
     if ($method === 'GET' && $route === 'extension-meta') respond(['version' => null]);
     if (in_array($method, ['GET', 'POST'], true)) respond(['users' => [], 'sessions' => [], 'orders' => [], 'requests' => []]);
