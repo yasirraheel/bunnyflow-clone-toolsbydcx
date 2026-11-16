@@ -1,4 +1,4 @@
-// Tools By DCX v2.4.6 — Sticky Multi-Server Pool + Direct Website Auto-Sync + Maintenance Screen Engine
+// Tools By DCX v2.4.7 — Sticky Multi-Server Pool + Direct Website Auto-Sync + Maintenance Screen Engine
 // 1. Direct Website Auto-Sync (connects automatically when logged in on flow.toolsbydcx.com; disconnects automatically on website sign-out)
 // 2. Strictly scopes cookies in memory to flow.google.com, aisandbox-pa.googleapis.com, and labs.google
 // 3. Strips Set-Cookie response headers & blocks RotateCookies/Logout so Master Google Accounts stay healthy
@@ -13,8 +13,8 @@ const DEFAULT_BACKEND_URLS = [
 
 const EXT_V2_HEADER = "manual-2.0";
 const EXT_VERSION = (typeof chrome !== "undefined" && chrome.runtime?.getManifest)
-  ? (chrome.runtime.getManifest().version || "2.4.6")
-  : "2.4.6";
+  ? (chrome.runtime.getManifest().version || "2.4.7")
+  : "2.4.7";
 const EXT_EDITION = `Tools By DCX v${EXT_VERSION}`;
 const EXT_SECURE_TOKEN = "abb8bac894eb9a7cf987c2da45bae4d3";
 const FLOW_HOME = "https://flow.google.com/";

@@ -3,8 +3,8 @@
 
   const $ = (id) => document.getElementById(id);
   const EXT_VERSION = (typeof chrome !== "undefined" && chrome.runtime?.getManifest)
-    ? (chrome.runtime.getManifest().version || "2.4.6")
-    : "2.4.6";
+    ? (chrome.runtime.getManifest().version || "2.4.7")
+    : "2.4.7";
   const EXT_SECURE_TOKEN = "bunny-v246-edition-secured-2026";
 
   const storage = {

@@ -1,4 +1,4 @@
-# Tools By DCX Chrome Extension (v2.4.6, Manifest V3)
+# Tools By DCX Chrome Extension (v2.4.7, Manifest V3)
 
 Official extension for flow.toolsbydcx.com. Same working as the Bunny Flow
 extension it is built from: it takes the shared Google Flow session from the
