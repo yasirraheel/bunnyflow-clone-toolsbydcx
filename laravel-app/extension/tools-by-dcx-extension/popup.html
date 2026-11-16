@@ -1,8 +1,173 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tools By DCX</title><link rel="stylesheet" href="popup.css"></head><body>
-  <main class="popup"><div class="brand"><span>✦</span><div><strong>Tools By DCX</strong><small>Flow companion</small></div></div>
-  <div class="status"><i></i><div><strong id="status-title">Checking workspace</strong><small id="status-copy">Open Flow to connect the UI bridge.</small></div></div>
-  <section class="credits"><span>Workspace credits</span><strong id="credits">—</strong><small>Displayed by your authorized workspace</small></section>
-  <button id="open-flow" class="primary">Open Google Flow <b>↗</b></button>
-  <button id="check" class="secondary">Refresh status</button>
-  <p class="note">This companion only manages the visible UI bridge. It does not collect or distribute Google authentication cookies.</p></main><script src="popup.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools By DCX</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="shell">
+
+    <!-- TOP HEADER -->
+    <header class="top">
+      <div class="brand">
+        <img src="logo.png" alt="Tools By DCX" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">
+            <span>Tools By DCX</span>
+            <span class="pro-tag">v2.4.6</span>
+          </div>
+          <p class="tagline">Google Flow &amp; Nano Banana</p>
+        </div>
+      </div>
+      <span id="statusChip" class="chip bad" aria-live="polite">
+        <i class="dot"></i><span id="statusChipText">Disconnected</span>
+      </span>
+    </header>
+
+    <!-- AUTO-VERSION UPDATE ALERT BANNER (Shown automatically when a newer version is released) -->
+    <div id="versionUpdateBanner" class="version-alert-card hidden" role="alert">
+      <div class="version-alert-top">
+        <span id="versionAlertTitle" class="version-alert-title">🚀 New Update Available!</span>
+        <span id="versionAlertBadge" class="version-alert-badge">NEW</span>
+      </div>
+      <p id="versionAlertDesc" class="version-alert-desc">
+        A newer version of Tools By DCX is ready with improved stability and features.
+      </p>
+      <button id="versionDownloadBtn" type="button" class="version-download-btn">
+        <span>⬇ Download Latest Update</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: DIRECT WEBSITE SYNC VIEW (No Manual Login Form — Auto-Connects with flow.toolsbydcx.com) -->
+    <section id="loginView" class="view">
+      <div class="login-card">
+        <div class="login-head">
+          <div class="radar-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Connect via Tools By DCX</h3>
+            <p class="desc">Direct Auto-Sync with <b>flow.toolsbydcx.com</b></p>
+          </div>
+        </div>
+
+        <p style="font-size:10.5px;line-height:1.5;color:#94a3b8;background:#0d101b;border:1px solid #1e2336;border-radius:7px;padding:8px 10px;">
+          Sign in on <b style="color:#e2e8f0;">flow.toolsbydcx.com</b> and this extension connects automatically. Signing out on the website disconnects the extension automatically.
+        </p>
+
+        <button id="openWebsiteLoginBtn" type="button" class="cta-purple">
+          <span>🌐 Sign In on flow.toolsbydcx.com →</span>
+        </button>
+
+        <button id="webSsoConnectBtn" type="button" class="btn-switch-server" style="background:linear-gradient(135deg,rgba(99,102,241,0.22),rgba(168,85,247,0.22));border-color:rgba(167,139,250,0.45);">
+          <span class="switch-btn-left">
+            <span>⚡ Sync Website Session</span>
+            <small class="switch-btn-hint" style="background:rgba(34,197,94,0.22);color:#86efac;">Auto-Connect</small>
+          </span>
+          <span class="switch-server-tag" style="background:rgba(255,255,255,0.1);color:#e2e8f0;border:0;">Check →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 2: CONNECTED DASHBOARD VIEW -->
+    <section id="dashboardView" class="view hidden">
+      <div class="account-card">
+        <div class="account-left">
+          <div class="avatar-wrap">
+            <img src="logo.png" alt="User" class="avatar-img">
+            <i class="presence-dot on"></i>
+          </div>
+          <div class="account-info">
+            <strong id="displayUserName">Tools By DCX Member</strong>
+            <span id="displayUserEmail" class="account-email">user@flow.toolsbydcx.com</span>
+            <div class="meta-row">
+              <span id="displayUserPlan" class="plan-pill">MAX PLAN</span>
+              <span class="days-pill"><b id="displayDaysLeft">Active</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE AUTO-SYNC SESSION VAULT + SERVER POOL CARD -->
+      <div class="session-box">
+        <div class="session-top">
+          <div class="session-title-wrap">
+            <span id="sessionDot" class="session-dot ok"></span>
+            <strong id="sessionTitle" class="session-slot-name">Google Flow Session</strong>
+          </div>
+          <div class="session-badges-wrap">
+            <span id="serverPoolCountBadge" class="server-count-pill">Server 1/1</span>
+            <span id="sessionBadge" class="session-badge ok">READY</span>
+          </div>
+        </div>
+        <div class="session-sub">
+          <span id="sessionSub">Auto-Synced &amp; Ready</span>
+          <span class="scope-tag">Flow Only</span>
+        </div>
+        <!-- Quick Server Pool Pills (S1, S2, S3...) -->
+        <div id="serverPoolPillsRow" class="server-pills-row hidden"></div>
+      </div>
+
+      <!-- Primary Action: Open Google Flow (Video) -->
+      <button id="openFlowBtn" type="button" class="cta-purple">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M5 3l14 9-14 9V3z"/>
+        </svg>
+        <span>Open Google Flow</span>
+      </button>
+
+      <!-- Smart Pool Auto-Switch: 1-Click Switch Video Server Button (Paid Plans) -->
+      <button id="switchServerBtn" type="button" class="btn-switch-server" title="Facing Unusual Activity or Failed to Load? Switch to another healthy Google Flow Video server in 1 click!">
+        <span class="switch-btn-left">
+          <span>🔀 Switch Server</span>
+          <small class="switch-btn-hint">Fix Errors</small>
+        </span>
+        <span id="switchServerTag" class="switch-server-tag">Server 1</span>
+      </button>
+
+      <!-- Free Trial Upgrade CTA Button (Shown on Free Plan) -->
+      <button id="freePlanUpgradeBtn" type="button" class="btn-switch-server hidden" style="background:linear-gradient(135deg,rgba(124,58,237,0.32),rgba(219,39,119,0.28));border-color:rgba(192,132,252,0.55);" title="Upgrade to Plus (2x) or Max (3x) for Fast Multi-Server Access without queues!">
+        <span class="switch-btn-left">
+          <span>⚡ Upgrade Plan</span>
+          <small class="switch-btn-hint" style="background:rgba(236,72,153,0.28);color:#fbcfe8;">2x / 3x Fast</small>
+        </span>
+        <span class="switch-server-tag" style="background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;border:0;">Pricing →</span>
+      </button>
+
+      <!-- Secondary Actions: Auto-Sync & Open Website (Sign out happens directly on flow.toolsbydcx.com) -->
+      <div class="action-row">
+        <button id="syncNowBtn" type="button" class="btn-secondary">
+          <span>⚡ Auto-Sync</span>
+        </button>
+        <button id="openDashboardBtn" type="button" class="btn-secondary">
+          <span>🌐 Website</span>
+        </button>
+      </div>
+
+      <!-- SERVER LIVE REMOTE UPDATE SLOT -->
+      <div id="liveRemotePopupSlot"></div>
+    </section>
+
+    <!-- STATUS BANNER -->
+    <div id="statusBanner" class="status-banner hidden" role="status" aria-live="polite">
+      <span id="statusBannerText">Ready</span>
+    </div>
+
+    <!-- COMPACT FOOTER -->
+    <footer class="bottom-footer">
+      <span>Tools By DCX</span>
+      <span>•</span>
+      <span id="footerVersionLabel">v2.4.6</span>
+      <span>•</span>
+      <span class="portal-domain">flow.toolsbydcx.com</span>
+    </footer>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

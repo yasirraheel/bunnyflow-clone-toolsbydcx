@@ -1,1 +1,772 @@
-:root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#0d0b17;color:#f2eef8}*{box-sizing:border-box}body{margin:0;width:320px;background:#0d0b17}.popup{padding:20px}.brand{display:flex;align-items:center;gap:10px;padding-bottom:20px}.brand>span{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#e1c7ff,#7c3aed);color:#180d29}.brand strong,.brand small{display:block}.brand strong{font-size:14px}.brand small{color:#92889e;font-size:10px;margin-top:2px}.status,.credits{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.045);padding:13px;margin-bottom:10px}.status{display:flex;gap:10px;align-items:center}.status i{width:8px;height:8px;border-radius:50%;background:#7ee0ae;box-shadow:0 0 0 4px rgba(126,224,174,.1)}.status strong,.status small,.credits span,.credits small{display:block}.status strong{font-size:12px}.status small,.credits span,.credits small{font-size:10px;color:#a6a0b2}.credits strong{display:block;font-size:25px;letter-spacing:-.04em;margin:5px 0}.primary,.secondary{width:100%;border-radius:8px;padding:10px;border:0;font:inherit;font-size:11px;font-weight:750;cursor:pointer}.primary{background:#d7b6ff;color:#1a1026;margin-top:3px}.secondary{background:rgba(255,255,255,.07);color:#ddd5e5;border:1px solid rgba(255,255,255,.09);margin-top:8px}.note{font-size:10px;line-height:1.55;color:#777083;margin:16px 2px 0}
+/* ========================================================
+   BUNNY AI v2.0 — CLEAN COMPACT DARK THEME (MANUAL LOGIN)
+   ======================================================== */
+
+:root {
+  --bg-main: #0c0d14;
+  --bg-card: #13151f;
+  --bg-subtle: #1a1e2d;
+  --border: #222638;
+  --border-subtle: #191c2b;
+  --text-white: #ffffff;
+  --text-primary: #e2e8f0;
+  --text-muted: #8892b0;
+  --text-dim: #64748b;
+  --accent: #6d28d9;
+  --accent-hover: #5b21b6;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-full: 999px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 295px;
+  min-width: 295px;
+  max-width: 295px;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 1.4;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 9px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========================================================
+   HEADER
+   ======================================================== */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: -0.2px;
+}
+
+.pro-tag {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #c4b5fd;
+  background: #1e1b38;
+  border: 1px solid #3b306b;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.tagline {
+  font-size: 9.5px;
+  color: var(--text-dim);
+}
+
+/* Status Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2.5px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.chip .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chip.ok {
+  background: #0f241a;
+  border: 1px solid #14532d;
+  color: #34d399;
+}
+
+.chip.ok .dot {
+  background: #10b981;
+}
+
+.chip.bad {
+  background: #241113;
+  border: 1px solid #7f1d1d;
+  color: #f87171;
+}
+
+.chip.bad .dot {
+  background: #ef4444;
+}
+
+/* ========================================================
+   VIEW PANELS
+   ======================================================== */
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ========================================================
+   MANUAL LOGIN VIEW
+   ======================================================== */
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.radar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #1e1b38;
+  border: 1px solid #3b306b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.login-head h3 {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.login-head .desc {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.login-head b {
+  color: #c4b5fd;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.field label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.field input {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #090a10;
+  color: var(--text-white);
+  font-size: 11.5px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field input:focus {
+  border-color: #7c3aed;
+}
+
+.field input::placeholder {
+  color: #475569;
+}
+
+/* ========================================================
+   ACCOUNT CARD (SIGNED IN)
+   ======================================================== */
+.account-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 11px;
+}
+
+.account-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #0a0b12;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.presence-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 1.5px solid var(--bg-card);
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.account-info strong {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-email {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.plan-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #c4b5fd;
+  background: #1e1b38;
+  border: 1px solid #3b306b;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+}
+
+.days-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 1.5px 6px;
+  border-radius: 4px;
+}
+
+/* ========================================================
+   SESSION STATUS CARD
+   ======================================================== */
+.session-box {
+  padding: 9px 11px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.session-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.session-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.session-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  flex-shrink: 0;
+}
+
+.session-dot.wait {
+  background: #eab308;
+}
+
+.session-slot-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.session-badge {
+  font-size: 9px;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  font-weight: 700;
+}
+
+.session-badge.wait {
+  background: rgba(234, 179, 8, 0.14);
+  color: #fde047;
+}
+
+.session-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.scope-tag {
+  font-size: 9.5px;
+  color: #64748b;
+}
+
+/* ========================================================
+   BUTTONS
+   ======================================================== */
+.cta-purple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  height: 34px;
+  padding: 0 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  width: 100%;
+}
+
+.cta-purple svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.cta-purple:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.cta-purple:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.action-row {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-secondary,
+.btn-danger {
+  flex: 1;
+  height: 29px;
+  border-radius: var(--radius-sm);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-subtle);
+}
+
+.btn-danger {
+  background: rgba(127, 29, 29, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(127, 29, 29, 0.35);
+}
+
+/* ========================================================
+   STATUS BANNER & FOOTER
+   ======================================================== */
+.status-banner {
+  padding: 6px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.status-banner.err {
+  background: #241113;
+  border-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+.status-banner.ok {
+  background: #0f241a;
+  border-color: #14532d;
+  color: #34d399;
+}
+
+.bottom-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 9px;
+  color: var(--text-dim);
+  padding-top: 4px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.portal-domain {
+  color: var(--text-muted);
+}
+
+/* ========================================================
+   COMPACT SAVED PROJECTS BUTTON IN POPUP
+   ======================================================== */
+.btn-projects-screen {
+  width: 100%;
+  height: 33px;
+  padding: 0 12px;
+  background: #141324;
+  border: 1px solid rgba(139, 92, 246, 0.38);
+  border-radius: var(--radius-sm);
+  color: #ede9fe;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-projects-screen:hover {
+  background: #1c1a33;
+  border-color: rgba(139, 92, 246, 0.7);
+}
+
+.projects-count {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1.5px 7px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.22);
+  border: 1px solid rgba(139, 92, 246, 0.48);
+  color: #c4b5fd;
+}
+
+/* ========================================================
+   AUTO-VERSION UPDATE ALERT BANNER
+   ======================================================== */
+.version-alert-card {
+  padding: 9px 10px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.24) 0%, rgba(217, 119, 6, 0.22) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.52);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.version-alert-card.urgent {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.28) 0%, rgba(153, 27, 27, 0.32) 100%);
+  border-color: rgba(248, 113, 113, 0.65);
+}
+
+.version-alert-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.version-alert-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fde68a;
+  letter-spacing: -0.1px;
+}
+
+.version-alert-card.urgent .version-alert-title {
+  color: #fecaca;
+}
+
+.version-alert-badge {
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 1.5px 6px;
+  border-radius: var(--radius-full);
+  background: #f59e0b;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+}
+
+.version-alert-card.urgent .version-alert-badge {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.version-alert-desc {
+  font-size: 10px;
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+.version-download-btn {
+  margin-top: 2px;
+  width: 100%;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
+  font-size: 10.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: opacity 0.15s ease;
+}
+
+.version-alert-card.urgent .version-download-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+}
+
+.version-download-btn:hover {
+  opacity: 0.92;
+}
+
+/* ========================================================
+   SMART SERVER POOL PILLS & SWITCH SERVER BUTTON
+   ======================================================== */
+.session-badges-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.server-count-pill {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.38);
+  color: #c4b5fd;
+  white-space: nowrap;
+}
+
+.server-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.server-pill-btn {
+  flex: 1;
+  min-width: 58px;
+  height: 23px;
+  padding: 0 7px;
+  border-radius: 5px;
+  border: 1px solid #282d42;
+  background: #0e1019;
+  color: #94a3b8;
+  font-size: 9.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.server-pill-btn:hover:not(:disabled) {
+  border-color: rgba(139, 92, 246, 0.55);
+  color: #e2e8f0;
+}
+
+.server-pill-btn.active {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(52, 211, 153, 0.55);
+  color: #34d399;
+}
+
+.server-pill-btn .s-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #475569;
+}
+
+.server-pill-btn.active .s-dot {
+  background: #10b981;
+}
+
+.btn-switch-server {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.28) 0%, rgba(67, 56, 202, 0.28) 100%);
+  color: #f8fafc;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-switch-server:hover:not(:disabled) {
+  border-color: rgba(56, 189, 248, 0.78);
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.42) 0%, rgba(67, 56, 202, 0.42) 100%);
+}
+
+.btn-switch-server:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.switch-btn-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.switch-btn-hint {
+  font-size: 9px;
+  font-weight: 600;
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.16);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.switch-server-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1.5px 7px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  color: #cbd5e1;
+}

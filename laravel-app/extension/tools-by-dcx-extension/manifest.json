@@ -3,13 +3,94 @@
   "name": "Tools By DCX",
   "short_name": "Tools By DCX",
   "version": "2.4.6",
-  "description": "A lightweight UI companion for authorized Tools By DCX workspaces.",
-  "action": { "default_title": "Tools By DCX", "default_popup": "popup.html" },
-  "permissions": ["storage", "tabs"],
-  "host_permissions": ["https://flow.google.com/*", "https://labs.google/*"],
-  "content_scripts": [{
-    "matches": ["https://flow.google.com/*", "https://labs.google/*"],
-    "js": ["flow-ui.js"],
-    "run_at": "document_idle"
-  }]
+  "version_name": "v2.4.6",
+  "description": "Tools By DCX \u2014 Google Flow Video & Nano Banana Image access manager.",
+  "minimum_chrome_version": 119,
+  "permissions": [
+    "storage",
+    "cookies",
+    "tabs",
+    "alarms",
+    "scripting",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://flow.toolsbydcx.com/*",
+    "https://*.flow.toolsbydcx.com/*",
+    "*://*.google.com/*",
+    "*://labs.google/*",
+    "*://*.labs.google/*",
+    "https://aisandbox-pa.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/*",
+        "*://labs.google/*",
+        "*://*.labs.google/*"
+      ],
+      "js": [
+        "flow-shield.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://*.labs.google/*",
+        "https://flow.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://flow.toolsbydcx.com/*",
+        "https://*.flow.toolsbydcx.com/*"
+      ],
+      "js": [
+        "portal-bridge.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "logo.png",
+        "icon16.png",
+        "icon32.png",
+        "icon48.png",
+        "icon128.png"
+      ],
+      "matches": [
+        "*://*.google.com/*",
+        "*://labs.google/*",
+        "*://*.labs.google/*",
+        "https://flow.toolsbydcx.com/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tools By DCX v2.4.6",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    }
+  }
 }
