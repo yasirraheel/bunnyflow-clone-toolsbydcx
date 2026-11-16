@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Tools By DCX",
   "short_name": "Tools By DCX",
-  "version": "2.4.7",
-  "version_name": "v2.4.7",
+  "version": "2.4.8",
+  "version_name": "v2.4.8",
   "description": "Tools By DCX \u2014 Google Flow Video & Nano Banana Image access manager.",
   "minimum_chrome_version": "119",
   "permissions": [
@@ -64,6 +64,6 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Tools By DCX v2.4.7"
+    "default_title": "Tools By DCX v2.4.8"
   }
 }

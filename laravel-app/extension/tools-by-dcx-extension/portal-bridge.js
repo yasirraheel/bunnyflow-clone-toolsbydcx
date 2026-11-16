@@ -1,4 +1,4 @@
-// Tools By DCX v2.4.7 — Direct Website Sync Bridge (flow.toolsbydcx.com <-> Extension Background)
+// Tools By DCX v2.4.8 — Direct Website Sync Bridge (flow.toolsbydcx.com <-> Extension Background)
 // 100% Automatic Website Login/Logout Sync + Zero-Flicker Connected Status + Maintenance Forwarding
 (() => {
   "use strict";
@@ -6,8 +6,8 @@
   globalThis.__bunnyFlowPortalBridgeActive = true;
 
   const EXT_VERSION = (typeof chrome !== "undefined" && chrome.runtime?.getManifest)
-    ? (chrome.runtime.getManifest().version || "2.4.7")
-    : "2.4.7";
+    ? (chrome.runtime.getManifest().version || "2.4.8")
+    : "2.4.8";
 
   let lastKnownWebToken = "";
   let lastSyncedToken = "";

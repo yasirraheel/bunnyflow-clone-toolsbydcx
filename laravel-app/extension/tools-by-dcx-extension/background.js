@@ -1,4 +1,4 @@
-// Tools By DCX v2.4.7 — Sticky Multi-Server Pool + Direct Website Auto-Sync + Maintenance Screen Engine
+// Tools By DCX v2.4.8 — Sticky Multi-Server Pool + Direct Website Auto-Sync + Maintenance Screen Engine
 // 1. Direct Website Auto-Sync (connects automatically when logged in on flow.toolsbydcx.com; disconnects automatically on website sign-out)
 // 2. Strictly scopes cookies in memory to flow.google.com, aisandbox-pa.googleapis.com, and labs.google
 // 3. Strips Set-Cookie response headers & blocks RotateCookies/Logout so Master Google Accounts stay healthy
@@ -13,8 +13,8 @@ const DEFAULT_BACKEND_URLS = [
 
 const EXT_V2_HEADER = "manual-2.0";
 const EXT_VERSION = (typeof chrome !== "undefined" && chrome.runtime?.getManifest)
-  ? (chrome.runtime.getManifest().version || "2.4.7")
-  : "2.4.7";
+  ? (chrome.runtime.getManifest().version || "2.4.8")
+  : "2.4.8";
 const EXT_EDITION = `Tools By DCX v${EXT_VERSION}`;
 const EXT_SECURE_TOKEN = "abb8bac894eb9a7cf987c2da45bae4d3";
 const FLOW_HOME = "https://flow.google.com/";
@@ -383,8 +383,11 @@ async function applyDeclarativeSession(prepared) {
   await dnrQueue;
   // Also write the cookies into the browser cookie jar so accounts.google.com
   // and every other Google domain see the shared session. Never fail the
-  // DNR apply because of a jar write problem.
-  try { await writePreparedCookiesToJar(prepared); } catch (_) {}
+  // DNR apply because of a jar write problem. The result is returned so the
+  // popup can show whether the jar write worked.
+  let jarWrite = null;
+  try { jarWrite = await writePreparedCookiesToJar(prepared); } catch (_) {}
+  return jarWrite;
 }
 
 async function sessionRulesActive() {
@@ -492,7 +495,7 @@ async function applyLoginBundle(data, requestedMode = "video") {
   if (slotObj && rawCookies && rawCookies.length > 0) {
     const parsedCookies = self.CookieCore.parseCookieInput(JSON.stringify(rawCookies));
     const prepared = self.CookieCore.prepareImport(parsedCookies).prepared;
-    await applyDeclarativeSession(prepared);
+    const jarWrite = await applyDeclarativeSession(prepared);
 
     const slotId = slotObj.id;
     const slotNum = slotObj.slot || data.assignedSlot || (flowMode === "image" ? 2 : 1);
@@ -512,6 +515,7 @@ async function applyLoginBundle(data, requestedMode = "video") {
       pool,
       cookieCount: prepared.length,
       injectedCount: prepared.length,
+      lastJarWrite: jarWrite || null,
       updatedAt: slotObj.actual_uploaded_at || slotObj.updated_at || new Date().toISOString(),
       syncedAt: Date.now(),
       status: "active",
@@ -827,7 +831,7 @@ async function syncSessionsFromPortalInner(force = false, preferredSlotId = null
     if (isSwitchingServer || Date.now() < manualSwitchLockUntil) {
       return stored.activeSession || null;
     }
-    await applyDeclarativeSession(prepared);
+    const jarWrite = await applyDeclarativeSession(prepared);
 
     // NEVER auto-reload active Google Flow tabs on background sync! Only bounce /about landing tabs.
     const capturedTabs = await captureFlowTabs();
@@ -848,6 +852,7 @@ async function syncSessionsFromPortalInner(force = false, preferredSlotId = null
       pool,
       cookieCount: prepared.length,
       injectedCount: prepared.length,
+      lastJarWrite: jarWrite || null,
       updatedAt: actualUploaded || new Date().toISOString(),
       syncedAt: Date.now(),
       status: "active",
@@ -890,7 +895,7 @@ async function applySwitchedServerResponse(data, flowMode = "video") {
   const importResult = self.CookieCore.prepareImport(parsedCookies);
   const prepared = importResult.prepared;
 
-  await applyDeclarativeSession(prepared);
+  const jarWrite = await applyDeclarativeSession(prepared);
 
   const slotId = slotObj.id;
   const slotNum = slotObj.slot || data.assignedSlot || 1;
@@ -911,6 +916,7 @@ async function applySwitchedServerResponse(data, flowMode = "video") {
     pool,
     cookieCount: prepared.length,
     injectedCount: prepared.length,
+    lastJarWrite: jarWrite || null,
     updatedAt: slotObj.actual_uploaded_at || slotObj.updated_at || new Date().toISOString(),
     syncedAt: Date.now(),
     status: "active",

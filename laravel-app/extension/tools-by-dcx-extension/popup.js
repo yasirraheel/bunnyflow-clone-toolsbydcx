@@ -3,8 +3,8 @@
 
   const $ = (id) => document.getElementById(id);
   const EXT_VERSION = (typeof chrome !== "undefined" && chrome.runtime?.getManifest)
-    ? (chrome.runtime.getManifest().version || "2.4.7")
-    : "2.4.7";
+    ? (chrome.runtime.getManifest().version || "2.4.8")
+    : "2.4.8";
   const EXT_SECURE_TOKEN = "bunny-v246-edition-secured-2026";
 
   const storage = {
@@ -382,15 +382,21 @@
     }
 
     if (meta && count > 0 && !meta.maintenance) {
-      dot.className = "session-dot ok";
+      const jar = meta.lastJarWrite || null;
+      const jarFailed = jar ? Number(jar.failed || 0) : 0;
+      const jarApplied = jar ? Number(jar.applied || 0) : 0;
+      const jarBad = jar ? jarFailed > 0 : false;
+      const acct = meta.slotName ? ` · ${meta.slotName}` : "";
+      const jarText = jar ? ` · Jar ${jarApplied}/${jarApplied + jarFailed} written` : "";
+      dot.className = jarBad ? "session-dot err" : "session-dot ok";
       title.textContent = isImgMode
         ? "Nano Banana AI (Image)"
         : (isFreePool ? "Free Trial Video Server (1x)" : `Video Server ${sNum} (Veo 3.1)`);
       sub.textContent = isImgMode
-        ? "Auto-Synced · Image account active"
-        : (isFreePool ? `Free Trial (Slow Queue) · ${count} cookies active` : `Auto-Synced · ${count} Video cookies active`);
-      badge.className = "session-badge ok";
-      badge.textContent = "READY";
+        ? `Auto-Synced · Image account active${acct}`
+        : (isFreePool ? `Free Trial (Slow Queue) · ${count} cookies active${acct}` : `Auto-Synced · ${count} Video cookies active${jarText}${acct}`);
+      badge.className = jarBad ? "session-badge err" : "session-badge ok";
+      badge.textContent = jarBad ? "JAR FAIL" : "READY";
     } else if (meta?.noAccount) {
       dot.className = "session-dot err";
       title.textContent = isImgMode
