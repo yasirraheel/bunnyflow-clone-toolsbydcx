@@ -62,35 +62,8 @@
       "all_frames": false
     }
   ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "logo.png",
-        "icon16.png",
-        "icon32.png",
-        "icon48.png",
-        "icon128.png"
-      ],
-      "matches": [
-        "*://*.google.com/*",
-        "*://labs.google/*",
-        "*://*.labs.google/*",
-        "https://flow.toolsbydcx.com/*"
-      ]
-    }
-  ],
-  "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
-  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Tools By DCX v2.4.6",
-    "default_icon": {
-      "16": "icon16.png",
-      "32": "icon32.png"
-    }
+    "default_title": "Tools By DCX v2.4.6"
   }
 }
