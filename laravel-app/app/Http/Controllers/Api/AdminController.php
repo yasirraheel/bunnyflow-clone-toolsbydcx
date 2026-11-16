@@ -43,7 +43,7 @@ class AdminController extends Controller
             'email' => ['sometimes', 'email', 'max:190', 'unique:users,email,' . $id],
             'username' => ['sometimes', 'alpha_dash', 'min:3', 'max:32', 'unique:users,username,' . $id],
             'role' => ['sometimes', 'in:user,admin'],
-            'plan' => ['sometimes', 'string', 'max:32'],
+            'plan' => ['sometimes', 'string', 'max:32', 'exists:plans,plan'],
             'planExpiresAt' => ['sometimes', 'nullable', 'date'],
             'status' => ['sometimes', 'in:active,suspended'],
             'credits' => ['sometimes', 'integer', 'min:0'],
@@ -51,6 +51,10 @@ class AdminController extends Controller
         if (array_key_exists('planExpiresAt', $data)) {
             $data['plan_expires_at'] = $data['planExpiresAt'];
             unset($data['planExpiresAt']);
+        }
+        if (array_key_exists('plan', $data) && (!array_key_exists('plan_expires_at', $data) || $data['plan_expires_at'] === null)) {
+            $durationDays = (int) DB::table('plans')->where('plan', $data['plan'])->value('duration_days');
+            $data['plan_expires_at'] = $durationDays > 0 ? now()->addDays($durationDays) : null;
         }
         $user->fill($data)->save();
         return response()->json(['user' => $this->user($user->fresh())]);
