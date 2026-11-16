@@ -30387,7 +30387,7 @@ function WN() {
                 d(S.token, S.user);
                 u({
                     title: "Welcome back!"
-                }), o("/dashboard")
+                }), o(S.user ?.role === "admin" ? "/admin" : "/dashboard")
             },
             onError: S => {
                 const C = S ?.data,
@@ -31442,7 +31442,7 @@ function KN() {
             a(O.token, O.user), n({
                 title: "Password updated!",
                 description: "You're now signed in."
-            }), s("/dashboard")
+            }), s(O.user ?.role === "admin" ? "/admin" : "/dashboard")
         } catch (E) {
             w(E ?.message || "Network error. Please try again.")
         } finally {
