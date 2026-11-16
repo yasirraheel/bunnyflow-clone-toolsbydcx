@@ -32592,9 +32592,13 @@ function t5() {
             }
         }
         if (V.id === "basic" && t.pricing ?.vibe) {
-            const He = t.pricing.vibe.cutPrice ?? V.cutPrice;
+            const He = t.pricing.vibe.cutPrice ?? V.cutPrice,
+                Q = Number(t.pricing.vibe.durationDays || V.durationDays || 0);
             return { ...V,
                 hidden: Ve,
+                durationDays: Q,
+                duration: `${Q} Days`,
+                sublabel: `${Q}-Day Access`,
                 price: t.pricing.vibe.price,
                 priceLabel: `Rs. ${t.pricing.vibe.price.toLocaleString()}`,
                 ...He !== void 0 && {
@@ -32603,9 +32607,13 @@ function t5() {
             }
         }
         if (V.id === "pro" && t.pricing ?.plus) {
-            const He = t.pricing.plus.cutPrice ?? V.cutPrice;
+            const He = t.pricing.plus.cutPrice ?? V.cutPrice,
+                Q = Number(t.pricing.plus.durationDays || V.durationDays || 0);
             return { ...V,
                 hidden: Ve,
+                durationDays: Q,
+                duration: `${Q} Days`,
+                sublabel: `${Q}-Day Access`,
                 price: t.pricing.plus.price,
                 priceLabel: `Rs. ${t.pricing.plus.price.toLocaleString()}`,
                 ...He !== void 0 && {
@@ -32614,9 +32622,13 @@ function t5() {
             }
         }
         if (V.id === "ultra" && t.pricing ?.max) {
-            const He = t.pricing.max.cutPrice ?? V.cutPrice;
+            const He = t.pricing.max.cutPrice ?? V.cutPrice,
+                Q = Number(t.pricing.max.durationDays || V.durationDays || 0);
             return { ...V,
                 hidden: Ve,
+                durationDays: Q,
+                duration: `${Q} Days`,
+                sublabel: `${Q}-Day Access`,
                 price: t.pricing.max.price,
                 priceLabel: `Rs. ${t.pricing.max.price.toLocaleString()}`,
                 ...He !== void 0 && {
