@@ -13,4 +13,11 @@ return [
         'reset_ttl' => 60 * 60,
         'mail_from' => 'no-reply@toolsbydcx.com',
     ],
+    'smtp' => [
+        'host' => 'smtp.hostinger.com',
+        'port' => 465,
+        'encryption' => 'ssl',
+        'username' => 'account@toolsbydcx.com',
+        'password' => 'CHANGE_ME',
+    ],
 ];

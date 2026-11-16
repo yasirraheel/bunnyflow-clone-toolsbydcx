@@ -323,9 +323,64 @@ function forgotPassword(PDO $pdo, array $config, array $input): never
         $subject = 'Reset your Tools By DCX password';
         $message = "Open this link within 60 minutes to reset your password:\n\n{$link}\n";
         $headers = 'From: ' . $config['app']['mail_from'] . "\r\n" . 'Content-Type: text/plain; charset=UTF-8';
-        @mail($email, $subject, $message, $headers);
+        sendMail($config, $email, $subject, $message, $config['app']['mail_from']);
     }
     respond(['ok' => true, 'message' => 'If that account exists, a reset link has been sent.']);
+}
+
+function sendMail(array $config, string $to, string $subject, string $body, string $from): bool
+{
+    $smtp = $config['smtp'] ?? null;
+    if (is_array($smtp) && !empty($smtp['host']) && !empty($smtp['username']) && !empty($smtp['password'])) {
+        try {
+            $transport = ((int) ($smtp['port'] ?? 465) === 465 ? 'ssl://' : '') . $smtp['host'];
+            $errno = 0;
+            $errstr = '';
+            $socket = @fsockopen($transport, (int) ($smtp['port'] ?? 465), $errno, $errstr, 15);
+            if (!$socket) throw new RuntimeException('SMTP connect failed: ' . $errstr);
+            stream_set_timeout($socket, 15);
+            smtpExpect($socket, '220');
+            smtpCommand($socket, 'EHLO flow.toolsbydcx.com', '250');
+            smtpCommand($socket, 'AUTH LOGIN', '334');
+            smtpCommand($socket, base64_encode((string) $smtp['username']), '334');
+            smtpCommand($socket, base64_encode((string) $smtp['password']), '235');
+            smtpCommand($socket, 'MAIL FROM:<' . $from . '>', '250');
+            smtpCommand($socket, 'RCPT TO:<' . $to . '>', '250');
+            smtpCommand($socket, 'DATA', '354');
+            $headers = 'From: Tools By DCX <' . $from . ">\r\n" .
+                'To: <' . $to . ">\r\n" .
+                'Subject: ' . $subject . "\r\n" .
+                'MIME-Version: 1.0' . "\r\n" .
+                'Content-Type: text/plain; charset=UTF-8' . "\r\n\r\n";
+            $payload = preg_replace('/(^|\r\n)\./', '$1..', $headers . $body);
+            fwrite($socket, $payload . "\r\n.\r\n");
+            smtpExpect($socket, '250');
+            fwrite($socket, "QUIT\r\n");
+            fclose($socket);
+            return true;
+        } catch (Throwable $e) {
+            error_log('Tools By DCX SMTP send failed: ' . $e->getMessage());
+        }
+    }
+    return @mail($to, $subject, $body, 'From: ' . $from . "\r\n" . 'Content-Type: text/plain; charset=UTF-8');
+}
+
+function smtpCommand($socket, string $command, string $expected): void
+{
+    fwrite($socket, $command . "\r\n");
+    smtpExpect($socket, $expected);
+}
+
+function smtpExpect($socket, string $expected): void
+{
+    $response = '';
+    while (($line = fgets($socket, 2048)) !== false) {
+        $response .= $line;
+        if (strlen($line) < 4 || $line[3] === ' ') break;
+    }
+    if (substr($response, 0, 3) !== $expected) {
+        throw new RuntimeException('SMTP response ' . substr($response, 0, 120));
+    }
 }
 
 function resetPassword(PDO $pdo, array $config, array $input): never
