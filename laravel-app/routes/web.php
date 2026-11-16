@@ -12,6 +12,7 @@ Route::view('/admin/accounts', 'app')->name('admin.accounts');
 Route::view('/admin/platforms', 'app')->name('admin.platforms');
 Route::view('/admin/settings', 'app')->name('admin.settings');
 Route::view('/admin/plans', 'app')->name('admin.plans');
+Route::view('/admin/plans/{plan}/edit', 'app')->whereIn('plan', ['free', 'basic', 'pro', 'ultra'])->name('admin.plans.edit');
 Route::get('/admin/{path?}', fn () => view('app'))->where('path', '.*');
 Route::get('/user/{path?}', fn () => view('app'))->where('path', '.*');
 Route::get('/{path?}', fn () => view('app'))->where('path', '^(?!api(?:/|$)).*');

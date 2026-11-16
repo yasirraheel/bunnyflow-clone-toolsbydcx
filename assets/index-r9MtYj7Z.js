@@ -77,6 +77,45 @@ var Pv;
 function XC() {
     return Pv || (Pv = 1, Zg.exports = QC()), Zg.exports
 }
+
+const dcxDialog = (() => {
+    const queue = [];
+    let open = !1;
+    const runNext = () => {
+        if (open || !queue.length || typeof document > "u") return;
+        open = !0;
+        const item = queue.shift(), lastFocus = document.activeElement, overlay = document.createElement("div"), panel = document.createElement("section"), close = document.createElement("button"), eyebrow = document.createElement("p"), title = document.createElement("h2"), message = document.createElement("p"), form = document.createElement("div"), cancel = document.createElement("button"), approve = document.createElement("button");
+        overlay.setAttribute("role", "presentation"), overlay.style.cssText = "position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,2,9,.78);backdrop-filter:blur(10px);";
+        panel.setAttribute("role", "dialog"), panel.setAttribute("aria-modal", "true"), panel.setAttribute("aria-labelledby", "dcx-dialog-title"), panel.style.cssText = "width:min(100%,540px);border:1px solid rgba(168,85,247,.55);border-radius:24px;background:linear-gradient(145deg,#211634,#0d0b14 70%);box-shadow:0 28px 85px rgba(0,0,0,.6),0 0 45px rgba(124,58,237,.2);padding:26px;color:#fff;";
+        close.type = "button", close.textContent = "×", close.setAttribute("aria-label", "Close dialog"), close.style.cssText = "float:right;border:0;background:transparent;color:#9ca3af;font-size:28px;line-height:1;cursor:pointer;padding:0 2px;";
+        eyebrow.textContent = item.kind === "danger" ? "CONFIRM DESTRUCTIVE ACTION" : item.kind === "prompt" ? "INPUT REQUIRED" : "TOOLS BY DCX";
+        eyebrow.style.cssText = `margin:0 0 8px;font:800 10px/1 Inter,system-ui;letter-spacing:.16em;color:${item.kind === "danger" ? "#fb7185" : "#a855f7"};`;
+        title.id = "dcx-dialog-title", title.textContent = item.title || (item.kind === "prompt" ? "Enter details" : item.kind === "alert" ? "Notice" : "Please confirm"), title.style.cssText = "margin:0;font:800 22px/1.2 Inter,system-ui;";
+        message.textContent = String(item.message || ""), message.style.cssText = "white-space:pre-wrap;margin:12px 0 0;color:#c4c1cf;font:500 14px/1.55 Inter,system-ui;";
+        let field = null;
+        if (item.kind === "prompt") {
+            field = document.createElement("textarea"), field.value = item.value || "", field.rows = 4, field.placeholder = item.placeholder || "", field.style.cssText = "box-sizing:border-box;width:100%;margin-top:18px;padding:12px 14px;border:1px solid rgba(168,85,247,.55);border-radius:14px;background:#0d0b14;color:#fff;font:500 14px/1.4 Inter,system-ui;outline:none;resize:vertical;", form.append(field)
+        }
+        form.style.cssText = "margin-top:18px;display:flex;justify-content:flex-end;gap:10px;";
+        cancel.type = "button", cancel.textContent = item.cancelLabel || "Cancel", cancel.style.cssText = `border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.04);padding:11px 16px;color:#d1d5db;font:800 13px Inter,system-ui;cursor:pointer;${item.kind === "alert" ? "display:none;" : ""}`;
+        approve.type = "button", approve.textContent = item.approveLabel || (item.kind === "alert" ? "Okay" : "Continue"), approve.style.cssText = `border:0;border-radius:12px;background:${item.kind === "danger" ? "#e11d48" : "#7c3aed"};padding:11px 17px;color:white;font:800 13px Inter,system-ui;cursor:pointer;box-shadow:0 8px 20px ${item.kind === "danger" ? "rgba(225,29,72,.28)" : "rgba(124,58,237,.32)"};`;
+        const finish = value => {
+            document.removeEventListener("keydown", keydown), overlay.remove(), open = !1, lastFocus?.focus?.(), item.resolve(value), runNext()
+        }, keydown = event => {
+            if (event.key === "Escape") return event.preventDefault(), finish(item.kind === "alert" ? !0 : item.kind === "prompt" ? null : !1);
+            if (event.key === "Enter" && item.kind !== "prompt") return event.preventDefault(), finish(!0)
+        };
+        close.onclick = () => finish(item.kind === "alert" ? !0 : item.kind === "prompt" ? null : !1), cancel.onclick = () => finish(item.kind === "prompt" ? null : !1), approve.onclick = () => finish(item.kind === "prompt" ? field.value : !0), overlay.onclick = event => event.target === overlay && finish(item.kind === "alert" ? !0 : item.kind === "prompt" ? null : !1), document.addEventListener("keydown", keydown), form.append(cancel, approve), panel.append(close, eyebrow, title, message, form), overlay.append(panel), document.body.append(overlay), (field || approve).focus()
+    }, show = item => new Promise(resolve => {
+        queue.push({ ...item, resolve }), runNext()
+    });
+    return {
+        notice: (message, title) => show({ kind: "alert", message, title }),
+        ask: (message, options = {}) => show({ kind: options.danger ? "danger" : "confirm", message, ...options }),
+        input: (message, value = "", options = {}) => show({ kind: "prompt", message, value, ...options })
+    }
+})(), dcxAlert = (message, title) => dcxDialog.notice(message, title), dcxConfirm = (message, options) => dcxDialog.ask(message, options), dcxPrompt = (message, value, options) => dcxDialog.input(message, value, options);
+
 var e = XC(),
     Jg = {
         exports: {}
@@ -32743,7 +32782,7 @@ function t5() {
                 return
             }
             if (O) {
-                alert("You already have a pending order awaiting admin approval. Please wait for it to be reviewed before placing another order.");
+                dcxAlert("You already have a pending order awaiting admin approval. Please wait for it to be reviewed before placing another order.");
                 return
             }
             const oe = typeof V == "number" && V > 0 ? V : T,
@@ -32836,7 +32875,7 @@ function t5() {
         Nn = h.useRef(null),
         sn = V => {
             if (V.id === "free" || V.isFree) {
-                u ? alert("The Free plan is automatically activated when you sign up — no order needed. It's a one-time 3-day free trial.") : m("/register");
+                u ? dcxAlert("The Free plan is automatically activated when you sign up — no order needed. It's a one-time 3-day free trial.") : m("/register");
                 return
             }
             if (!u) {
@@ -32844,13 +32883,13 @@ function t5() {
                 return
             }
             if (!V.isTeamPlan && k(V.id)) {
-                alert(`You already have an active ${V.name} plan. Please wait until it expires before purchasing again.`);
+                dcxAlert(`You already have an active ${V.name} plan. Please wait until it expires before purchasing again.`);
                 return
             }
             if (O) {
                 const oe = (g.pendingPlan || "").toLowerCase(),
                     Ve = (oe === "free" ? "Free" : oe).toUpperCase();
-                alert(`You already have a pending ${Ve} order awaiting admin approval. Please wait for it to be reviewed (usually within 5-10 minutes) before placing another order.`);
+                dcxAlert(`You already have a pending ${Ve} order awaiting admin approval. Please wait for it to be reviewed (usually within 5-10 minutes) before placing another order.`);
                 return
             }
             if (n) {
@@ -32881,7 +32920,7 @@ function t5() {
                     if (!Ve.ok || !He ?.checkoutUrl) throw new Error(He ?.error || "Could not start checkout right now. Please try again in a moment.");
                     window.location.href = He.checkoutUrl
                 } catch (oe) {
-                    alert(oe ?.message || "Something went wrong starting checkout. Please try again."), Bs(!1)
+                    dcxAlert(oe ?.message || "Something went wrong starting checkout. Please try again."), Bs(!1)
                 }
             }
         },
@@ -52197,7 +52236,7 @@ function cB() {
             }
         },
         M = async () => {
-            if (window.confirm("Reset every existing white-label Vibe/Plus/Max plan charge to the current wholesale rates? Video, image, TTS, and payment records will not change.")) {
+            if (await dcxConfirm("Reset every existing white-label Vibe/Plus/Max plan charge to the current wholesale rates? Video, image, TTS, and payment records will not change.")) {
                 f(!0);
                 try {
                     const de = await Vr.fetch("/white-labels/billing/rates", {
@@ -57155,7 +57194,7 @@ function AdminAccountsPage({
         }
     };
     const X = async P => {
-        if (confirm("Delete this account?")) try {
+        if (await dcxConfirm("Delete this account?", { danger: !0, approveLabel: "Delete" })) try {
             await t.fetch(`/accounts/${P}`, {
                 method: "DELETE"
             }), s({
@@ -57361,7 +57400,7 @@ function AdminPlatformsPage({
         }
     };
     const g = async v => {
-        if (confirm("Delete this platform and its accounts?")) try {
+        if (await dcxConfirm("Delete this platform and its accounts?", { danger: !0, approveLabel: "Delete" })) try {
             await t.fetch(`/platforms/${v}`, {
                 method: "DELETE"
             }), await m()
@@ -57448,6 +57487,29 @@ function AdminPlatformsPage({
     })
 }
 
+function AdminPlansListPage({
+    adminApi: t
+}) {
+    const { toast: s } = yt(), [a, n] = h.useState([]), [o, d] = h.useState(!0), m = { free: "Free Trial", basic: "Vibe", pro: "Plus", ultra: "Max" }, theme = { free: { accent: "#a855f7", tint: "147,51,234", label: "3-Day Free Trial" }, basic: { accent: "#3b82f6", tint: "59,130,246", label: "Starter Access" }, pro: { accent: "#a855f7", tint: "168,85,247", label: "Most Popular" }, ultra: { accent: "#facc15", tint: "250,204,21", label: "Top Tier" } }, f = async () => {
+        d(!0);
+        try {
+            const g = await t.fetch("/plans");
+            n(Array.isArray(g?.plans) ? g.plans.map(C => ({ ...C, features: Array.isArray(C.features) ? C.features : [], accountIds: Array.isArray(C.accountIds) ? C.accountIds : [] })) : [])
+        } catch (g) {
+            s({ title: "Could not load plans", description: g.message, variant: "destructive" })
+        } finally {
+            d(!1)
+        }
+    };
+    return h.useEffect(() => { f() }, []), e.jsxs("div", {
+        className: "space-y-6",
+        children: [e.jsxs("div", { className: "flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3", children: [e.jsxs("div", { children: [e.jsx("h2", { className: "text-2xl font-black text-white", children: "Plans" }), e.jsx("p", { className: "text-gray-500 text-sm mt-1", children: "Same plan cards as the frontend. Open a plan to manage its pricing, features and included accounts." })] }), e.jsxs("button", { type: "button", onClick: f, className: "h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 border border-white/10 flex items-center gap-1.5", children: [e.jsx(Pt, { className: "h-3.5 w-3.5" }), " Refresh"] })] }), o ? e.jsx("div", { className: "py-16 text-center text-gray-500", children: "Loading plans…" }) : e.jsx("div", { className: "grid gap-6 md:grid-cols-2 2xl:grid-cols-3", children: a.map(C => {
+            const T = theme[C.plan] || theme.basic, featureList = (C.features || []).slice(0, 5);
+            return e.jsxs("article", { className: "min-w-0 rounded-[28px] overflow-hidden border border-white/10 bg-[#0d0b14] flex flex-col", style: { boxShadow: `0 18px 60px rgba(${T.tint},.14)` }, children: [e.jsxs("div", { className: "p-6 pb-5", style: { background: `radial-gradient(circle at top right, rgba(${T.tint},.28), transparent 52%), linear-gradient(135deg, rgba(${T.tint},.16), rgba(13,11,20,.15))` }, children: [e.jsxs("div", { className: "flex items-start justify-between gap-3", children: [e.jsxs("div", { children: [e.jsx("span", { className: "text-[10px] uppercase tracking-[.22em] font-black", style: { color: T.accent }, children: T.label }), e.jsx("h3", { className: "text-3xl font-black text-white mt-2", children: m[C.plan] || C.plan })] }), e.jsx("span", { className: `shrink-0 px-2.5 py-1 rounded-full text-[10px] font-black border ${C.visible ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" : "bg-white/5 text-gray-500 border-white/10"}`, children: C.visible ? "LIVE" : "HIDDEN" })] }), e.jsxs("div", { className: "mt-7 flex items-end gap-2", children: [e.jsx("span", { className: "text-4xl font-black text-white", children: Number(C.price || 0) === 0 ? "Free" : `Rs. ${Number(C.price || 0).toLocaleString()}` }), C.cut_price ? e.jsxs("span", { className: "pb-1 text-sm text-gray-500 line-through", children: ["Rs. ", Number(C.cut_price).toLocaleString()] }) : null] }), e.jsx("p", { className: "text-sm text-gray-400 mt-2", children: `${Number(C.duration_days || 0)}-day access` })] }), e.jsxs("div", { className: "p-6 pt-5 flex-1 flex flex-col", children: [e.jsx("p", { className: "text-[11px] font-black uppercase tracking-[.16em] text-gray-500 mb-3", children: "What's included" }), e.jsx("ul", { className: "space-y-2.5 flex-1", children: featureList.length ? featureList.map((A, I) => e.jsxs("li", { className: "flex gap-2.5 text-sm text-gray-300", children: [e.jsx("span", { className: "mt-1 h-1.5 w-1.5 shrink-0 rounded-full", style: { backgroundColor: T.accent } }), e.jsx("span", { children: A })] }, I)) : e.jsx("li", { className: "text-sm text-gray-600", children: "No highlights configured." }) }), e.jsxs("div", { className: "mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-3", children: [e.jsxs("span", { className: "text-xs text-gray-500", children: [C.accountIds.length, " account", C.accountIds.length === 1 ? "" : "s", " assigned"] }), e.jsx("button", { type: "button", onClick: () => window.location.assign(`/admin/plans/${C.plan}/edit`), className: "px-4 py-2.5 rounded-xl text-sm font-black text-white transition-transform hover:-translate-y-0.5", style: { backgroundColor: T.accent }, children: "Edit Plan" })] })] })] }, C.plan)
+        }) })]
+    })
+}
+
 function AdminPlansPageV2({
     adminApi: t
 }) {
@@ -57463,7 +57525,7 @@ function AdminPlansPageV2({
         basic: { accent: "#3b82f6", tint: "59,130,246", label: "Starter Access" },
         pro: { accent: "#a855f7", tint: "168,85,247", label: "Most Popular" },
         ultra: { accent: "#facc15", tint: "250,204,21", label: "Top Tier" }
-    }, f = async () => {
+    }, selectedPlan = String(window.location.pathname.match(/\/admin\/plans\/([^/]+)\/edit/)?.[1] || ""), f = async () => {
         d(!0);
         try {
             const g = await t.fetch("/plans");
@@ -57504,8 +57566,8 @@ function AdminPlansPageV2({
         className: "space-y-6",
         children: [e.jsxs("div", {
             className: "flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3",
-            children: [e.jsxs("div", { children: [e.jsx("h2", { className: "text-xl font-black text-white", children: "Plans" }), e.jsx("p", { className: "text-gray-500 text-sm mt-1", children: "Frontend-matched plans. Edit pricing, highlights, visibility and the accounts included with each plan." })] }), e.jsxs("button", { type: "button", onClick: f, className: "h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 border border-white/10 flex items-center gap-1.5", children: [e.jsx(Pt, { className: "h-3.5 w-3.5" }), " Refresh"] })]
-        }), e.jsx("div", { className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-4 text-sm text-gray-400", children: "Changes are stored in the database and are used by the public pricing page and user access rules. Cookie values are never displayed here." }), o ? e.jsx("div", { className: "py-12 text-center text-gray-500", children: "Loading plans…" }) : e.jsx("div", { className: "grid gap-5 xl:grid-cols-2", children: a.map(C => {
+            children: [e.jsxs("div", { children: [e.jsx("button", { type: "button", onClick: () => window.location.assign("/admin/plans"), className: "text-xs font-bold text-purple-400 hover:text-purple-300 mb-2", children: "← Back to plans" }), e.jsx("h2", { className: "text-xl font-black text-white", children: `Edit ${m[selectedPlan] || "Plan"}` }), e.jsx("p", { className: "text-gray-500 text-sm mt-1", children: "Update pricing, frontend highlights, visibility and included platform accounts." })] }), e.jsxs("button", { type: "button", onClick: f, className: "h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 border border-white/10 flex items-center gap-1.5", children: [e.jsx(Pt, { className: "h-3.5 w-3.5" }), " Refresh"] })]
+        }), e.jsx("div", { className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-4 text-sm text-gray-400", children: "All edits are saved to the database and update the public frontend. Cookie values are never displayed here." }), o ? e.jsx("div", { className: "py-12 text-center text-gray-500", children: "Loading plan…" }) : e.jsx("div", { className: "grid gap-5", children: a.filter(C => C.plan === selectedPlan).map(C => {
             const T = theme[C.plan] || theme.basic, ids = Array.isArray(C.accountIds) ? C.accountIds.map(Number) : [];
             return e.jsxs("article", { className: "rounded-3xl border border-white/10 bg-[#0d0b14] overflow-hidden shadow-2xl", style: { boxShadow: `0 18px 60px rgba(${T.tint},.12)` }, children: [e.jsxs("div", { className: "p-5 border-b border-white/10", style: { background: `linear-gradient(135deg, rgba(${T.tint},.23), rgba(13,11,20,.1) 70%)` }, children: [e.jsxs("div", { className: "flex items-start justify-between gap-3", children: [e.jsxs("div", { children: [e.jsx("span", { className: "text-[10px] uppercase tracking-[.22em] font-black", style: { color: T.accent }, children: T.label }), e.jsx("h3", { className: "text-2xl font-black text-white mt-1", children: m[C.plan] || C.plan }), e.jsx("p", { className: "text-xs text-gray-500 mt-1", children: `Frontend plan · ${C.plan}` })] }), e.jsx("button", { type: "button", onClick: () => g(C.plan, "visible", !C.visible), className: `px-3 py-1.5 rounded-full text-xs font-black border ${C.visible ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" : "bg-white/5 text-gray-500 border-white/10"}`, children: C.visible ? "Visible" : "Hidden" })] }), e.jsxs("div", { className: "flex items-end gap-3 mt-5", children: [e.jsxs("div", { children: [e.jsx("div", { className: "text-3xl font-black text-white", children: Number(C.price || 0) === 0 ? "Free" : `Rs. ${Number(C.price || 0).toLocaleString()}` }), e.jsxs("div", { className: "text-xs text-gray-500 mt-1", children: [C.cut_price ? e.jsxs("span", { className: "line-through mr-2", children: ["Rs. ", Number(C.cut_price).toLocaleString()] }) : null, `${Number(C.duration_days || 0)} days access`] })] }), e.jsx("span", { className: "text-xs text-gray-500 pb-1", children: "same pricing source as frontend" })] })] }), e.jsxs("div", { className: "p-5 space-y-5", children: [e.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-3", children: [e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Sale Price (PKR)" }), e.jsx("input", { type: "number", min: "0", value: C.price ?? 0, onChange: P => g(C.plan, "price", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]" })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Original Price" }), e.jsx("input", { type: "number", min: "0", value: C.cut_price ?? "", onChange: P => g(C.plan, "cut_price", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]", placeholder: "Optional" })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Duration (days)" }), e.jsx("input", { type: "number", min: "0", value: C.duration_days ?? 0, onChange: P => g(C.plan, "duration_days", P.target.value), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]" })] })] }), e.jsxs("label", { className: "block", children: [e.jsx("span", { className: "block text-xs font-bold text-gray-400 mb-1.5", children: "Frontend highlights (one per line)" }), e.jsx("textarea", { rows: 5, value: (C.features || []).join("\n"), onChange: P => g(C.plan, "features", P.target.value.split(/\r?\n/)), className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed] resize-y", placeholder: "25,000 Google Flow Credits Included\nPrompt Library" })] }), e.jsxs("div", { className: "rounded-2xl border border-white/10 bg-white/[.02] p-4", children: [e.jsxs("div", { className: "flex items-center justify-between gap-3 mb-3", children: [e.jsx("div", { className: "text-sm font-black text-white", children: "Assigned platform accounts" }), e.jsx("span", { className: "text-xs text-gray-500", children: `${ids.length} selected` })] }), accounts.length ? e.jsx("div", { className: "grid gap-2", children: accounts.map(A => e.jsxs("label", { className: "flex items-center gap-3 rounded-xl border border-white/10 bg-[#12101a] px-3 py-2.5 cursor-pointer hover:border-purple-500/50", children: [e.jsx("input", { type: "checkbox", checked: ids.includes(Number(A.id)), onChange: P => toggleAccount(C.plan, A.id, P.target.checked), className: "accent-purple-500" }), e.jsxs("span", { className: "min-w-0", children: [e.jsx("span", { className: "block text-sm text-white font-semibold truncate", children: A.accountTitle }), e.jsx("span", { className: "block text-xs text-gray-500 truncate", children: `${A.platform?.name || "Platform"} · ${A.platform?.url || ""}` })] })] }, A.id)) }) : e.jsx("p", { className: "text-xs text-gray-500", children: "No enabled platform accounts yet. Add one from Accounts first." })] }), e.jsx("div", { className: "flex justify-end", children: e.jsx("button", { type: "button", onClick: () => v(C), disabled: u === C.plan, className: "px-5 py-2.5 rounded-xl text-white text-sm font-bold disabled:opacity-50", style: { backgroundColor: T.accent }, children: u === C.plan ? "Saving…" : "Save Plan Changes" }) })] })] }, C.plan)
         }) })]
@@ -57726,7 +57788,7 @@ function D$({
             }
         },
         P = async () => {
-            if (confirm("Are you sure you want to clear the Hyperbeam API key? Note: The session must be stopped before clearing the API key.")) {
+            if (await dcxConfirm("Are you sure you want to clear the Hyperbeam API key? Note: The session must be stopped before clearing the API key.", { danger: !0, approveLabel: "Clear key" })) {
                 o(!0);
                 try {
                     const E = await t.fetch("/hyperbeam/config", {
@@ -58347,6 +58409,7 @@ function M$() {
     const adminSectionFromPath = () => {
             const path = window.location.pathname.replace(/\/+$/, "") || "/";
             if (/^\/admin\/users\/\d+\/edit$/.test(path)) return "user-edit";
+            if (/^\/admin\/plans\/(free|basic|pro|ultra)\/edit$/.test(path)) return "plan-edit";
             return ({
                 "/admin/dashboard": "overview",
                 "/admin/users": "users",
@@ -58388,7 +58451,7 @@ function M$() {
     }, Je = async (y, q, ae = !1) => {
         let ge = null;
         if (ae) {
-            if (ge = window.prompt(q === "rejected" ? "Reason for rejection (shown to user in email):" : q === "paid" ? "Optional note (e.g. transaction reference):" : "Optional admin note:", ""), ge === null) return;
+            if (ge = await dcxPrompt(q === "rejected" ? "Reason for rejection (shown to user in email):" : q === "paid" ? "Optional note (e.g. transaction reference):" : "Optional admin note:", ""), ge === null) return;
             ge = ge.trim()
         }
         ct(y);
@@ -58413,7 +58476,7 @@ function M$() {
             ct(null)
         }
     }, ke = async y => {
-        if (confirm("Delete this refund request permanently?")) try {
+        if (await dcxConfirm("Delete this refund request permanently?", { danger: !0, approveLabel: "Delete" })) try {
             await Fe.fetch(`/refund-requests/${y}`, {
                 method: "DELETE"
             }), await Ne()
@@ -58657,7 +58720,7 @@ function M$() {
         s && m === "sharepass-pool" && Ui()
     }, [s, m]);
     const zc = async y => {
-            if (confirm("Delete this pool parcel? Only unclaimed parcels can be removed.")) {
+            if (await dcxConfirm("Delete this pool parcel? Only unclaimed parcels can be removed.", { danger: !0, approveLabel: "Delete" })) {
                 H(y);
                 try {
                     await Fe.fetch(`/sharepass-pool/${y}`, {
@@ -58739,7 +58802,7 @@ function M$() {
             }
         },
         qc = async y => {
-            if (confirm("Delete this support ticket permanently?")) try {
+            if (await dcxConfirm("Delete this support ticket permanently?", { danger: !0, approveLabel: "Delete" })) try {
                 await Fe.fetch(`/support/${y}`, {
                     method: "DELETE"
                 }), t({
@@ -58863,7 +58926,7 @@ function M$() {
             }
         },
         Hc = async y => {
-            if (confirm("Delete this Whisk session?")) try {
+            if (await dcxConfirm("Delete this Whisk session?", { danger: !0, approveLabel: "Delete" })) try {
                 await Fe.fetch(`/whisk-sessions/${y}`, {
                     method: "DELETE"
                 }), t({
@@ -58878,7 +58941,7 @@ function M$() {
             }
         },
         Wl = async y => {
-            if (confirm("Delete this session?")) try {
+            if (await dcxConfirm("Delete this session?", { danger: !0, approveLabel: "Delete" })) try {
                 await Fe.fetch(`/sessions/${y}`, {
                     method: "DELETE"
                 }), Ht()
@@ -58892,7 +58955,7 @@ function M$() {
         },
         Tu = async () => {
             const y = Array.from(An);
-            if (y.length !== 0 && confirm(`Delete ${y.length} selected session${y.length>1?"s":""}? This will also drop all their user assignments. Cannot be undone.`)) try {
+            if (y.length !== 0 && await dcxConfirm(`Delete ${y.length} selected session${y.length>1?"s":""}? This will also drop all their user assignments. Cannot be undone.`, { danger: !0, approveLabel: "Delete" })) try {
                 const q = await Fe.fetch("/sessions/bulk-delete", {
                     method: "POST",
                     body: JSON.stringify({
@@ -59006,7 +59069,7 @@ function M$() {
             }
         },
         yr = async y => {
-            if (confirm("Delete this Dola session? Its user assignments will be re-allocated.")) try {
+            if (await dcxConfirm("Delete this Dola session? Its user assignments will be re-allocated.", { danger: !0, approveLabel: "Delete" })) try {
                 await Fe.fetch(`/dola-sessions/${y}`, {
                     method: "DELETE"
                 }), t({
@@ -59121,7 +59184,7 @@ function M$() {
             }
         },
         Sh = async y => {
-            if (confirm(`Delete user "${y.username}"? This cannot be undone.`)) try {
+            if (await dcxConfirm(`Delete user "${y.username}"? This cannot be undone.`, { danger: !0, approveLabel: "Delete user" })) try {
                 await Fe.fetch(`/users/${y.id}`, {
                     method: "DELETE"
                 }), t({
@@ -59136,7 +59199,7 @@ function M$() {
             }
         },
         Pu = async y => {
-            if (confirm(`Suspend "${y.username}"?
+            if (await dcxConfirm(`Suspend "${y.username}"?
 
 This will:
 • Block their login
@@ -59157,7 +59220,7 @@ This will:
             }
         },
         _u = async y => {
-            if (confirm(`Unsuspend "${y.username}"? They will be able to login again.`)) try {
+            if (await dcxConfirm(`Unsuspend "${y.username}"? They will be able to login again.`, { approveLabel: "Restore user" })) try {
                 await Fe.fetch(`/users/${y.id}/unsuspend`, {
                     method: "POST"
                 }), t({
@@ -59173,7 +59236,7 @@ This will:
             }
         },
         za = async y => {
-            if (confirm(`Fix referral reward for "${y.username}"? This will award tokens to their referrer if not already done.`)) try {
+            if (await dcxConfirm(`Fix referral reward for "${y.username}"? This will award tokens to their referrer if not already done.`, { approveLabel: "Fix reward" })) try {
                 const q = await Fe.fetch(`/users/${y.id}/fix-referral`, {
                     method: "POST"
                 });
@@ -59220,7 +59283,7 @@ This will:
             }
         },
         ts = async y => {
-            if (confirm("Delete this payment record?")) try {
+            if (await dcxConfirm("Delete this payment record?", { danger: !0, approveLabel: "Delete" })) try {
                 await Fe.fetch(`/orders/${y}`, {
                     method: "DELETE"
                 }), t({
@@ -59237,7 +59300,7 @@ This will:
         ol = async (y, q) => {
             let ae;
             if (q === "rejected") {
-                const ge = window.prompt("Reject this order — reason that will be emailed to the user (leave blank for default 'Fake / spam payment'):", "");
+                const ge = await dcxPrompt("Reject this order — reason that will be emailed to the user (leave blank for default 'Fake / spam payment'):", "");
                 if (ge === null) return;
                 const $e = ge.trim();
                 $e && (ae = $e.slice(0, 500))
@@ -60693,13 +60756,13 @@ This will:
                                 }), " Delete Selected (", An.size, ")"]
                             }), e.jsx("button", {
                                 onClick: async () => {
-                                    if (confirm("Saari ultra users ki assignments drop karke evenly redistribute kar dun across all active ultra pools?")) try {
+                                    if (await dcxConfirm("Saari ultra users ki assignments drop karke evenly redistribute kar dun across all active ultra pools?", { danger: !0, approveLabel: "Redistribute" })) try {
                                         const y = await Fe.fetch("/ultra-assignments/redistribute", {
                                             method: "POST"
                                         });
-                                        y ?.ok ? (alert(`Redistributed: ${y.assigned} assigned, ${y.skipped} skipped, ${y.exhausted} exhausted.`), Ht()) : alert("Redistribute failed: " + (y ?.error || "unknown"))
+                                        y ?.ok ? (dcxAlert(`Redistributed: ${y.assigned} assigned, ${y.skipped} skipped, ${y.exhausted} exhausted.`), Ht()) : dcxAlert("Redistribute failed: " + (y ?.error || "unknown"))
                                     } catch (y) {
-                                        alert("Redistribute error: " + (y ?.message || String(y)))
+                                        dcxAlert("Redistribute error: " + (y ?.message || String(y)))
                                     }
                                 },
                                 className: "flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-all",
@@ -60707,13 +60770,13 @@ This will:
                                 children: "Redistribute Max"
                             }), e.jsx("button", {
                                 onClick: async () => {
-                                    if (confirm("Saari normal users ki assignments drop karke evenly redistribute kar dun across all active normal pools?")) try {
+                                    if (await dcxConfirm("Saari normal users ki assignments drop karke evenly redistribute kar dun across all active normal pools?", { danger: !0, approveLabel: "Redistribute" })) try {
                                         const y = await Fe.fetch("/normal-assignments/redistribute", {
                                             method: "POST"
                                         });
-                                        y ?.ok ? (alert(`Redistributed: ${y.assigned} assigned, ${y.skipped} skipped, ${y.exhausted} exhausted.`), Ht()) : alert("Redistribute failed: " + (y ?.error || "unknown"))
+                                        y ?.ok ? (dcxAlert(`Redistributed: ${y.assigned} assigned, ${y.skipped} skipped, ${y.exhausted} exhausted.`), Ht()) : dcxAlert("Redistribute failed: " + (y ?.error || "unknown"))
                                     } catch (y) {
-                                        alert("Redistribute error: " + (y ?.message || String(y)))
+                                        dcxAlert("Redistribute error: " + (y ?.message || String(y)))
                                     }
                                 },
                                 className: "flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold text-sm transition-all",
@@ -61179,7 +61242,7 @@ This will:
                                                 className: "px-3 py-2.5 text-right",
                                                 children: e.jsx("button", {
                                                     onClick: async () => {
-                                                        if (confirm(`Release ${y.email||`user #${y.userId}`} from this cookie? They will be reassigned on next request.`)) try {
+                                                        if (await dcxConfirm(`Release ${y.email||`user #${y.userId}`} from this cookie? They will be reassigned on next request.`, { approveLabel: "Release" })) try {
                                                             await Fe.fetch(`/sessions/${Tn.session.id}/assignments/${y.userId}`, {
                                                                 method: "DELETE"
                                                             }), t({
@@ -61906,14 +61969,14 @@ This will:
                                 onApplied: () => js(Fs, Gs)
                             }), e.jsxs("button", {
                                 onClick: async () => {
-                                    const y = window.prompt(`Verify ALL unverified users created in the last N hours.
+                                    const y = await dcxPrompt(`Verify ALL unverified users created in the last N hours.
 
 Use this to unblock users who never received their OTP because the SMTP daily quota was exhausted.
 
 Enter the time window in hours (default 24, max 8760):`, "24");
                                     if (y === null) return;
                                     const q = Math.max(1, Math.min(8760, Math.floor(Number(y) || 24)));
-                                    if (confirm(`Mark ALL unverified users from the last ${q} hour(s) as email-verified?`)) try {
+                                    if (await dcxConfirm(`Mark ALL unverified users from the last ${q} hour(s) as email-verified?`, { approveLabel: "Verify users" })) try {
                                         const ae = await Fe.fetch("/users/bulk-verify-email", {
                                             method: "POST",
                                             body: JSON.stringify({
@@ -61940,7 +62003,7 @@ Enter the time window in hours (default 24, max 8760):`, "24");
                                 }), "Bulk Verify"]
                             }), e.jsxs("button", {
                                 onClick: async () => {
-                                    if (confirm(`Cap every FREE user's plan expiry to plan_start_date + 3 days.
+                                    if (await dcxConfirm(`Cap every FREE user's plan expiry to plan_start_date + 3 days.
 
 ONLY free users are affected — paid plans (Vibe, Plus, Max, Team, Unlimited) are never touched. Only reduces expiry, never extends — already-expired users are untouched. Idempotent — safe to run multiple times.
 
@@ -61969,7 +62032,7 @@ Continue?`)) try {
                                 }), "Cap Plan Expiries"]
                             }), e.jsxs("button", {
                                 onClick: async () => {
-                                    if (confirm(`Cap every user's TTS Studio credits to their plan's current allowance (Free 500, Plus 25,000, Max/Team 50,000).
+                                    if (await dcxConfirm(`Cap every user's TTS Studio credits to their plan's current allowance (Free 500, Plus 25,000, Max/Team 50,000).
 
 Over-credited users (e.g. an old 100k Max grant) come DOWN to the correct amount; users with less keep their lower balance. Unlimited plan is never touched. Idempotent — safe to run multiple times.
 
@@ -62106,7 +62169,7 @@ Continue?`)) try {
                                             className: "px-5 py-4 whitespace-nowrap",
                                             children: y.emailVerified === !1 ? e.jsxs("button", {
                                                 onClick: async () => {
-                                                    if (confirm(`Mark ${y.username} as email-verified manually?`)) try {
+                                                    if (await dcxConfirm(`Mark ${y.username} as email-verified manually?`, { approveLabel: "Mark verified" })) try {
                                                         await Fe.fetch(`/users/${y.id}/verify-email`, {
                                                             method: "PATCH"
                                                         }), t({
@@ -62240,7 +62303,7 @@ Continue?`)) try {
                                                     })
                                                 }), y.trialAbusePrevented && e.jsx("button", {
                                                     onClick: async () => {
-                                                        const _e = window.prompt(`Reset trial block for this user?
+                                                        const _e = await dcxPrompt(`Reset trial block for this user?
 
 This clears their stored fingerprint/IP, grants a fresh 3-day trial, and adds a 24h allowlist so the same household / public WiFi won't be auto-blocked.
 
@@ -63757,7 +63820,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                                                     className: "px-4 py-2.5 text-right",
                                                     children: [e.jsx("button", {
                                                         onClick: async () => {
-                                                            confirm(`Disable "${_e.code}"?`) && (await Fe.fetch(`/promo-codes/${_e.id}`, {
+                                                            await dcxConfirm(`Disable "${_e.code}"?`, { approveLabel: "Disable" }) && (await Fe.fetch(`/promo-codes/${_e.id}`, {
                                                                 method: "PATCH",
                                                                 body: JSON.stringify({
                                                                     isActive: !1
@@ -63771,7 +63834,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                                                         })
                                                     }), e.jsx("button", {
                                                         onClick: async () => {
-                                                            confirm(`Delete "${_e.code}"?`) && (await Fe.fetch(`/promo-codes/${_e.id}`, {
+                                                            await dcxConfirm(`Delete "${_e.code}"?`, { danger: !0, approveLabel: "Delete" }) && (await Fe.fetch(`/promo-codes/${_e.id}`, {
                                                                 method: "DELETE"
                                                             }), Ue())
                                                         },
@@ -63893,7 +63956,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                                 }), " — single-use codes auto-disable after being claimed."]
                             }), e.jsxs("button", {
                                 onClick: async () => {
-                                    confirm(`Delete all ${$e.length} exhausted single-use codes? Their history stays in the Usage History table.`) && (await Fe.fetch("/promo-codes/bulk-exhausted", {
+                                    await dcxConfirm(`Delete all ${$e.length} exhausted single-use codes? Their history stays in the Usage History table.`, { danger: !0, approveLabel: "Delete codes" }) && (await Fe.fetch("/promo-codes/bulk-exhausted", {
                                         method: "DELETE"
                                     }), t({
                                         title: "Cleaned up!"
@@ -64030,7 +64093,9 @@ Optional reason (audit log):`, "shared WiFi / household");
                             })
                         })
                     })]
-                }), m === "plans" && e.jsx(AdminPlansPageV2, {
+                }), m === "plans" && e.jsx(AdminPlansListPage, {
+                    adminApi: Fe
+                }), m === "plan-edit" && e.jsx(AdminPlansPageV2, {
                     adminApi: Fe
                 }), m === "extension" && e.jsxs("div", {
                     className: "space-y-6",
@@ -64275,7 +64340,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                                                 })
                                             }), e.jsx("button", {
                                                 onClick: async () => {
-                                                    if (confirm(`Delete reseller "${y.name}"? Their users will remain but become unassigned.`)) try {
+                                            if (await dcxConfirm(`Delete reseller "${y.name}"? Their users will remain but become unassigned.`, { danger: !0, approveLabel: "Delete reseller" })) try {
                                                         await Fe.fetch(`/resellers/${y.id}`, {
                                                             method: "DELETE"
                                                         }), t({
@@ -64528,7 +64593,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                                                         })
                                                     }), e.jsx("button", {
                                                         onClick: async () => {
-                                                            if (confirm(`Delete reseller "${y.name}"? Their users will remain but become unassigned.`)) try {
+                                                    if (await dcxConfirm(`Delete reseller "${y.name}"? Their users will remain but become unassigned.`, { danger: !0, approveLabel: "Delete reseller" })) try {
                                                                 await Fe.fetch(`/resellers/${y.id}`, {
                                                                     method: "DELETE"
                                                                 }), t({
@@ -65260,7 +65325,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                     })
                 }), e.jsxs("button", {
                     onClick: async () => {
-                        if (window.confirm("Clear ALL device slots + device/IP history for this user? They can then log in fresh.")) try {
+                        if (await dcxConfirm("Clear ALL device slots + device/IP history for this user? They can then log in fresh.", { danger: !0, approveLabel: "Clear devices" })) try {
                             await Fe.fetch(`/users/${Di.id}/reset-device`, {
                                 method: "POST"
                             }), t({
@@ -65704,7 +65769,7 @@ function O$({
     }
     async function D(U) {
         const T = [...f];
-        if (T.length !== 0 && !(U === "delete" && !confirm(`Permanently DELETE ${T.length} user(s)? This cannot be undone.`)) && !(U === "suspend" && !confirm(`Suspend ${T.length} user(s)? Their credits will be zeroed.`))) {
+        if (T.length !== 0 && !(U === "delete" && !(await dcxConfirm(`Permanently DELETE ${T.length} user(s)? This cannot be undone.`, { danger: !0, approveLabel: "Delete users" }))) && !(U === "suspend" && !(await dcxConfirm(`Suspend ${T.length} user(s)? Their credits will be zeroed.`, { approveLabel: "Suspend users" })))) {
             N(!0);
             try {
                 const L = await Fe.fetch(`/users/bulk-${U}`, {
@@ -66289,7 +66354,7 @@ function F$({
         }
     }
     async function R(_) {
-        if (confirm("Delete this payment record? Balance will go up.")) try {
+        if (await dcxConfirm("Delete this payment record? Balance will go up.", { danger: !0, approveLabel: "Delete" })) try {
             await Fe.fetch(`/resellers/${t}/payments/${_}`, {
                 method: "DELETE"
             }), n({
@@ -66768,7 +66833,7 @@ function I$({
             })
         },
         O = async T => {
-            if (confirm(`Revoke Flow Browser access for ${T.email}? Their current worker mapping will be removed.`)) {
+            if (await dcxConfirm(`Revoke Flow Browser access for ${T.email}? Their current worker mapping will be removed.`, { approveLabel: "Revoke access" })) {
                 g(T.userId);
                 try {
                     await t.fetch(`/flow-browser/memberships/${T.userId}`, {
@@ -67872,7 +67937,7 @@ function G$({
         p()
     }, []);
     const m = async g => {
-            if (confirm(`Clear automation flag for "${g.username}"?
+            if (await dcxConfirm(`Clear automation flag for "${g.username}"?
 
 This marks it as reviewed / false-positive. It does NOT ban the user.`)) {
                 u(g.id);
@@ -67895,7 +67960,7 @@ This marks it as reviewed / false-positive. It does NOT ban the user.`)) {
             }
         },
         f = async g => {
-            if (confirm(`Suspend "${g.username}"?
+            if (await dcxConfirm(`Suspend "${g.username}"?
 
 This BANS the user:
 • Blocks login
@@ -68066,9 +68131,9 @@ function V$({
         } catch {}
     }, L = async () => {
         const M = !f;
-        if (!(M && !confirm(`Dashboard lock ON karein?
+        if (!M || await dcxConfirm(`Dashboard lock ON karein?
 
-Cookies sirf un users ko milengi jinhone abhi-abhi toolsbydcx.local dashboard khola/khula rakha ho. Jo users dashboard band rakhte hain (sirf extension istemal) unko ~15 min baad cookies milna band ho jayegi jab tak wo dashboard dobara na kholein. Clone sites (jo toolsbydcx.local use nahi karti) ko cookies milna band.`))) {
+Cookies sirf un users ko milengi jinhone abhi-abhi toolsbydcx.local dashboard khola/khula rakha ho. Jo users dashboard band rakhte hain (sirf extension istemal) unko ~15 min baad cookies milna band ho jayegi jab tak wo dashboard dobara na kholein. Clone sites (jo toolsbydcx.local use nahi karti) ko cookies milna band.`, { danger: !0, approveLabel: "Enable lock" })) {
             N(!0);
             try {
                 const J = await t.fetch("/dashboard-lock", {
@@ -68098,9 +68163,9 @@ Cookies sirf un users ko milengi jinhone abhi-abhi toolsbydcx.local dashboard kh
         } catch {}
     }, H = async () => {
         const M = !k;
-        if (!(M && !confirm(`Device login limit ON karein?
+        if (!M || await dcxConfirm(`Device login limit ON karein?
 
-Ek account zindagi bhar sirf 2 ALAG devices par login ho sakega. 2 ke baad koi naya device KABHI login nahi kar payega (takeover bhi nahi) — sirf aap reset-device se unlock kar sakte ho. Logout se slot free NAHI hota. WARNING: agar koi genuine user naya phone le ya site data clear kare to wo naya device ban jata hai aur lock ho sakta hai.`))) {
+Ek account zindagi bhar sirf 2 ALAG devices par login ho sakega. 2 ke baad koi naya device KABHI login nahi kar payega (takeover bhi nahi) — sirf aap reset-device se unlock kar sakte ho. Logout se slot free NAHI hota. WARNING: agar koi genuine user naya phone le ya site data clear kare to wo naya device ban jata hai aur lock ho sakta hai.`, { danger: !0, approveLabel: "Enable limit" })) {
             C(!0);
             try {
                 const J = await t.fetch("/device-lock", {
@@ -68175,7 +68240,7 @@ Ek account zindagi bhar sirf 2 ALAG devices par login ho sakega. 2 ke baad koi n
         U(), T(), B()
     }, []);
     const z = async M => {
-            if (M && confirm(`Block this origin?
+            if (M && await dcxConfirm(`Block this origin?
 
 ${M}
 
@@ -68840,8 +68905,8 @@ function q$({
             gemini_live_instructions: m,
             gemini_live_enabled: g
         }),
-        A = () => {
-            confirm("Remove Gemini Pro email + password? Max users will see 'not configured' until you set new credentials.") && (d(""), p(""), C({
+        A = async () => {
+            await dcxConfirm("Remove Gemini Pro email + password? Max users will see 'not configured' until you set new credentials.", { danger: !0, approveLabel: "Remove" }) && (d(""), p(""), C({
                 gemini_live_email: "",
                 gemini_live_password: ""
             }))
@@ -69113,8 +69178,8 @@ function H$({
                     },
                     children: g ? "Saving…" : "Save"
                 }), o && e.jsx("button", {
-                    onClick: () => {
-                        confirm("Remove Fish Audio API key?") && (d(""), w({
+                    onClick: async () => {
+                        await dcxConfirm("Remove Fish Audio API key?", { danger: !0, approveLabel: "Remove" }) && (d(""), w({
                             fish_audio_api_key: ""
                         }))
                     },
@@ -69190,8 +69255,8 @@ function W$({
             leonardo_instructions: m,
             leonardo_enabled: g
         }),
-        A = () => {
-            confirm("Remove Leonardo email + password? Max users will see 'not configured' until you set new credentials.") && (d(""), p(""), C({
+        A = async () => {
+            await dcxConfirm("Remove Leonardo email + password? Max users will see 'not configured' until you set new credentials.", { danger: !0, approveLabel: "Remove" }) && (d(""), p(""), C({
                 leonardo_email: "",
                 leonardo_password: ""
             }))
@@ -69337,7 +69402,7 @@ function Y$({
         [d, u] = h.useState(!1),
         p = async () => {
             const m = !o;
-            if (!(m && !window.confirm("Kill switch ON karoge to sab users ki extension foran band ho jayegi — koi cookies/sessions nahi milengi. Continue?"))) {
+            if (!m || await dcxConfirm("Kill switch ON karoge to sab users ki extension foran band ho jayegi — koi cookies/sessions nahi milengi. Continue?", { danger: !0, approveLabel: "Enable kill switch" })) {
                 u(!0);
                 try {
                     await t.fetch("/settings", {
@@ -69438,7 +69503,7 @@ function K$({
         g(u)
     }, [g, u]);
     async function v(w, S) {
-        if (!(S === "reject" && !confirm("Reject this payment request?"))) {
+        if (S !== "reject" || await dcxConfirm("Reject this payment request?", { danger: !0, approveLabel: "Reject" })) {
             f(w);
             try {
                 await t.fetch(`/reseller-payments/${w}/review`, {
@@ -69719,7 +69784,7 @@ function Z$() {
         localStorage.removeItem("reseller_token"), a(!1), v(null), S([]), k(null), P(null), p(""), f("")
     }
     async function ee(X, Ie) {
-        if (confirm(`Delete user "${Ie}" PERMANENTLY? This CANNOT be undone — the account and all its data are removed for good.`)) try {
+        if (await dcxConfirm(`Delete user "${Ie}" PERMANENTLY? This CANNOT be undone — the account and all its data are removed for good.`, { danger: !0, approveLabel: "Delete user" })) try {
             await qr.fetch(`/users/${X}`, {
                 method: "DELETE"
             }), t({
@@ -69738,7 +69803,7 @@ function Z$() {
             H(X);
             return
         }
-        if (confirm("Renew this user's plan for a fresh full term starting today? Unused time will not carry over, and the plan's full price will be added to your balance.")) try {
+        if (await dcxConfirm("Renew this user's plan for a fresh full term starting today? Unused time will not carry over, and the plan's full price will be added to your balance.", { approveLabel: "Renew plan" })) try {
             const Ie = await qr.fetch(`/users/${X.id}/renew`, {
                     method: "POST"
                 }),
@@ -72080,7 +72145,7 @@ function gG({
     const {
         toast: i
     } = yt(), o = async (d, u) => {
-        if (confirm(`Delete user "${u}" permanently?`)) try {
+        if (await dcxConfirm(`Delete user "${u}" permanently?`, { danger: !0, approveLabel: "Delete user" })) try {
             await ms.fetch(`/users/${d}`, {
                 method: "DELETE"
             }), i({
@@ -73717,7 +73782,7 @@ function CG({
             }
         },
         O = async L => {
-            if (window.confirm(`Delete reseller "${L.name}"? Their users stay in your panel and any unpaid balance stays on record.`)) try {
+            if (await dcxConfirm(`Delete reseller "${L.name}"? Their users stay in your panel and any unpaid balance stays on record.`, { danger: !0, approveLabel: "Delete reseller" })) try {
                 await ms.fetch(`/resellers/${L.id}`, {
                     method: "DELETE"
                 }), s({
@@ -86562,6 +86627,9 @@ function pz() {
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
             path: "/admin/settings",
+            children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
+        }), e.jsx(Qe, {
+            path: "/admin/plans/:plan/edit",
             children: s ? e.jsx(q0, {}) : e.jsx(M$, {})
         }), e.jsx(Qe, {
             path: "/admin/plans",

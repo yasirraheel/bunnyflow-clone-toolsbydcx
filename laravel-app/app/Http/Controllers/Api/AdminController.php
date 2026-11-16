@@ -24,6 +24,18 @@ class AdminController extends Controller
         ]]);
     }
 
+    public function publicStats(): JsonResponse
+    {
+        return response()->json([
+            'totalUsers' => User::where('status', 'active')->count(),
+            // Generation history is still owned by the legacy feature service.
+            // Keep this public endpoint truthful: do not fabricate counters.
+            'totalVideos' => 0,
+            'totalImages' => 0,
+            'totalGenerations' => 0,
+        ]);
+    }
+
     public function users(Request $request): JsonResponse
     {
         $query = User::query();

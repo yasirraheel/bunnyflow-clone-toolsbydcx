@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BrandConfigController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/brand-config', BrandConfigController::class);
+Route::get('/stats/public', [AdminController::class, 'publicStats']);
 
 Route::prefix('auth')->middleware('throttle:30,1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
