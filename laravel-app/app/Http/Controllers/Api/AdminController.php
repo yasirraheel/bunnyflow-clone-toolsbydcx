@@ -65,11 +65,12 @@ class AdminController extends Controller
 
     public function plans(): JsonResponse
     {
-        return response()->json(['plans' => DB::table('plans')->orderByRaw("FIELD(plan, 'basic', 'pro', 'ultra')")->get()]);
+        return response()->json(['plans' => DB::table('plans')->orderByRaw("FIELD(plan, 'free', 'basic', 'pro', 'ultra')")->get()]);
     }
 
     public function updatePlan(Request $request, string $plan): JsonResponse
     {
+        abort_unless(in_array($plan, ['free', 'basic', 'pro', 'ultra'], true), 404);
         $data = $request->validate(['price' => ['required', 'numeric', 'min:0'], 'cutPrice' => ['nullable', 'numeric', 'min:0'], 'visible' => ['required', 'boolean'], 'durationDays' => ['required', 'integer', 'min:0']]);
         DB::table('plans')->where('plan', $plan)->update(['price' => $data['price'], 'cut_price' => $data['cutPrice'] ?? null, 'visible' => $data['visible'], 'duration_days' => $data['durationDays'], 'updated_at' => now()]);
         return response()->json(['ok' => true]);
@@ -91,7 +92,7 @@ class AdminController extends Controller
     public function updateSettings(Request $request): JsonResponse
     {
         foreach ($request->all() as $key => $value) {
-            if (preg_match('/^plan_(basic|pro|ultra)_(price|cut_price|duration_days|visible)$/', (string) $key, $match)) {
+            if (preg_match('/^plan_(free|basic|pro|ultra)_(price|cut_price|duration_days|visible)$/', (string) $key, $match)) {
                 $column = $match[2];
                 $value = $column === 'visible' ? (int) (bool) $value : ($value === '' && $column === 'cut_price' ? null : $value);
                 DB::table('plans')->where('plan', $match[1])->update([$column => $value, 'updated_at' => now()]);

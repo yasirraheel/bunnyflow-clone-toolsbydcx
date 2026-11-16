@@ -32581,7 +32581,16 @@ function t5() {
         user: p
     } = zt(), [, m] = ha(), f = h.useMemo(() => t.pricing ? ZN.map(V => {
         const oe = t.pricing ?.extra ?.[V.id] ?.visible,
-            Ve = !!V.hidden || a && oe === !1 || a && V.id === "heavy";
+            Ve = !!V.hidden || oe === !1 || a && V.id === "heavy";
+        if (V.id === "free" && t.pricing ?.free) {
+            const He = Number(t.pricing.free.durationDays || V.durationDays || 3);
+            return { ...V,
+                hidden: Ve,
+                durationDays: He,
+                duration: `${He} Days`,
+                sublabel: `${He}-Day Free Trial`
+            }
+        }
         if (V.id === "basic" && t.pricing ?.vibe) {
             const He = t.pricing.vibe.cutPrice ?? V.cutPrice;
             return { ...V,
@@ -57411,6 +57420,164 @@ function AdminPlatformsPage({
     })
 }
 
+function AdminPlansPage({
+    adminApi: t
+}) {
+    const {
+        toast: s
+    } = yt(), [a, n] = h.useState([]), [o, d] = h.useState(!0), [u, p] = h.useState(null), m = {
+        free: "Free Trial",
+        basic: "Vibe",
+        pro: "Plus",
+        ultra: "Max"
+    }, f = async () => {
+        d(!0);
+        try {
+            const g = await t.fetch("/plans");
+            n(Array.isArray(g ?.plans) ? g.plans : [])
+        } catch (g) {
+            s({
+                title: "Could not load plans",
+                description: g.message,
+                variant: "destructive"
+            })
+        } finally {
+            d(!1)
+        }
+    };
+    h.useEffect(() => {
+        f()
+    }, []);
+    const g = (C, P, A) => {
+            n(I => I.map(E => E.plan === C ? { ...E,
+                [P]: A
+            } : E))
+        }, v = async C => {
+            p(C.plan);
+            try {
+                await t.fetch(`/plans/${C.plan}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        price: Number(C.price || 0),
+                        cutPrice: C.cut_price === "" || C.cut_price === null ? null : Number(C.cut_price),
+                        visible: Boolean(C.visible),
+                        durationDays: Number(C.duration_days || 0)
+                    })
+                }), s({
+                    title: `${m[C.plan] || C.plan} plan updated`,
+                    description: "Frontend pricing will use the new values."
+                }), await f()
+            } catch (P) {
+                s({
+                    title: "Could not update plan",
+                    description: P.message,
+                    variant: "destructive"
+                })
+            } finally {
+                p(null)
+            }
+        };
+    return e.jsxs("div", {
+        className: "space-y-6",
+        children: [e.jsxs("div", {
+            className: "flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3",
+            children: [e.jsxs("div", {
+                children: [e.jsx("h2", {
+                    className: "text-xl font-black text-white",
+                    children: "Plans"
+                }), e.jsx("p", {
+                    className: "text-gray-500 text-sm mt-1",
+                    children: "Manage the same Free Trial, Vibe, Plus and Max pricing shown on the frontend."
+                })]
+            }), e.jsxs("button", {
+                type: "button",
+                onClick: f,
+                className: "h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 border border-white/10 flex items-center gap-1.5",
+                children: [e.jsx(Pt, {
+                    className: "h-3.5 w-3.5"
+                }), " Refresh"]
+            })]
+        }), e.jsx("div", {
+            className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-4 text-sm text-gray-400",
+            children: "Changes are saved per plan and are reflected through the public brand configuration used by the Pricing page."
+        }), o ? e.jsx("div", {
+            className: "py-12 text-center text-gray-500",
+            children: "Loading plans…"
+        }) : e.jsx("div", {
+            className: "grid gap-4",
+            children: a.map(C => e.jsxs("div", {
+                className: "rounded-2xl border border-white/10 bg-[#0d0b14] p-5",
+                children: [e.jsxs("div", {
+                    className: "flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5",
+                    children: [e.jsxs("div", {
+                        children: [e.jsx("h3", {
+                            className: "text-lg font-black text-white",
+                            children: m[C.plan] || C.plan
+                        }), e.jsx("p", {
+                            className: "text-xs text-gray-500 mt-1",
+                            children: `Database key: ${C.plan}`
+                        })]
+                    }), e.jsxs("button", {
+                        type: "button",
+                        onClick: () => g(C.plan, "visible", !C.visible),
+                        className: `px-3 py-1.5 rounded-lg text-xs font-black border ${C.visible?"bg-emerald-500/15 text-emerald-300 border-emerald-500/30":"bg-white/5 text-gray-500 border-white/10"}`,
+                        children: [C.visible ? "Visible on frontend" : "Hidden on frontend"]
+                    })]
+                }), e.jsxs("div", {
+                    className: "grid grid-cols-1 md:grid-cols-3 gap-3",
+                    children: [e.jsxs("label", {
+                        className: "block",
+                        children: [e.jsx("span", {
+                            className: "block text-xs font-bold text-gray-400 mb-1.5",
+                            children: "Sale Price (PKR)"
+                        }), e.jsx("input", {
+                            type: "number",
+                            min: "0",
+                            value: C.price ?? 0,
+                            onChange: P => g(C.plan, "price", P.target.value),
+                            className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]"
+                        })]
+                    }), e.jsxs("label", {
+                        className: "block",
+                        children: [e.jsx("span", {
+                            className: "block text-xs font-bold text-gray-400 mb-1.5",
+                            children: "Original Price (PKR)"
+                        }), e.jsx("input", {
+                            type: "number",
+                            min: "0",
+                            value: C.cut_price ?? "",
+                            onChange: P => g(C.plan, "cut_price", P.target.value),
+                            className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]",
+                            placeholder: "Optional"
+                        })]
+                    }), e.jsxs("label", {
+                        className: "block",
+                        children: [e.jsx("span", {
+                            className: "block text-xs font-bold text-gray-400 mb-1.5",
+                            children: "Duration (days)"
+                        }), e.jsx("input", {
+                            type: "number",
+                            min: "0",
+                            value: C.duration_days ?? 0,
+                            onChange: P => g(C.plan, "duration_days", P.target.value),
+                            className: "w-full rounded-xl bg-[#12101a] border border-white/10 px-3 py-2.5 text-sm text-white outline-none focus:border-[#7c3aed]"
+                        })]
+                    })]
+                }), e.jsx("div", {
+                    className: "flex justify-end mt-4",
+                    children: e.jsx("button", {
+                        type: "button",
+                        onClick: () => v(C),
+                        disabled: u === C.plan,
+                        className: "px-4 py-2 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-sm font-bold disabled:opacity-50",
+                        children: u === C.plan ? "Saving…" : "Save Changes"
+                    })
+                })]
+            }, C.plan))
+        })]
+    })
+}
+
 function D$({
     adminApi: t
 }) {
@@ -63412,7 +63579,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             })]
                         })]
                     })
-                })(), (m === "settings" || m === "plans") && e.jsxs("div", {
+                })(), m === "settings" && e.jsxs("div", {
                     className: "space-y-4",
                     children: [e.jsxs("div", {
                         children: [e.jsx("h2", {
@@ -63536,6 +63703,8 @@ Optional reason (audit log):`, "shared WiFi / household");
                             })
                         })
                     })]
+                }), m === "plans" && e.jsx(AdminPlansPage, {
+                    adminApi: Fe
                 }), m === "extension" && e.jsxs("div", {
                     className: "space-y-6",
                     children: [e.jsxs("div", {
