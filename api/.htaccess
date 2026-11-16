@@ -1,4 +1,6 @@
 DirectoryIndex index.php
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+
+# The legacy directory is retained only as a compatibility library. All
+# /api/* requests must be handled by Laravel's front controller.
+RewriteRule ^ ../laravel-app/public/index.php [END,QSA]
