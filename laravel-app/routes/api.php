@@ -3,10 +3,12 @@
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandConfigController;
+use App\Http\Controllers\Api\ExtensionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/brand-config', BrandConfigController::class);
 Route::get('/stats/public', [AdminController::class, 'publicStats']);
+Route::get('/extension/download', [ExtensionController::class, 'download'])->middleware('flow.auth');
 
 Route::prefix('auth')->middleware('throttle:30,1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);

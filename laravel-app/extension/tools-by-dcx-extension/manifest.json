@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Tools By DCX",
+  "short_name": "Tools By DCX",
+  "version": "2.4.6",
+  "description": "A lightweight UI companion for authorized Tools By DCX workspaces.",
+  "action": { "default_title": "Tools By DCX", "default_popup": "popup.html" },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://flow.google.com/*", "https://labs.google/*"],
+  "content_scripts": [{
+    "matches": ["https://flow.google.com/*", "https://labs.google/*"],
+    "js": ["flow-ui.js"],
+    "run_at": "document_idle"
+  }]
+}

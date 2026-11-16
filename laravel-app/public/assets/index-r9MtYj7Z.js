@@ -39488,7 +39488,7 @@ const GL = {
             s1_4: "Choose a plan on the Pricing page for instant activation.",
             s2Title: "Download & Install ToolsByDcx Extension",
             s2_1: "Go to the Extension page from the sidebar.",
-            s2_2: 'Click "Download Extension" to get Tools-By-DCX-Extension.zip.',
+            s2_2: 'Click "Download Extension" to get ToolsByDcx-Extension.zip.',
             s2_3: "Extract the ZIP folder on your PC.",
             s2_4: "Open chrome://extensions in a clean Chrome profile (not signed into Google).",
             s2_5: "Turn ON Developer Mode (top-right) and click Load Unpacked to select the extracted folder.",
@@ -45002,12 +45002,12 @@ function bo() {
         toast: n
     } = yt(), [, i] = ha(), {
         brand: o
-    } = Ds(), d = !!o.tenantId, u = d && o.brandName ? o.brandName : "ToolsByDcx", p = d ? `${u.replace(/\s+/g,"-")}-Extension.zip` : "Tools-By-DCX-Extension.zip", m = d ? "/api/custom-extension.zip" : "/bunny-ai/Tools-By-DCX-Extension.zip?v=2.4.6", f = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || "", g = !!f && f.replace(/^v/i, "").localeCompare("2.4.6", void 0, {
+    } = Ds(), d = !!o.tenantId, u = "ToolsByDcx", p = "ToolsByDcx-Extension.zip", m = "/api/extension/download", f = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || "", g = !!f && f.replace(/^v/i, "").localeCompare("2.4.6", void 0, {
         numeric: !0
     }) < 0, v = t ?.planActive ?? (t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : !1);
     (t ?.plan || "free").toLowerCase();
 
-    function N() {
+    async function N() {
         if (!s) {
             if (!t) {
                 n({
@@ -45026,8 +45026,16 @@ function bo() {
             }
             a(!0);
             try {
-                const w = document.createElement("a");
-                w.href = m, w.download = p, document.body.appendChild(w), w.click(), document.body.removeChild(w), n({
+                const w = localStorage.getItem("flow_token"), S = await fetch(m, {
+                    headers: w ? { Authorization: `Bearer ${w}` } : {},
+                    cache: "no-store"
+                });
+                if (!S.ok) {
+                    const C = await S.json().catch(() => null);
+                    throw new Error(C?.error || C?.message || `Download failed (HTTP ${S.status})`)
+                }
+                const E = URL.createObjectURL(await S.blob()), O = document.createElement("a");
+                O.href = E, O.download = p, document.body.appendChild(O), O.click(), O.remove(), URL.revokeObjectURL(E), n({
                     title: "Download Started",
                     description: `${p} is downloading.`
                 })
@@ -64137,7 +64145,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                         }), e.jsxs("div", {
                             className: "flex flex-wrap gap-3",
                             children: [e.jsxs("a", {
-                                href: "/api/downloads/custom-extension.zip",
+                                href: "/extension",
                                 download: !0,
                                 className: "inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-black text-sm transition-colors",
                                 style: {
