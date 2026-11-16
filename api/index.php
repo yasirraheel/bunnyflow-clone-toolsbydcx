@@ -42,6 +42,12 @@ $body = json_decode((string) file_get_contents('php://input'), true);
 $body = is_array($body) ? $body : [];
 
 try {
+    if ($route === 'brand-config' && $method === 'GET') {
+        brandConfig($pdo);
+    }
+    if (str_starts_with($route, 'admin/')) {
+        adminRoute($pdo, $config, $method, substr($route, 6), $body);
+    }
     switch ($method . ' ' . $route) {
         case 'POST auth/register':
             registerUser($pdo, $config, $body);
@@ -78,6 +84,144 @@ try {
 } catch (Throwable $e) {
     error_log('Tools By DCX auth API error: ' . $e->getMessage());
     respond(['error' => 'Unexpected server error.'], 500);
+}
+
+function brandConfig(PDO $pdo): never
+{
+    $plans = [];
+    try {
+        $rows = $pdo->query('SELECT plan, price, cut_price, visible, duration_days FROM plans ORDER BY FIELD(plan, "basic", "pro", "ultra")')->fetchAll();
+        foreach ($rows as $row) {
+            $plans[$row['plan']] = [
+                'price' => (float) $row['price'],
+                'cutPrice' => $row['cut_price'] === null ? null : (float) $row['cut_price'],
+                'visible' => (bool) $row['visible'],
+                'durationDays' => (int) $row['duration_days'],
+            ];
+        }
+    } catch (Throwable $e) {
+        error_log('Tools By DCX plan config read failed: ' . $e->getMessage());
+    }
+    respond(['brand' => [
+        'tenantId' => null,
+        'brandName' => 'Tools By DCX',
+        'logoUrl' => '/bunny-logo.png',
+        'primaryColor' => '#7c3aed',
+        'supportEmail' => 'support@toolsbydcx.com',
+        'pricing' => [
+            'vibe' => $plans['basic'] ?? ['price' => 999, 'cutPrice' => 1999, 'visible' => true],
+            'plus' => $plans['pro'] ?? ['price' => 1710, 'cutPrice' => 2999, 'visible' => true],
+            'max' => $plans['ultra'] ?? ['price' => 2499, 'cutPrice' => 4999, 'visible' => true],
+            'extra' => [
+                'basic' => ['visible' => $plans['basic']['visible'] ?? true],
+                'pro' => ['visible' => $plans['pro']['visible'] ?? true],
+                'ultra' => ['visible' => $plans['ultra']['visible'] ?? true],
+            ],
+        ],
+    ]]);
+}
+
+function adminRoute(PDO $pdo, array $config, string $method, string $route, array $input): never
+{
+    if ($method === 'POST' && $route === 'login') {
+        $identity = strtolower(trim((string) ($input['email'] ?? '')));
+        $password = (string) ($input['password'] ?? '');
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+        $stmt->execute(['email' => $identity]);
+        $user = $stmt->fetch();
+        if (!$user || ($user['role'] ?? 'user') !== 'admin' || !password_verify($password, (string) $user['password_hash'])) {
+            throw new UnauthorizedException('Invalid admin credentials.');
+        }
+        respond(['token' => createToken($pdo, $config, (int) $user['id'], $input), 'user' => publicUser($user)]);
+    }
+
+    $admin = adminUser($pdo);
+    if ($method === 'GET' && $route === 'stats') {
+        $stats = $pdo->query("SELECT COUNT(*) AS total, SUM(role = 'admin') AS admins, SUM(role = 'user') AS users, SUM(status = 'active') AS active FROM users")->fetch();
+        respond(['stats' => [
+            'totalUsers' => (int) ($stats['total'] ?? 0),
+            'admins' => (int) ($stats['admins'] ?? 0),
+            'users' => (int) ($stats['users'] ?? 0),
+            'activeUsers' => (int) ($stats['active'] ?? 0),
+        ]]);
+    }
+    if ($method === 'GET' && $route === 'plans') {
+        $rows = $pdo->query('SELECT plan, price, cut_price AS cutPrice, visible, duration_days AS durationDays FROM plans ORDER BY FIELD(plan, "basic", "pro", "ultra")')->fetchAll();
+        respond(['plans' => $rows]);
+    }
+    if ($method === 'PATCH' && preg_match('#^plans/([a-z0-9_-]+)$#', $route, $match)) {
+        $plan = $match[1];
+        $stmt = $pdo->prepare('UPDATE plans SET price = :price, cut_price = :cut_price, visible = :visible, duration_days = :duration_days WHERE plan = :plan');
+        $stmt->execute([
+            'price' => max(0, (float) ($input['price'] ?? 0)),
+            'cut_price' => isset($input['cutPrice']) && $input['cutPrice'] !== '' ? max(0, (float) $input['cutPrice']) : null,
+            'visible' => !empty($input['visible']) ? 1 : 0,
+            'duration_days' => max(0, (int) ($input['durationDays'] ?? 0)),
+            'plan' => $plan,
+        ]);
+        respond(['ok' => true]);
+    }
+    if ($method === 'GET' && $route === 'users') {
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $limit = min(100, max(1, (int) ($_GET['limit'] ?? 50)));
+        $search = trim((string) ($_GET['search'] ?? ''));
+        $where = '';
+        $params = [];
+        if ($search !== '') {
+            $where = 'WHERE email LIKE :search OR username LIKE :search';
+            $params['search'] = '%' . $search . '%';
+        }
+        $count = $pdo->prepare("SELECT COUNT(*) FROM users {$where}");
+        $count->execute($params);
+        $query = $pdo->prepare("SELECT id, username, email, role, plan, email_verified AS emailVerified, status, credits, created_at AS createdAt FROM users {$where} ORDER BY id DESC LIMIT :limit OFFSET :offset");
+        foreach ($params as $key => $value) $query->bindValue(':' . $key, $value, PDO::PARAM_STR);
+        $query->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $query->bindValue(':offset', ($page - 1) * $limit, PDO::PARAM_INT);
+        $query->execute();
+        respond(['users' => $query->fetchAll(), 'total' => (int) $count->fetchColumn(), 'page' => $page, 'limit' => $limit]);
+    }
+    if (preg_match('#^users/(\d+)$#', $route, $match)) {
+        $id = (int) $match[1];
+        if ($method === 'GET') respond(['user' => adminUserDetails($pdo, $id)]);
+        if ($method === 'PATCH') {
+            $allowed = ['email', 'username', 'role', 'plan', 'status', 'credits'];
+            $sets = [];
+            $params = ['id' => $id];
+            foreach ($allowed as $field) {
+                if (array_key_exists($field, $input)) {
+                    $sets[] = "{$field} = :{$field}";
+                    $params[$field] = $input[$field];
+                }
+            }
+            if (!$sets) throw new DomainException('No user changes supplied.');
+            $pdo->prepare('UPDATE users SET ' . implode(', ', $sets) . ', updated_at = NOW() WHERE id = :id')->execute($params);
+            respond(['user' => adminUserDetails($pdo, $id)]);
+        }
+        if ($method === 'DELETE') {
+            if ($id === (int) $admin['id']) throw new DomainException('You cannot delete your own admin account.');
+            $pdo->prepare('DELETE FROM users WHERE id = :id')->execute(['id' => $id]);
+            respond(['ok' => true]);
+        }
+    }
+    if ($method === 'GET' && $route === 'settings') respond(['settings' => []]);
+    if ($method === 'GET' && $route === 'analytics') respond(['overview' => [], 'analytics' => []]);
+    if ($method === 'GET' && $route === 'extension-meta') respond(['version' => null]);
+    if (in_array($method, ['GET', 'POST'], true)) respond(['users' => [], 'sessions' => [], 'orders' => [], 'requests' => []]);
+    respond(['ok' => true]);
+}
+
+function adminUser(PDO $pdo): array
+{
+    $key = trim((string) ($_SERVER['HTTP_X_ADMIN_KEY'] ?? ''));
+    if ($key === '') $key = bearerToken();
+    $user = userFromToken($pdo, $key);
+    if (($user['role'] ?? 'user') !== 'admin') throw new UnauthorizedException('Admin access required.');
+    return $user;
+}
+
+function adminUserDetails(PDO $pdo, int $id): array
+{
+    return publicUser(getUser($pdo, $id)) + ['status' => getUser($pdo, $id)['status'] ?? 'active'];
 }
 
 function respond(array $payload, int $status = 200): never

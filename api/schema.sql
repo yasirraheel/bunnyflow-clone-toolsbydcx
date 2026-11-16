@@ -46,3 +46,18 @@ CREATE TABLE IF NOT EXISTS password_reset_tokens (
     KEY password_reset_user_idx (user_id),
     CONSTRAINT password_reset_user_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS plans (
+    plan VARCHAR(20) NOT NULL,
+    price DECIMAL(10,2) NOT NULL DEFAULT 0,
+    cut_price DECIMAL(10,2) NULL,
+    visible TINYINT(1) NOT NULL DEFAULT 1,
+    duration_days INT NOT NULL DEFAULT 0,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (plan)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO plans (plan, price, cut_price, visible, duration_days) VALUES
+    ('basic', 999, 1999, 1, 10),
+    ('pro', 1710, 2999, 1, 20),
+    ('ultra', 2499, 4999, 1, 30);

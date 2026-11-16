@@ -57377,14 +57377,15 @@ function B0(t) {
 }
 const Fe = {
     fetch: async (t, s = {}) => {
-        const a = localStorage.getItem("admin_key");
+        const a = localStorage.getItem("admin_key") || localStorage.getItem("flow_token");
         let n;
         try {
             n = await fetch(`/api/admin${t}`, { ...s,
                 headers: {
                     "Content-Type": "application/json",
                     ...a ? {
-                        "x-admin-key": a
+                        "x-admin-key": a,
+                        Authorization: `Bearer ${a}`
                     } : {},
                     ...s.headers || {}
                 }
@@ -57718,7 +57719,18 @@ function M$() {
         }
     };
     h.useEffect(() => {
-        localStorage.getItem("admin_key") && a(!0)
+        const y = localStorage.getItem("admin_key"), q = localStorage.getItem("flow_token");
+        if (y) {
+            a(!0);
+            return
+        }
+        q && fetch("/api/auth/me", {
+            headers: {
+                Authorization: `Bearer ${q}`
+            }
+        }).then(ae => ae.ok ? ae.json() : null).then(ae => {
+            ae ?.user ?.role === "admin" && (localStorage.setItem("admin_key", q), a(!0))
+        }).catch(() => {})
     }, []), h.useEffect(() => {
         s && Ht()
     }, [s]), h.useEffect(() => {
