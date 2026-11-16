@@ -57158,7 +57158,7 @@ function AdminAccountsPage({
                 className: "px-4 py-2.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] disabled:opacity-40 text-white text-sm font-bold",
                 children: "Add Account"
             })]
-        }), e.jsxs("div", {
+        }), m && e.jsxs("div", {
             className: "rounded-2xl border border-[#7c3aed]/25 bg-[#1a1528] p-5",
             children: [e.jsx("h3", {
                 className: "text-white font-black mb-1",
