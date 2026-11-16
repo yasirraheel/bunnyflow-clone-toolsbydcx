@@ -1,0 +1,14 @@
+/* Keep scrolling available without showing browser-native scrollbar chrome. */
+html, body, *, *::before, *::after {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+}
