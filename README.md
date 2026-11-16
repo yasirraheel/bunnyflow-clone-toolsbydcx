@@ -1,6 +1,6 @@
-# Tools By DCX — exact supplied-template clone
+# ToolsByDcx — exact supplied-template clone
 
-This folder serves the supplied compiled SPA and original styling/assets as-is, with the visible brand metadata changed to Tools By DCX. `router.php` provides SPA fallback so every client-side route loads directly on a PHP server.
+This folder serves the supplied compiled SPA and original styling/assets as-is, with the visible brand metadata changed to ToolsByDcx. `router.php` provides SPA fallback so every client-side route loads directly on a PHP server.
 
 Run:
 

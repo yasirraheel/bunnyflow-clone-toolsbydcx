@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Tools By DCX account settings">
+    <meta name="description" content="ToolsByDcx account settings">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0a0a0f">
-    <title>Settings — Tools By DCX</title>
+    <title>Settings — ToolsByDcx</title>
     <link rel="icon" type="image/png" href="{{ asset('bunny-logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('bunny-logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">

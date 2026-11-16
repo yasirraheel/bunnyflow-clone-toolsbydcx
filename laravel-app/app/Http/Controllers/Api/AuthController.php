@@ -105,7 +105,7 @@ class AuthController extends Controller
             $link = rtrim(config('app.url'), '/') . '/reset-password?token=' . urlencode($raw);
             try {
                 Mail::raw("Open this link within 60 minutes to reset your password:\n\n{$link}\n", function ($mail) use ($user) {
-                    $mail->to($user->email)->subject('Reset your Tools By DCX password');
+                    $mail->to($user->email)->subject('Reset your ToolsByDcx password');
                 });
             } catch (\Throwable $e) {
                 Log::error('Password reset email failed', ['exception' => $e]);

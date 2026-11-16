@@ -19331,7 +19331,7 @@ function mR(t, s = {}) {
 }
 const S3 = {
         tenantId: null,
-        brandName: "Tools By DCX",
+        brandName: "ToolsByDcx",
         logoUrl: "/bunny-logo.png",
         primaryColor: "#7c3aed",
         supportEmail: null,
@@ -19387,8 +19387,8 @@ function gy(t) {
 
 function Ij(t) {
     const s = !!t.tenantId,
-        a = t.brandName || (s ? "AI Platform" : "Tools By DCX");
-    document.title = s ? `${a} — AI Video & Image Generation Platform` : "Tools By DCX — AI Video & Image Generation Platform";
+        a = t.brandName || (s ? "AI Platform" : "ToolsByDcx");
+    document.title = s ? `${a} — AI Video & Image Generation Platform` : "ToolsByDcx — AI Video & Image Generation Platform";
     const n = t.logoUrl || (s ? "" : "/bunny-logo.png");
     document.querySelectorAll("link[data-brand-icon]").forEach(o => {
         n ? (o.href = n, o.removeAttribute("disabled")) : (o.removeAttribute("href"), o.setAttribute("disabled", ""))
@@ -19396,7 +19396,7 @@ function Ij(t) {
     const i = (o, d) => {
         document.head.querySelector(o) ?.setAttribute("content", d)
     };
-    i('meta[property="og:site_name"]', a), i('meta[name="author"]', a), s && (i('meta[property="og:title"]', `${a} — AI Video & Image Generation Platform`), i('meta[name="twitter:title"]', `${a} — AI Video & Image Generation Platform`), t.logoUrl && (i('meta[property="og:image"]', t.logoUrl), i('meta[name="twitter:image"]', t.logoUrl))), s || (i('meta[name="description"]', "Tools By DCX is an AI-powered video and image generation platform. Create stunning visuals with Google Flow, Gemini, and more."), i('meta[property="og:description"]', "Create stunning AI videos and images with Tools By DCX."), i('meta[name="twitter:description"]', "Create stunning AI videos and images with Tools By DCX."), i('meta[property="og:image"]', `${window.location.origin}/opengraph.jpg`), i('meta[name="twitter:image"]', `${window.location.origin}/opengraph.jpg`))
+    i('meta[property="og:site_name"]', a), i('meta[name="author"]', a), s && (i('meta[property="og:title"]', `${a} — AI Video & Image Generation Platform`), i('meta[name="twitter:title"]', `${a} — AI Video & Image Generation Platform`), t.logoUrl && (i('meta[property="og:image"]', t.logoUrl), i('meta[name="twitter:image"]', t.logoUrl))), s || (i('meta[name="description"]', "ToolsByDcx is an AI-powered video and image generation platform. Create stunning visuals with Google Flow, Gemini, and more."), i('meta[property="og:description"]', "Create stunning AI videos and images with ToolsByDcx."), i('meta[name="twitter:description"]', "Create stunning AI videos and images with ToolsByDcx."), i('meta[property="og:image"]', `${window.location.origin}/opengraph.jpg`), i('meta[name="twitter:image"]', `${window.location.origin}/opengraph.jpg`))
 }
 const A3 = h.createContext(void 0);
 
@@ -19922,7 +19922,7 @@ function $j() {
                     children: v
                 }) : e.jsxs("span", {
                     className: "font-black text-[21px] tracking-tight text-white leading-none",
-                    children: "Tools By DCX"
+                    children: "ToolsByDcx"
                 })]
             }), e.jsx("nav", {
                 "aria-label": "Main navigation",
@@ -22100,7 +22100,7 @@ function G3({
 }) {
     const {
         brand: s
-    } = Ds(), a = `${s.brandName||"Tools By DCX"} Assistant`, {
+    } = Ds(), a = `${s.brandName||"ToolsByDcx"} Assistant`, {
         t: n
     } = Ni(), {
         user: i
@@ -22530,7 +22530,7 @@ function ki({
                     })]
                 }), i && e.jsxs("p", {
                     className: "text-gray-500 text-xs max-w-md",
-                    children: [o, " is the official plans store for Tools By DCX. Purchases activate automatically on your existing Tools By DCX account."]
+                    children: [o, " is the official plans store for ToolsByDcx. Purchases activate automatically on your existing ToolsByDcx account."]
                 }), e.jsxs("div", {
                     className: "text-gray-700 text-xs",
                     children: ["© 2026 ", o, " · All rights reserved"]
@@ -22570,7 +22570,7 @@ function ki({
                             }) : e.jsxs(e.Fragment, {
                                 children: [e.jsxs("span", {
                                     className: "font-extrabold text-lg text-white",
-                                    children: "Tools By DCX"
+                                    children: "ToolsByDcx"
                                 }), e.jsx("div", {
                                     className: "text-gray-600 text-xs",
                                     children: "AI Video Platform"
@@ -22672,10 +22672,10 @@ function ki({
                     className: "border-t border-white/5 pt-5 flex flex-col items-center gap-3 text-center",
                     children: [e.jsxs("p", {
                         className: "text-gray-700 text-[11px] max-w-2xl leading-relaxed",
-                        children: ["Tools By DCX works with ", e.jsx("span", {
+                        children: ["ToolsByDcx works with ", e.jsx("span", {
                             className: "text-gray-500 font-semibold",
                             children: "Google Flow (labs.google.com)"
-                        }), " to provide AI generation services. Tools By DCX is ", e.jsx("span", {
+                        }), " to provide AI generation services. ToolsByDcx is ", e.jsx("span", {
                             className: "text-gray-500 font-semibold",
                             children: "not affiliated with, partnered with, or sponsored by Google"
                         }), " in any way. All Google trademarks belong to their respective owners."]
@@ -22694,7 +22694,7 @@ function ki({
         }), e.jsx(G3, {})]
     })
 }
-const AD = "Tools By DCX",
+const AD = "ToolsByDcx",
     V3 = "http://127.0.0.1:8081",
     TD = `${V3}/opengraph.jpg`;
 
@@ -23531,7 +23531,7 @@ function DD() {
                             })]
                         }), e.jsx("p", {
                             className: "text-gray-400 text-lg max-w-md",
-                            children: "Refer friends to Tools By DCX. When they buy a plan, you earn real USD — instantly credited to your wallet."
+                            children: "Refer friends to ToolsByDcx. When they buy a plan, you earn real USD — instantly credited to your wallet."
                         })]
                     }), e.jsx(Qt, {
                         asChild: !0,
@@ -23776,7 +23776,7 @@ function DD() {
                     }, {
                         num: "03",
                         title: "Launch Google Flow",
-                        desc: "Open the Tools By DCX Extension and click Open Google Flow. Your session syncs automatically."
+                        desc: "Open the ToolsByDcx Extension and click Open Google Flow. Your session syncs automatically."
                     }, {
                         num: "04",
                         title: "Generate & Enjoy",
@@ -23900,19 +23900,19 @@ function DD() {
                         initials: "VK",
                         color: "#7c3aed",
                         title: "Recommended",
-                        body: "Very happy with the tool. Does what it says — simple and smooth. Tools By DCX connected my session instantly and I generated my first video in under a minute."
+                        body: "Very happy with the tool. Does what it says — simple and smooth. ToolsByDcx connected my session instantly and I generated my first video in under a minute."
                     }, {
                         name: "Layla M.",
                         initials: "LM",
                         color: "#a855f7",
                         title: "Game changer for content creators",
-                        body: "I was skeptical at first but the app is incredibly seamless. My workflow went from hours to minutes with Tools By DCX."
+                        body: "I was skeptical at first but the app is incredibly seamless. My workflow went from hours to minutes with ToolsByDcx."
                     }, {
                         name: "Karl R.",
                         initials: "KR",
                         color: "#6d28d9",
                         title: "Best AI video tool I've tried",
-                        body: "I've been using Tools By DCX for a few weeks. The support is great and I can always generate high-quality videos without any issues."
+                        body: "I've been using ToolsByDcx for a few weeks. The support is great and I can always generate high-quality videos without any issues."
                     }, {
                         name: "Priya S.",
                         initials: "PS",
@@ -23924,13 +23924,13 @@ function DD() {
                         initials: "VK",
                         color: "#7c3aed",
                         title: "Recommended",
-                        body: "Very happy with the tool. Does what it says — simple and smooth. Tools By DCX connected my session instantly and I generated my first video in under a minute."
+                        body: "Very happy with the tool. Does what it says — simple and smooth. ToolsByDcx connected my session instantly and I generated my first video in under a minute."
                     }, {
                         name: "Layla M.",
                         initials: "LM",
                         color: "#a855f7",
                         title: "Game changer for content creators",
-                        body: "I was skeptical at first but the app is incredibly seamless. My workflow went from hours to minutes with Tools By DCX."
+                        body: "I was skeptical at first but the app is incredibly seamless. My workflow went from hours to minutes with ToolsByDcx."
                     }].map((u, p) => e.jsxs("div", {
                         className: "rounded-2xl p-5 border border-white/10",
                         style: {
@@ -23944,7 +23944,7 @@ function DD() {
                             children: u.title
                         }), e.jsx("p", {
                             className: "text-gray-400 text-sm leading-relaxed mb-4",
-                            children: u.body.replaceAll("Tools By DCX", a)
+                            children: u.body.replaceAll("ToolsByDcx", a)
                         }), e.jsxs("div", {
                             className: "flex items-center gap-2.5",
                             children: [e.jsx("div", {
@@ -23975,37 +23975,37 @@ function DD() {
                         initials: "DP",
                         color: "#a855f7",
                         title: "Awesome app, very user friendly",
-                        body: "Would highly recommend Tools By DCX to my friends. Clean interface, simple day-based plans, and the app just works out of the box."
+                        body: "Would highly recommend ToolsByDcx to my friends. Clean interface, simple day-based plans, and the app just works out of the box."
                     }, {
                         name: "Leonie A.",
                         initials: "LA",
                         color: "#7c3aed",
                         title: "Fast & reliable",
-                        body: "The generation speed is insane. Veo 3 through Tools By DCX is significantly better than anything else I've tried. Worth every day."
+                        body: "The generation speed is insane. Veo 3 through ToolsByDcx is significantly better than anything else I've tried. Worth every day."
                     }, {
                         name: "Hassan R.",
                         initials: "HR",
                         color: "#6d28d9",
                         title: "Best for German creators",
-                        body: "The best AI video solution for creators. I've been a Tools By DCX user for months — the team always delivers updates and the support is top notch."
+                        body: "The best AI video solution for creators. I've been a ToolsByDcx user for months — the team always delivers updates and the support is top notch."
                     }, {
                         name: "Mia T.",
                         initials: "MT",
                         color: "#8b5cf6",
                         title: "Blown away by the quality",
-                        body: "I showed my clients videos I generated with Tools By DCX and they thought they were shot with a real drone. Absolutely unreal quality."
+                        body: "I showed my clients videos I generated with ToolsByDcx and they thought they were shot with a real drone. Absolutely unreal quality."
                     }, {
                         name: "Dennis P.",
                         initials: "DP",
                         color: "#a855f7",
                         title: "Awesome app, very user friendly",
-                        body: "Would highly recommend Tools By DCX to my friends. Clean interface, simple day-based plans, and the app just works out of the box."
+                        body: "Would highly recommend ToolsByDcx to my friends. Clean interface, simple day-based plans, and the app just works out of the box."
                     }, {
                         name: "Leonie A.",
                         initials: "LA",
                         color: "#7c3aed",
                         title: "Fast & reliable",
-                        body: "The generation speed is insane. Veo 3 through Tools By DCX is significantly better than anything else I've tried. Worth every day."
+                        body: "The generation speed is insane. Veo 3 through ToolsByDcx is significantly better than anything else I've tried. Worth every day."
                     }].map((u, p) => e.jsxs("div", {
                         className: "rounded-2xl p-5 border border-white/10",
                         style: {
@@ -24019,7 +24019,7 @@ function DD() {
                             children: u.title
                         }), e.jsx("p", {
                             className: "text-gray-400 text-sm leading-relaxed mb-4",
-                            children: u.body.replaceAll("Tools By DCX", a)
+                            children: u.body.replaceAll("ToolsByDcx", a)
                         }), e.jsxs("div", {
                             className: "flex items-center gap-2.5",
                             children: [e.jsx("div", {
@@ -24068,7 +24068,7 @@ function DD() {
                         initials: "EW",
                         color: "#6d28d9",
                         title: "Beautiful cinematic videos",
-                        body: "I'm a filmmaker and Tools By DCX has changed how I create concept videos for clients. The Veo 3 model produces absolutely stunning results."
+                        body: "I'm a filmmaker and ToolsByDcx has changed how I create concept videos for clients. The Veo 3 model produces absolutely stunning results."
                     }, {
                         name: "Arjun V.",
                         initials: "AV",
@@ -24094,7 +24094,7 @@ function DD() {
                             children: u.title
                         }), e.jsx("p", {
                             className: "text-gray-400 text-sm leading-relaxed mb-4",
-                            children: u.body.replaceAll("Tools By DCX", a)
+                            children: u.body.replaceAll("ToolsByDcx", a)
                         }), e.jsxs("div", {
                             className: "flex items-center gap-2.5",
                             children: [e.jsx("div", {
@@ -24204,16 +24204,16 @@ function MD() {
         brand: t
     } = Ds(), s = t.brandName;
     Tl({
-        title: `${s} — Buy Tools By DCX Plans by Card`,
-        description: `Pay by card on ${s} and your plan activates automatically on your Tools By DCX account.`,
+        title: `${s} — Buy ToolsByDcx Plans by Card`,
+        description: `Pay by card on ${s} and your plan activates automatically on your ToolsByDcx account.`,
         path: "/"
     });
     const a = [{
             icon: e.jsx(Ks, {
                 className: "h-5 w-5"
             }),
-            title: "Log in with your Tools By DCX account",
-            body: "This store is for existing Tools By DCX users — same email, same password."
+            title: "Log in with your ToolsByDcx account",
+            body: "This store is for existing ToolsByDcx users — same email, same password."
         }, {
             icon: e.jsx(Ua, {
                 className: "h-5 w-5"
@@ -24225,14 +24225,14 @@ function MD() {
                 className: "h-5 w-5"
             }),
             title: "Plan activates automatically",
-            body: "Within moments your plan is live on Tools By DCX and a confirmation email is on its way."
+            body: "Within moments your plan is live on ToolsByDcx and a confirmation email is on its way."
         }],
         n = [{
             icon: e.jsx(Yr, {
                 className: "h-6 w-6"
             }),
             title: "AI Video Generation",
-            body: "Cinematic AI video with Google Flow & Veo — the flagship Tools By DCX experience."
+            body: "Cinematic AI video with Google Flow & Veo — the flagship ToolsByDcx experience."
         }, {
             icon: e.jsx(Ea, {
                 className: "h-6 w-6"
@@ -24260,16 +24260,16 @@ function MD() {
                     className: "inline-flex items-center gap-2 rounded-full border border-[#7c3aed]/40 bg-[#7c3aed]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#c4b5fd] mb-6",
                     children: [e.jsx(Ua, {
                         className: "h-3.5 w-3.5"
-                    }), " Official Tools By DCX plans store"]
+                    }), " Official ToolsByDcx plans store"]
                 }), e.jsxs("h1", {
                     className: "text-4xl sm:text-6xl font-black text-white leading-tight mb-6",
-                    children: ["Buy your Tools By DCX plan", e.jsx("span", {
+                    children: ["Buy your ToolsByDcx plan", e.jsx("span", {
                         className: "block text-[#a855f7]",
                         children: "with your card"
                     })]
                 }), e.jsxs("p", {
                     className: "text-gray-400 text-lg max-w-2xl mx-auto mb-10",
-                    children: [s, " is the fastest way to upgrade: pay by card and your plan activates automatically on your existing Tools By DCX account — no waiting, no manual approval."]
+                    children: [s, " is the fastest way to upgrade: pay by card and your plan activates automatically on your existing ToolsByDcx account — no waiting, no manual approval."]
                 }), e.jsxs("div", {
                     className: "flex flex-col sm:flex-row items-center justify-center gap-4",
                     children: [e.jsx(Qt, {
@@ -24294,7 +24294,7 @@ function MD() {
                     className: "mt-6 text-xs text-gray-600 inline-flex items-center gap-1.5",
                     children: [e.jsx(Xr, {
                         className: "h-3.5 w-3.5"
-                    }), " Use the same email as your Tools By DCX account — activation is matched by email."]
+                    }), " Use the same email as your ToolsByDcx account — activation is matched by email."]
                 })]
             })]
         }), e.jsx("section", {
@@ -24336,7 +24336,7 @@ function MD() {
                     children: "What your plan unlocks"
                 }), e.jsx("p", {
                     className: "text-center text-gray-500 text-sm mb-12",
-                    children: "All tools run on Tools By DCX — your plan activates there the moment payment completes."
+                    children: "All tools run on ToolsByDcx — your plan activates there the moment payment completes."
                 }), e.jsx("div", {
                     className: "grid sm:grid-cols-3 gap-6",
                     children: n.map(i => e.jsxs("div", {
@@ -30474,7 +30474,7 @@ function WN() {
                             children: s
                         }) : e.jsxs("h1", {
                             className: "text-3xl font-black text-[#0a0a0f]",
-                            children: "Tools By DCX"
+                            children: "ToolsByDcx"
                         }), e.jsx("p", {
                             className: "text-gray-500 text-sm mt-1",
                             children: "Sign in to your account"
@@ -30571,7 +30571,7 @@ function WN() {
                         })
                     }), t.storefront ? e.jsx("p", {
                         className: "text-sm text-gray-500",
-                        children: "Use your existing Tools By DCX email & password — plans purchased here activate on that account."
+                        children: "Use your existing ToolsByDcx email & password — plans purchased here activate on that account."
                     }) : e.jsxs("p", {
                         className: "text-sm text-gray-500",
                         children: ["Don't have an account?", " ", e.jsx(Me, {
@@ -30845,7 +30845,7 @@ function nL() {
                             className: "text-3xl font-black text-[#0a0a0f]",
                             children: ["Join ", e.jsx("span", {
                                 className: "text-[#7c3aed]",
-                                children: "Tools By DCX"
+                                children: "ToolsByDcx"
                             })]
                         }), e.jsx("p", {
                             className: "text-gray-500 text-sm mt-1",
@@ -31118,8 +31118,8 @@ function lL() {
                     else {
                         const L = Number(U.user ?.heavyCredits ?? 20);
                         L > 0 && localStorage.setItem("bf_welcome_credits_popup", String(L)), n({
-                            title: `Welcome to ${t.brandName||"Tools By DCX"}! 🎉`,
-                            description: L > 0 ? `You have received ${L} Free Welcome Credits in your account!` : `Welcome to ${t.brandName||"Tools By DCX"}.`
+                            title: `Welcome to ${t.brandName||"ToolsByDcx"}! 🎉`,
+                            description: L > 0 ? `You have received ${L} Free Welcome Credits in your account!` : `Welcome to ${t.brandName||"ToolsByDcx"}.`
                         }), s("/user/dashboard")
                     }
                 } catch (D) {
@@ -31470,7 +31470,7 @@ function KN() {
                             children: "Choose a new password"
                         }), e.jsxs("p", {
                             className: "text-gray-500 text-sm mt-2",
-                            children: ["Enter a new password for your ", t.brandName || "Tools By DCX", " account."]
+                            children: ["Enter a new password for your ", t.brandName || "ToolsByDcx", " account."]
                         })]
                     })]
                 }), S ? e.jsxs("div", {
@@ -32079,7 +32079,7 @@ const iL = [{
         ultra: !0,
         heavy: !0
     }, {
-        feature: "Tools By DCX Credits",
+        feature: "ToolsByDcx Credits",
         free: "1,000",
         basic: "5,000",
         pro: "25,000",
@@ -34867,7 +34867,7 @@ function t5() {
                             margin: "0 auto",
                             lineHeight: 1.55
                         },
-                        children: "Choose Plus or Max and check out securely with any debit or credit card. Your plan activates automatically on your Tools By DCX account — confirmation email included."
+                        children: "Choose Plus or Max and check out securely with any debit or credit card. Your plan activates automatically on your ToolsByDcx account — confirmation email included."
                     })]
                 }) : e.jsxs(e.Fragment, {
                     children: [e.jsxs("h1", {
@@ -36567,7 +36567,7 @@ function t5() {
                         gap: "10px"
                     },
                     children: (a ? JN.filter(V => !/max team|team billing/i.test(V.q)).map(V => ({ ...V,
-                        a: V.a.replace(/,?\s*500 TTS Studio credits,\s*voice cloning,?/i, ",").replace(/Vibe includes 5,000 Tools By DCX Credits for its 10-day period — when they run out, upgrade or renew to refill\./i, "Vibe includes full access for its 10-day period.").replace(/,\s*5,000 Tools By DCX Credits/gi, "").replace(/,?\s*and the Bunny Promptify prompt library/i, "").replace(/Plus, Max, and Max Team include/i, "Plus and Max include")
+                        a: V.a.replace(/,?\s*500 TTS Studio credits,\s*voice cloning,?/i, ",").replace(/Vibe includes 5,000 ToolsByDcx Credits for its 10-day period — when they run out, upgrade or renew to refill\./i, "Vibe includes full access for its 10-day period.").replace(/,\s*5,000 ToolsByDcx Credits/gi, "").replace(/,?\s*and the Bunny Promptify prompt library/i, "").replace(/Plus, Max, and Max Team include/i, "Plus and Max include")
                     })) : JN).map((V, oe) => e.jsxs("div", {
                         className: "faq-row",
                         style: {
@@ -36620,13 +36620,13 @@ function t5() {
     })
 }
 const mL = [{
-        q: "Is Tools By DCX legal and safe to use?",
-        a: "Yes. Tools By DCX provides shared access to our paid Google AI accounts via our dedicated App. You use the original tool interfaces — we simply handle the billing and account management on our end."
+        q: "Is ToolsByDcx legal and safe to use?",
+        a: "Yes. ToolsByDcx provides shared access to our paid Google AI accounts via our dedicated App. You use the original tool interfaces — we simply handle the billing and account management on our end."
     }, {
         q: "Do I need to worry about credits running out?",
-        a: "No. Tools By DCX uses days-based plans, not credits. Once your plan is active, you can generate as much as Google's normal usage limits allow — without watching a credit counter."
+        a: "No. ToolsByDcx uses days-based plans, not credits. Once your plan is active, you can generate as much as Google's normal usage limits allow — without watching a credit counter."
     }, {
-        q: "Is the Tools By DCX App safe?",
+        q: "Is the ToolsByDcx App safe?",
         a: "Yes. The App operates in an isolated secure sandbox strictly for your AI creative workspace. It does not collect personal data, browsing history, or any information from other apps."
     }, {
         q: "What do I get on the Free plan?",
@@ -36638,8 +36638,8 @@ const mL = [{
         q: "What happens when my plan expires?",
         a: "Your account stays safe. You simply lose access to the Google AI tools until you renew. All your generation history and account settings remain intact."
     }, {
-        q: "Can I use Tools By DCX on multiple devices?",
-        a: "Yes. Install the Tools By DCX App on your computer and login with your Tools By DCX account. Sessions sync automatically across your active devices."
+        q: "Can I use ToolsByDcx on multiple devices?",
+        a: "Yes. Install the ToolsByDcx App on your computer and login with your ToolsByDcx account. Sessions sync automatically across your active devices."
     }],
     pL = [{
         name: "Google Flow (Veo 3.1)",
@@ -36670,8 +36670,8 @@ const mL = [{
 
 function fL() {
     Tl({
-        title: "About Tools By DCX — AI Video & Image Generation",
-        description: "Learn about Tools By DCX, the AI platform for generating videos and images with Google Flow, Veo and Gemini. Affordable plans and easy App access.",
+        title: "About ToolsByDcx — AI Video & Image Generation",
+        description: "Learn about ToolsByDcx, the AI platform for generating videos and images with Google Flow, Veo and Gemini. Affordable plans and easy App access.",
         path: "/about"
     });
     const [t, s] = h.useState(0);
@@ -36693,16 +36693,16 @@ function fL() {
                         className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#7c3aed]/10 border border-[#7c3aed]/20 text-[#7c3aed] text-xs font-bold uppercase tracking-wider mb-6",
                         children: [e.jsx(us, {
                             className: "h-3.5 w-3.5"
-                        }), " About Tools By DCX"]
+                        }), " About ToolsByDcx"]
                     }), e.jsxs("h1", {
                         className: "text-5xl sm:text-6xl md:text-7xl font-black text-[#0a0a0f] tracking-tight leading-[1.05]",
                         children: ["What is ", e.jsx("span", {
                             className: "text-[#7c3aed]",
-                            children: "Tools By DCX?"
+                            children: "ToolsByDcx?"
                         })]
                     }), e.jsxs("p", {
                         className: "mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed",
-                        children: ["Tools By DCX is a Pakistan-based platform that gives creators direct access to ", e.jsx("span", {
+                        children: ["ToolsByDcx is a Pakistan-based platform that gives creators direct access to ", e.jsx("span", {
                             className: "font-bold text-[#0a0a0f]",
                             children: "Google Flow (Veo 3.1)"
                         }), " and ", e.jsx("span", {
@@ -36739,7 +36739,7 @@ function fL() {
                         className: "text-4xl sm:text-5xl font-black text-[#0a0a0f] mb-4",
                         children: ["What is ", e.jsx("span", {
                             className: "text-[#7c3aed]",
-                            children: "Tools By DCX App Access?"
+                            children: "ToolsByDcx App Access?"
                         })]
                     }), e.jsx("p", {
                         className: "text-gray-600 text-lg max-w-2xl mx-auto",
@@ -36787,7 +36787,7 @@ function fL() {
                         className: "rounded-2xl border-2 border-[#7c3aed]/30 bg-gradient-to-br from-[#faf5ff] to-white p-7 shadow-[0_8px_24px_rgba(124,58,237,0.08)]",
                         children: [e.jsx("div", {
                             className: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7c3aed]/15 text-[#7c3aed] text-[11px] font-black uppercase tracking-wider mb-4",
-                            children: "The Tools By DCX Solution"
+                            children: "The ToolsByDcx Solution"
                         }), e.jsx("h3", {
                             className: "text-2xl font-black text-[#0a0a0f] mb-3",
                             children: "A dedicated App that bridges everything"
@@ -36804,7 +36804,7 @@ function fL() {
                                 children: [e.jsx("span", {
                                     className: "text-[#7c3aed] font-bold",
                                     children: "✓"
-                                }), " Login with your Tools By DCX account"]
+                                }), " Login with your ToolsByDcx account"]
                             }), e.jsxs("li", {
                                 className: "flex gap-2",
                                 children: [e.jsx("span", {
@@ -36832,12 +36832,12 @@ function fL() {
                         children: [{
                             num: "01",
                             title: "Download App",
-                            desc: "Download the Tools By DCX App installer on Windows in 30 seconds.",
+                            desc: "Download the ToolsByDcx App installer on Windows in 30 seconds.",
                             icon: pp
                         }, {
                             num: "02",
                             title: "Login Once",
-                            desc: "Open the App, login with your Tools By DCX email & password.",
+                            desc: "Open the App, login with your ToolsByDcx email & password.",
                             icon: Ks
                         }, {
                             num: "03",
@@ -36871,7 +36871,7 @@ function fL() {
                             className: "text-4xl sm:text-5xl font-black text-[#0a0a0f] mb-4",
                             children: ["Why Choose ", e.jsx("span", {
                                 className: "text-[#7c3aed]",
-                                children: "Tools By DCX?"
+                                children: "ToolsByDcx?"
                             })]
                         }), e.jsx("p", {
                             className: "text-gray-600 text-lg",
@@ -37001,7 +37001,7 @@ function fL() {
                         })]
                     }), e.jsx("p", {
                         className: "text-gray-400 text-lg mb-8 max-w-2xl mx-auto",
-                        children: "Join thousands of creators using Tools By DCX to generate AI videos and images — without the billing complexity."
+                        children: "Join thousands of creators using ToolsByDcx to generate AI videos and images — without the billing complexity."
                     }), e.jsxs("div", {
                         className: "flex flex-col sm:flex-row items-center justify-center gap-3",
                         children: [e.jsxs(Me, {
@@ -37028,7 +37028,7 @@ const gL = ["Easypaisa", "JazzCash", "Bank Transfer", "USDT (TRC20)", "USDT (BEP
 function s5() {
     const {
         brand: t
-    } = Ds(), s = t.brandName || "Tools By DCX", a = !!t.tenantId;
+    } = Ds(), s = t.brandName || "ToolsByDcx", a = !!t.tenantId;
     Tl({
         title: `Refund Policy — ${s}`,
         description: `${s} refund policy for credit plans and subscriptions.`,
@@ -37526,7 +37526,7 @@ function go({
 function a5() {
     const {
         brand: t
-    } = Ds(), s = t.brandName || "Tools By DCX", a = t.tenantId ? t.supportEmail : "Support@toolsbydcx.local";
+    } = Ds(), s = t.brandName || "ToolsByDcx", a = t.tenantId ? t.supportEmail : "Support@toolsbydcx.local";
     return Tl({
         title: `Terms of Service — ${s}`,
         description: `Read the ${s} Terms of Service governing use of our AI video and image generation platform.`,
@@ -37618,7 +37618,7 @@ function a5() {
                             className: "text-xl font-black text-[#0a0a0f] mb-2",
                             children: "1. Service Description"
                         }), e.jsxs("p", {
-                            children: [s, " is a subscription-based platform that provides shared access to AI generation tools such as Google Flow, Google Whisk, and related models through the Tools By DCX App and web dashboard. ", s, " is an independent service and is ", e.jsx("strong", {
+                            children: [s, " is a subscription-based platform that provides shared access to AI generation tools such as Google Flow, Google Whisk, and related models through the ToolsByDcx App and web dashboard. ", s, " is an independent service and is ", e.jsx("strong", {
                                 children: "not affiliated with, partnered with, or sponsored by Google"
                             }), "."]
                         })]
@@ -37752,7 +37752,7 @@ function a5() {
 function r5() {
     const {
         brand: t
-    } = Ds(), s = t.brandName || "Tools By DCX", a = t.tenantId ? t.supportEmail : "Support@toolsbydcx.local";
+    } = Ds(), s = t.brandName || "ToolsByDcx", a = t.tenantId ? t.supportEmail : "Support@toolsbydcx.local";
     return Tl({
         title: `Privacy Policy — ${s}`,
         description: `How ${s} collects, uses and protects your data. Read our Privacy Policy.`,
@@ -37817,7 +37817,7 @@ function r5() {
                             }), e.jsx("li", {
                                 children: "To process and verify your payments and activate plans."
                             }), e.jsx("li", {
-                                children: "To deliver shared AI service sessions through the Tools By DCX App."
+                                children: "To deliver shared AI service sessions through the ToolsByDcx App."
                             }), e.jsx("li", {
                                 children: "To prevent abuse, fraud, repeated trial sign-ups, and shared-resource exhaustion."
                             }), e.jsx("li", {
@@ -38291,7 +38291,7 @@ function wL(t, s) {
     }, {
         icon: dk,
         title: "Keep your App updated",
-        points: [`Download and install the official ${t} App installer for Windows.`, "Run the installer to update to the latest version.", s ? "Keep just one copy of the extension — no duplicates." : "One Tools By DCX App instance is fine — just no duplicates of the same one."],
+        points: [`Download and install the official ${t} App installer for Windows.`, "Run the installer to update to the latest version.", s ? "Keep just one copy of the extension — no duplicates." : "One ToolsByDcx App instance is fine — just no duplicates of the same one."],
         warn: "Always run the latest official ${name} App for seamless access."
     }, {
         icon: HE,
@@ -38305,7 +38305,7 @@ function wL(t, s) {
     }];
     return s || a.push({
         icon: us,
-        title: "Tools By DCX Extension Guide — How it Works",
+        title: "ToolsByDcx Extension Guide — How it Works",
         points: ["Google Flow, Nano Banana AI, ChatGPT & Meta AI — all in one unified platform.", "No complex setups or browser extension conflicts.", "One-click launch with full session isolation."]
     }), a.push({
         icon: AE,
@@ -38322,7 +38322,7 @@ function vL() {
         login: s
     } = zt(), {
         brand: a
-    } = Ds(), n = !!a.tenantId, i = a.brandName || "Tools By DCX", o = n ? a.supportEmail : "support@toolsbydcx.local", d = wL(i, n), u = typeof window < "u" ? localStorage.getItem("flow_token") : null, p = (t ?.plan || "free").toLowerCase(), m = p !== "free", f = t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : t ?.planActive === !0, g = t ?.emailVerified !== !1, v = t ?.onboardingAccepted === !0, N = !!t && m && f && g && !v, [k, w] = h.useState(() => d.map(() => !1)), [S, C] = h.useState(!1), [P, A] = h.useState(!1), [I, E] = h.useState(null);
+    } = Ds(), n = !!a.tenantId, i = a.brandName || "ToolsByDcx", o = n ? a.supportEmail : "support@toolsbydcx.local", d = wL(i, n), u = typeof window < "u" ? localStorage.getItem("flow_token") : null, p = (t ?.plan || "free").toLowerCase(), m = p !== "free", f = t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : t ?.planActive === !0, g = t ?.emailVerified !== !1, v = t ?.onboardingAccepted === !0, N = !!t && m && f && g && !v, [k, w] = h.useState(() => d.map(() => !1)), [S, C] = h.useState(!1), [P, A] = h.useState(!1), [I, E] = h.useState(null);
     if (!N) return null;
     const O = d.every((T, L) => k[L]),
         R = O && S && !P,
@@ -38602,7 +38602,7 @@ function jL() {
                     },
                     children: e.jsx("img", {
                         src: T4,
-                        alt: "Tools By DCX",
+                        alt: "ToolsByDcx",
                         className: "h-12 w-12 object-contain"
                     })
                 }), e.jsxs("div", {
@@ -38641,7 +38641,7 @@ const NL = "https://whatsapp.com/channel/0029VbCXB4lJ3jv0E5EWZ431",
 function o5({
     userId: t,
     channelUrl: s = NL,
-    brandName: a = "Tools By DCX",
+    brandName: a = "ToolsByDcx",
     logoUrl: n = T4,
     storageKeyPrefix: i = kL,
     updatesOnly: o = !1
@@ -39207,11 +39207,11 @@ const GL = {
     },
     WL = {
         welcome: "Welcome back, <1>{{name}}</1> 👋",
-        subtitle: "Your Tools By DCX AI studio overview",
+        subtitle: "Your ToolsByDcx AI studio overview",
         extConnected: "App Connected",
         extNotDetected: "App Ready",
-        extConnectedTitle: "Tools By DCX App is active — auto-connect ready",
-        extNotDetectedTitle: "Download the Tools By DCX App to launch tools",
+        extConnectedTitle: "ToolsByDcx App is active — auto-connect ready",
+        extNotDetectedTitle: "Download the ToolsByDcx App to launch tools",
         planBadge: "{{badge}} Plan",
         discountTitleExpired: "Need help renewing your plan?",
         discountTitleFree: "Need help & want to purchase our plans?",
@@ -39224,7 +39224,7 @@ const GL = {
         waChannelSub: "Get the latest updates, downtime alerts, new feature announcements & quick support directly on WhatsApp.",
         waJoin: "Join Channel",
         noticeTitle: "👋 New here? Please read the Help section first!",
-        noticeBody: "Before getting started, download the Tools By DCX App to start generating on Google Flow.",
+        noticeBody: "Before getting started, download the ToolsByDcx App to start generating on Google Flow.",
         openHelp: "Open Help Section",
         watchTutorials: "Watch Tutorials",
         upgradePlan: "Upgrade Plan",
@@ -39238,7 +39238,7 @@ const GL = {
         planLabel: "Plan:",
         hideBanner: "Hide banner",
         modelAccess: "Model Access",
-        modelAccessNote: "Tools By DCX App auto-selects <bold>Veo 3.1</bold> · Other models blocked by plan",
+        modelAccessNote: "ToolsByDcx App auto-selects <bold>Veo 3.1</bold> · Other models blocked by plan",
         referPromo: {
             badge: "💰 EARN CASH",
             title: "Refer Friends & Earn Real Money",
@@ -39255,7 +39255,7 @@ const GL = {
             flowTitle: "Flow Access",
             flowSub: "Google Flow · Veo 3 video generation",
             flowCta: "Start creating",
-            extTitle: "Get Tools By DCX App",
+            extTitle: "Get ToolsByDcx App",
             extSub: "Auto-connects your session with Google Flow",
             extCta: "Get App"
         },
@@ -39277,8 +39277,8 @@ const GL = {
         aspectRatio: "Aspect Ratio",
         duration: "Duration",
         howItWorks: "How It Works",
-        openOnFlow: "Open via Tools By DCX App",
-        openingFlow: "Launching Tools By DCX App…",
+        openOnFlow: "Open via ToolsByDcx App",
+        openingFlow: "Launching ToolsByDcx App…",
         openingFlowSub: "Your session is being connected.",
         promptRequired: "Prompt required",
         promptRequiredDesc: "Please describe what you want to generate",
@@ -39298,7 +39298,7 @@ const GL = {
         },
         steps: {
             0: "Write your video prompt above",
-            1: "Click 'Open via Tools By DCX App' — your session is auto-connected",
+            1: "Click 'Open via ToolsByDcx App' — your session is auto-connected",
             2: "Google Flow opens — the App launches your session directly",
             3: "Generate unlimited videos and images for the duration of your plan"
         }
@@ -39327,7 +39327,7 @@ const GL = {
     },
     ZL = {
         title: "Refer & Earn",
-        subtitle: "Share Tools By DCX, earn tokens when friends purchase a plan",
+        subtitle: "Share ToolsByDcx, earn tokens when friends purchase a plan",
         stats: {
             tokensEarned: "TOKENS EARNED",
             totalReferrals: "TOTAL REFERRALS",
@@ -39395,13 +39395,13 @@ const GL = {
     },
     JL = {
         title: "Help & Guide",
-        subtitle: "Everything you need to use Tools By DCX like a pro",
+        subtitle: "Everything you need to use ToolsByDcx like a pro",
         tabs: {
             guide: "Step-by-Step Guide",
             videos: "Video Tutorials",
             faq: "FAQ"
         },
-        guideIntro: "Follow these steps in order to set up and start using Tools By DCX.",
+        guideIntro: "Follow these steps in order to set up and start using ToolsByDcx.",
         step: "STEP",
         quickLinks: "Quick Links",
         links: {
@@ -39416,15 +39416,15 @@ const GL = {
             s1_2: "Enter your email, username, and password to create your account.",
             s1_3: "Every new account starts with a 3-day Free Trial (1x Google Flow Video + Nano Banana AI) — upgrade to Plus (2x Videos) or Max (3x Videos + ChatGPT & Meta AI) anytime.",
             s1_4: "Choose a plan on the Pricing page for instant activation.",
-            s2Title: "Download & Install Tools By DCX Extension",
+            s2Title: "Download & Install ToolsByDcx Extension",
             s2_1: "Go to the Extension page from the sidebar.",
             s2_2: 'Click "Download Extension" to get Tools-By-DCX-Extension.zip.',
             s2_3: "Extract the ZIP folder on your PC.",
             s2_4: "Open chrome://extensions in a clean Chrome profile (not signed into Google).",
             s2_5: "Turn ON Developer Mode (top-right) and click Load Unpacked to select the extracted folder.",
-            s2_6: "Pin the Tools By DCX icon and sign in with your Tools By DCX email & password.",
+            s2_6: "Pin the ToolsByDcx icon and sign in with your ToolsByDcx email & password.",
             s3Title: "Launch AI Tools with 1 Click",
-            s3_1: "Open Google Flow Video directly from the Tools By DCX Extension or the Google Flow page.",
+            s3_1: "Open Google Flow Video directly from the ToolsByDcx Extension or the Google Flow page.",
             s3_2: 'To generate AI Images, open the Nano Banana AI page on the website and click "Open Nano Banana AI".',
             s3_3: "Access our 4 official tools: Google Flow, Nano Banana AI, ChatGPT, and Meta AI.",
             s3_4: 'Paid users can also click "Switch Server" inside the extension if a video server is busy.',
@@ -39443,23 +39443,23 @@ const GL = {
             s5_4: "Vibe plan purchase = 5 tokens ($0.15), Plus plan = 7 tokens ($0.21).",
             s5_5: "Minimum withdrawal is 34 tokens ($1.02) — withdraw via Binance, Easypaisa, or Bank Transfer."
         },
-        videosIntro: "Watch these tutorials to get started with Tools By DCX quickly.",
+        videosIntro: "Watch these tutorials to get started with ToolsByDcx quickly.",
         watchYoutube: "Watch on YouTube",
         videos: {
-            v1Title: "How To Get Access ChatGPT & Meta AI On Tools By DCX",
-            v1Desc: "Step-by-step guide — unlock ChatGPT Plus & Meta AI access through your Tools By DCX Max plan.",
+            v1Title: "How To Get Access ChatGPT & Meta AI On ToolsByDcx",
+            v1Desc: "Step-by-step guide — unlock ChatGPT Plus & Meta AI access through your ToolsByDcx Max plan.",
             v1Badge: "ChatGPT & Meta AI",
-            v2Title: "How To Use Tools By DCX on PC / Laptop",
-            v2Desc: "Complete guide — How To Use Tools By DCX To Access Google Flow & Nano Banana AI on your computer.",
+            v2Title: "How To Use ToolsByDcx on PC / Laptop",
+            v2Desc: "Complete guide — How To Use ToolsByDcx To Access Google Flow & Nano Banana AI on your computer.",
             v2Badge: "PC / Laptop",
-            v3Title: "How To Use Tools By DCX on Mobile",
-            v3Desc: "Mobile support is available via Kiwi / Lemur Browser with the Tools By DCX Extension, or desktop Chrome.",
+            v3Title: "How To Use ToolsByDcx on Mobile",
+            v3Desc: "Mobile support is available via Kiwi / Lemur Browser with the ToolsByDcx Extension, or desktop Chrome.",
             v3Badge: "Mobile",
-            v4Title: "How To Create Videos On Tools By DCX Complete Guide",
-            v4Desc: "Complete walkthrough — everything you need to know to create AI videos using Tools By DCX from start to finish.",
+            v4Title: "How To Create Videos On ToolsByDcx Complete Guide",
+            v4Desc: "Complete walkthrough — everything you need to know to create AI videos using ToolsByDcx from start to finish.",
             v4Badge: "Complete Guide",
-            v5Title: "Tools By DCX Latest Tutorial",
-            v5Desc: "Latest guide — watch this video for the newest tips and updates on using Tools By DCX.",
+            v5Title: "ToolsByDcx Latest Tutorial",
+            v5Desc: "Latest guide — watch this video for the newest tips and updates on using ToolsByDcx.",
             v5Badge: "New"
         },
         faqIntro: "Common questions answered — read these before contacting support.",
@@ -39470,20 +39470,20 @@ const GL = {
             q2: "How many videos can I generate at once?",
             a2: "Free Trial supports 1x video output (dedicated trial queue), Plus Plan supports 2x outputs (high-speed multi-server pool), and Max Plan supports 3x outputs + ChatGPT & Meta AI.",
             q3: "How do I open Nano Banana AI for images?",
-            a3: 'Open the Nano Banana AI page from the Tools By DCX website sidebar and click "Open Nano Banana AI". Image accounts open directly from the website, while Video accounts switch inside the extension.',
+            a3: 'Open the Nano Banana AI page from the ToolsByDcx website sidebar and click "Open Nano Banana AI". Image accounts open directly from the website, while Video accounts switch inside the extension.',
             q4: "How long does my plan last?",
             a4: "Free Trial: 3 days, Plus Plan: 30 days (Rs. 1,710), Max Plan: 30 days (Rs. 2,499) — starting from the day your plan is activated.",
             q5: "How do I withdraw my referral tokens?",
             a5: "Go to Refer & Earn → Withdraw tab. Minimum withdrawal is 34 tokens ($1.02). Supported methods: Binance, Easypaisa, Bank Transfer. Admin processes withdrawals manually.",
             q6: "My plan is expired — what should I do?",
-            a6: "Visit the Pricing page to upgrade to Plus or Max. Once activated, click Auto-Sync in the Tools By DCX Extension to refresh your access.",
+            a6: "Visit the Pricing page to upgrade to Plus or Max. Once activated, click Auto-Sync in the ToolsByDcx Extension to refresh your access.",
             q7: "What if a Google Flow video server shows an error?",
-            a7: 'On Plus and Max plans, click "Switch Server" inside the Tools By DCX Extension to instantly switch between Server 1, 2, and 3. On the Free Trial, occasional high-demand notices are normal — upgrade to Plus or Max for smooth multi-server access.'
+            a7: 'On Plus and Max plans, click "Switch Server" inside the ToolsByDcx Extension to instantly switch between Server 1, 2, and 3. On the Free Trial, occasional high-demand notices are normal — upgrade to Plus or Max for smooth multi-server access.'
         }
     },
     QL = {
         title: "App",
-        subtitle: "Download the official Tools By DCX App for Windows to auto-connect your tools.",
+        subtitle: "Download the official ToolsByDcx App for Windows to auto-connect your tools.",
         download: "Download App",
         installSteps: "Installation Steps",
         alreadyInstalled: "Already installed?"
@@ -39503,7 +39503,7 @@ const GL = {
         live: "Live",
         subtitlePart1: "Full",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "access via Tools By DCX — included with",
+        subtitlePart2: "access via ToolsByDcx — included with",
         subtitlePro: "Plus",
         subtitleAnd: "&",
         subtitleUltra: "Max",
@@ -39514,14 +39514,14 @@ const GL = {
         tryNow: "Try Now on ChatGPT",
         tryLocked: "Try Now — Plus & Max Only",
         upgradeLink: "Upgrade to Plus or Max to unlock ChatGPT →",
-        extensionTitle: "Tools By DCX App",
-        extensionSub: "Launch ChatGPT directly through Tools By DCX App",
+        extensionTitle: "ToolsByDcx App",
+        extensionSub: "Launch ChatGPT directly through ToolsByDcx App",
         howToUse: "How to use",
         download: "Download",
         lockedBadge: "Plus & Max",
         setupGuide: "Setup Guide",
         important: "Important:",
-        importantNote: "Launch your session inside Tools By DCX App with zero manual setup.",
+        importantNote: "Launch your session inside ToolsByDcx App with zero manual setup.",
         featuresTitle: "What's Included in ChatGPT",
         ctaTitle: "Unlock ChatGPT Access",
         ctaSub: "Upgrade to Plus or Max plan — get ChatGPT (o3 · Deep Research · DALL·E) + all premium tools",
@@ -39548,13 +39548,13 @@ const GL = {
         },
         steps: {
             s1Title: "Open Chrome & Create a New Profile",
-            s1Desc: 'Click the profile icon (top-right corner of Chrome) → click + Add → give it any name (e.g. "Tools By DCX") → Done. This keeps ChatGPT separate from your personal Chrome.',
-            s2Title: "Download the Tools By DCX Extension",
+            s1Desc: 'Click the profile icon (top-right corner of Chrome) → click + Add → give it any name (e.g. "ToolsByDcx") → Done. This keeps ChatGPT separate from your personal Chrome.',
+            s2Title: "Download the ToolsByDcx Extension",
             s2Desc: "Click the Download Extension button above (Plus or Max plan required). Save the ZIP file — do not extract it.",
             s3Title: "Install via Developer Mode",
             s3Desc: "In your new Chrome profile, go to chrome://extensions → toggle on Developer Mode (top-right) → drag & drop the ZIP file onto the page. The extension installs instantly.",
             s4Title: "Sign in to ChatGPT",
-            s4Desc: "The extension will open ChatGPT automatically. Sign in with the account credentials provided by Tools By DCX (check your email or dashboard).",
+            s4Desc: "The extension will open ChatGPT automatically. Sign in with the account credentials provided by ToolsByDcx (check your email or dashboard).",
             s5Title: "Start Using ChatGPT",
             s5Desc: "You now have full ChatGPT access — o3 reasoning, Deep Research, Create Image, file uploads, web browsing, Custom GPTs and more — all inside your dedicated Chrome profile."
         }
@@ -39565,7 +39565,7 @@ const GL = {
         live: "Live",
         subtitlePart1: "Full",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "access via Tools By DCX — exclusive to",
+        subtitlePart2: "access via ToolsByDcx — exclusive to",
         subtitleUltra: "Max plan",
         subtitleMembers: "members",
         heroTitle: "Super Grok — Now Live",
@@ -39574,14 +39574,14 @@ const GL = {
         tryNow: "Try Now on Grok",
         tryLocked: "Try Now — Max Only",
         upgradeLink: "Upgrade to Max to unlock Super Grok →",
-        extensionTitle: "Tools By DCX App",
-        extensionSub: "Launch Grok directly through Tools By DCX App",
+        extensionTitle: "ToolsByDcx App",
+        extensionSub: "Launch Grok directly through ToolsByDcx App",
         howToUse: "How to use",
         download: "Download",
         lockedBadge: "Max Only",
         setupGuide: "Setup Guide",
         important: "Important:",
-        importantNote: "Launch your session inside Tools By DCX App with zero manual setup.",
+        importantNote: "Launch your session inside ToolsByDcx App with zero manual setup.",
         featuresTitle: "What's Included in Super Grok",
         ctaTitle: "Unlock Super Grok Access",
         ctaSub: "Upgrade to Max plan — get Super Grok (Grok 4 · Imagine Videos · Aurora Images · DeepSearch) + all premium tools",
@@ -39606,13 +39606,13 @@ const GL = {
         },
         steps: {
             s1Title: "Open Chrome & Create a New Profile",
-            s1Desc: 'Click the profile icon (top-right corner of Chrome) → click + Add → give it any name (e.g. "Tools By DCX Grok") → Done. This keeps Grok separate from your personal Chrome.',
-            s2Title: "Download the Tools By DCX Extension",
+            s1Desc: 'Click the profile icon (top-right corner of Chrome) → click + Add → give it any name (e.g. "ToolsByDcx Grok") → Done. This keeps Grok separate from your personal Chrome.',
+            s2Title: "Download the ToolsByDcx Extension",
             s2Desc: "Click the Download Extension button above (Plus or Max plan required). Save the ZIP file — do not extract it.",
             s3Title: "Install via Developer Mode",
             s3Desc: "In your new Chrome profile, go to chrome://extensions → toggle on Developer Mode (top-right) → drag & drop the ZIP file onto the page. The extension installs instantly.",
             s4Title: "Sign in to Grok",
-            s4Desc: "The extension will open Grok automatically. Sign in with the account credentials provided by Tools By DCX (check your email or dashboard).",
+            s4Desc: "The extension will open Grok automatically. Sign in with the account credentials provided by ToolsByDcx (check your email or dashboard).",
             s5Title: "Start Using Super Grok",
             s5Desc: "You now have full Super Grok access — Grok 4 Think, Imagine Videos, Aurora Images, DeepSearch and live web data — all inside your dedicated Chrome profile."
         }
@@ -39729,10 +39729,10 @@ const GL = {
     },
     oF = {
         welcome: "خوش آمدید، <1>{{name}}</1> 👋",
-        subtitle: "آپ کا Tools By DCX AI اسٹوڈیو خلاصہ",
+        subtitle: "آپ کا ToolsByDcx AI اسٹوڈیو خلاصہ",
         extConnected: "ایپ ایکٹو ہے",
         extNotDetected: "ایپ ریڈی ہے",
-        extConnectedTitle: "Tools By DCX ایکسٹینشن فعال ہے — آٹو کنیکٹ تیار",
+        extConnectedTitle: "ToolsByDcx ایکسٹینشن فعال ہے — آٹو کنیکٹ تیار",
         extNotDetectedTitle: "ایکسٹینشن انسٹال کریں اور آٹو کنیکٹ کے لیے ڈیش بورڈ پر جائیں",
         planBadge: "{{badge}} پلان",
         discountTitleExpired: "اپنے پلان کی تجدید میں مدد چاہیے؟",
@@ -39849,7 +39849,7 @@ const GL = {
     },
     uF = {
         title: "ریفر کریں اور کمائیں",
-        subtitle: "Tools By DCX شیئر کریں، جب دوست پلان خریدیں تو ٹوکنز کمائیں",
+        subtitle: "ToolsByDcx شیئر کریں، جب دوست پلان خریدیں تو ٹوکنز کمائیں",
         stats: {
             tokensEarned: "ٹوکنز کمائے",
             totalReferrals: "کل ریفرلز",
@@ -39917,13 +39917,13 @@ const GL = {
     },
     xF = {
         title: "مدد اور رہنما",
-        subtitle: "Tools By DCX کو پرو کی طرح استعمال کرنے کے لیے ہر چیز",
+        subtitle: "ToolsByDcx کو پرو کی طرح استعمال کرنے کے لیے ہر چیز",
         tabs: {
             guide: "مرحلہ وار رہنما",
             videos: "ویڈیو ٹیوٹوریلز",
             faq: "سوالات"
         },
-        guideIntro: "Tools By DCX ترتیب دینے اور استعمال شروع کرنے کے لیے یہ اقدامات ترتیب سے کریں۔",
+        guideIntro: "ToolsByDcx ترتیب دینے اور استعمال شروع کرنے کے لیے یہ اقدامات ترتیب سے کریں۔",
         step: "مرحلہ",
         quickLinks: "فوری لنکس",
         links: {
@@ -39938,22 +39938,22 @@ const GL = {
             s1_2: "اپنا ای میل، یوزر نیم اور پاس ورڈ درج کر کے اکاؤنٹ بنائیں۔",
             s1_3: "ہر نئے اکاؤنٹ کو ایک بار 3 دن کا فری ٹرائل ملتا ہے — مکمل رسائی کے لیے Vibe (10 دن)، Plus (20 دن) یا Max (30 دن) لیں۔",
             s1_4: "پلان فعال کروانے کے لیے ایڈمن سے رابطہ کریں یا ریفرل لنک استعمال کریں۔",
-            s2Title: "Tools By DCX ڈیسک ٹاپ ایپ انسٹال کریں",
+            s2Title: "ToolsByDcx ڈیسک ٹاپ ایپ انسٹال کریں",
             s2_1: "اوپر کے نیو بار سے App صفحہ پر جائیں۔",
             s2_2: 'انسٹالر حاصل کرنے کے لیے "Download App" پر کلک کریں۔',
-            s2_3: "ڈاؤن لوڈ شدہ Tools By DCX-Setup-x64.exe فائل کھولیں۔",
+            s2_3: "ڈاؤن لوڈ شدہ ToolsByDcx-Setup-x64.exe فائل کھولیں۔",
             s2_4: "1-کلک وزرڈ (Next → Next → Install) پر عمل کریں۔",
-            s2_5: "اپنے کمپیوٹر سے Tools By DCX ایپ لانچ کریں۔",
-            s2_6: "اپنے Tools By DCX رجسٹرڈ اکاؤنٹ سے لاگ ان کریں۔",
+            s2_5: "اپنے کمپیوٹر سے ToolsByDcx ایپ لانچ کریں۔",
+            s2_6: "اپنے ToolsByDcx رجسٹرڈ اکاؤنٹ سے لاگ ان کریں۔",
             s3Title: "AI ٹولز 1 کلک میں کھولیں",
-            s3_1: "Tools By DCX ڈیسک ٹاپ ایپ اوپن کریں۔",
+            s3_1: "ToolsByDcx ڈیسک ٹاپ ایپ اوپن کریں۔",
             s3_2: "وہی ای میل اور پاس ورڈ درج کریں جو پورٹل پر استعمال کیے تھے۔",
             s3_3: "Google Flow، ChatGPT، Grok، Muse یا Meta AI منتخب کریں۔",
             s3_4: '"Start Flow" یا "Open" پر کلک کریں — سیشن خود بخود کھل جائے گا۔',
             s3_5: "لامحدود AI ویڈیوز اور تصاویر بنانا شروع کریں!",
             s4Title: "Google Flow پر ویڈیوز بنائیں",
             s4_1: 'Google Flow کھولیں: flow.google.com (یا پورٹل مینو سے "Open Google Flow")۔',
-            s4_2: "Tools By DCX ایپ آپ کا سیشن خود بخود انجیکٹ کرے گی۔",
+            s4_2: "ToolsByDcx ایپ آپ کا سیشن خود بخود انجیکٹ کرے گی۔",
             s4_3: 'آپ کو صرف "Veo 3.1" ماڈل نظر آئے گا — یہی واحد اجازت یافتہ ماڈل ہے۔',
             s4_4: "پریمیم ماڈلز (Nano Banana Pro، Imagen Pro) ٹرائل اور Vibe پر لاک ہیں — Plus یا Max میں اپگریڈ کریں۔",
             s4_5: "اپنا پرامپٹ ٹائپ کریں اور ویڈیو بنانے کے لیے Generate پر کلک کریں!",
@@ -39965,23 +39965,23 @@ const GL = {
             s5_4: "Vibe پلان خریداری = 5 ٹوکن ($0.15)، Plus پلان = 7 ٹوکن ($0.21)۔",
             s5_5: "کم از کم نکاسی 34 ٹوکنز ($1.02) ہے — Binance، Easypaisa یا بینک ٹرانسفر کے ذریعے نکالیں۔"
         },
-        videosIntro: "Tools By DCX کا تیزی سے استعمال شروع کرنے کے لیے یہ ٹیوٹوریلز دیکھیں۔",
+        videosIntro: "ToolsByDcx کا تیزی سے استعمال شروع کرنے کے لیے یہ ٹیوٹوریلز دیکھیں۔",
         watchYoutube: "YouTube پر دیکھیں",
         videos: {
-            v1Title: "Tools By DCX پر ChatGPT اور Grok کی رسائی کیسے حاصل کریں",
-            v1Desc: "مرحلہ وار رہنما — اپنے Tools By DCX پلان کے ذریعے ChatGPT Paid اور Super Grok رسائی کھولیں۔",
+            v1Title: "ToolsByDcx پر ChatGPT اور Grok کی رسائی کیسے حاصل کریں",
+            v1Desc: "مرحلہ وار رہنما — اپنے ToolsByDcx پلان کے ذریعے ChatGPT Paid اور Super Grok رسائی کھولیں۔",
             v1Badge: "ChatGPT اور Grok",
-            v2Title: "PC / لیپ ٹاپ پر Tools By DCX کیسے استعمال کریں",
-            v2Desc: "مکمل رہنما — کمپیوٹر پر ایڈوانسڈ ٹولز تک رسائی کے لیے Tools By DCX کا استعمال۔",
+            v2Title: "PC / لیپ ٹاپ پر ToolsByDcx کیسے استعمال کریں",
+            v2Desc: "مکمل رہنما — کمپیوٹر پر ایڈوانسڈ ٹولز تک رسائی کے لیے ToolsByDcx کا استعمال۔",
             v2Badge: "PC / لیپ ٹاپ",
-            v3Title: "موبائل پر Tools By DCX کیسے استعمال کریں",
-            v3Desc: "Mobile support is currently not available. Tools By DCX is supported exclusively on Windows Desktop PC.",
+            v3Title: "موبائل پر ToolsByDcx کیسے استعمال کریں",
+            v3Desc: "Mobile support is currently not available. ToolsByDcx is supported exclusively on Windows Desktop PC.",
             v3Badge: "موبائل",
-            v4Title: "Tools By DCX ٹول پر ویڈیوز بنانے کا مکمل ویڈیو",
-            v4Desc: "مکمل والک تھرو — Tools By DCX کے ذریعے AI ویڈیوز بنانے کے لیے سب کچھ۔",
+            v4Title: "ToolsByDcx ٹول پر ویڈیوز بنانے کا مکمل ویڈیو",
+            v4Desc: "مکمل والک تھرو — ToolsByDcx کے ذریعے AI ویڈیوز بنانے کے لیے سب کچھ۔",
             v4Badge: "مکمل گائیڈ",
-            v5Title: "Tools By DCX کا تازہ ترین ٹیوٹوریل",
-            v5Desc: "تازہ ترین رہنما — Tools By DCX کے استعمال کے نئے نکات اور اپڈیٹس۔",
+            v5Title: "ToolsByDcx کا تازہ ترین ٹیوٹوریل",
+            v5Desc: "تازہ ترین رہنما — ToolsByDcx کے استعمال کے نئے نکات اور اپڈیٹس۔",
             v5Badge: "نیا"
         },
         faqIntro: "عام سوالات کے جوابات — سپورٹ سے رابطہ کرنے سے پہلے یہ پڑھیں۔",
@@ -40005,7 +40005,7 @@ const GL = {
     },
     hF = {
         title: "ایپ",
-        subtitle: "اپنا گوگل فلو سیشن خود بخود منسلک کرنے کے لیے Tools By DCX ایپ ڈاؤن لوڈ کریں۔",
+        subtitle: "اپنا گوگل فلو سیشن خود بخود منسلک کرنے کے لیے ToolsByDcx ایپ ڈاؤن لوڈ کریں۔",
         download: "ایپ ڈاؤن لوڈ کریں",
         installSteps: "انسٹالیشن کے مراحل",
         alreadyInstalled: "پہلے سے انسٹال ہے؟"
@@ -40025,7 +40025,7 @@ const GL = {
         live: "لائیو",
         subtitlePart1: "مکمل",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "Tools By DCX کے ذریعے رسائی — شامل ہے",
+        subtitlePart2: "ToolsByDcx کے ذریعے رسائی — شامل ہے",
         subtitlePro: "Plus",
         subtitleAnd: "اور",
         subtitleUltra: "Max",
@@ -40036,7 +40036,7 @@ const GL = {
         tryNow: "ChatGPT پر آزمائیں",
         tryLocked: "آزمائیں — صرف Plus اور Max",
         upgradeLink: "ChatGPT کھولنے کے لیے Plus یا Max پلان لیں →",
-        extensionTitle: "Tools By DCX ChatGPT ایکسٹینشن",
+        extensionTitle: "ToolsByDcx ChatGPT ایکسٹینشن",
         extensionSub: "خصوصی Chrome ایکسٹینشن — وقف Chrome پروفائل میں انسٹال کریں",
         howToUse: "استعمال کا طریقہ",
         download: "ڈاؤن لوڈ",
@@ -40070,13 +40070,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome کھولیں اور نیا پروفائل بنائیں",
-            s1Desc: 'Chrome کے اوپر دائیں کونے میں پروفائل آئیکن پر کلک کریں → + Add پر کلک کریں → کوئی نام دیں (مثلاً "Tools By DCX") → Done۔ یہ ChatGPT کو آپ کے ذاتی Chrome سے الگ رکھتا ہے۔',
-            s2Title: "Tools By DCX ایکسٹینشن ڈاؤن لوڈ کریں",
+            s1Desc: 'Chrome کے اوپر دائیں کونے میں پروفائل آئیکن پر کلک کریں → + Add پر کلک کریں → کوئی نام دیں (مثلاً "ToolsByDcx") → Done۔ یہ ChatGPT کو آپ کے ذاتی Chrome سے الگ رکھتا ہے۔',
+            s2Title: "ToolsByDcx ایکسٹینشن ڈاؤن لوڈ کریں",
             s2Desc: "اوپر Download Extension بٹن پر کلک کریں (Plus یا Max پلان درکار)۔ ZIP فائل محفوظ کریں — اسے نہ نکالیں۔",
             s3Title: "Developer Mode کے ذریعے انسٹال کریں",
             s3Desc: "اپنے نئے Chrome پروفائل میں chrome://extensions پر جائیں → اوپر دائیں Developer Mode آن کریں → ZIP فائل کو صفحہ پر گھسیٹیں۔ ایکسٹینشن فوراً انسٹال ہو جاتی ہے۔",
             s4Title: "ChatGPT میں سائن ان کریں",
-            s4Desc: "ایکسٹینشن خود بخود ChatGPT کھولے گی۔ Tools By DCX کے فراہم کردہ اکاؤنٹ کریڈنشلز سے سائن ان کریں (اپنا ای میل یا ڈیش بورڈ چیک کریں)۔",
+            s4Desc: "ایکسٹینشن خود بخود ChatGPT کھولے گی۔ ToolsByDcx کے فراہم کردہ اکاؤنٹ کریڈنشلز سے سائن ان کریں (اپنا ای میل یا ڈیش بورڈ چیک کریں)۔",
             s5Title: "ChatGPT استعمال کرنا شروع کریں",
             s5Desc: "اب آپ کے پاس مکمل ChatGPT رسائی ہے — o3 reasoning، Deep Research، Create Image، فائل اپ لوڈ، ویب براؤزنگ، Custom GPTs اور بہت کچھ — آپ کے وقف Chrome پروفائل کے اندر۔"
         }
@@ -40087,7 +40087,7 @@ const GL = {
         live: "لائیو",
         subtitlePart1: "مکمل",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "Tools By DCX کے ذریعے رسائی — خصوصی صرف",
+        subtitlePart2: "ToolsByDcx کے ذریعے رسائی — خصوصی صرف",
         subtitleUltra: "Max پلان",
         subtitleMembers: "ممبرز کے لیے",
         heroTitle: "Super Grok — اب لائیو",
@@ -40096,7 +40096,7 @@ const GL = {
         tryNow: "Grok پر آزمائیں",
         tryLocked: "آزمائیں — صرف Max",
         upgradeLink: "Super Grok کھولنے کے لیے Ultra میں اپگریڈ کریں →",
-        extensionTitle: "Tools By DCX Grok ایکسٹینشن",
+        extensionTitle: "ToolsByDcx Grok ایکسٹینشن",
         extensionSub: "خصوصی Chrome ایکسٹینشن — وقف Chrome پروفائل میں انسٹال کریں",
         howToUse: "استعمال کا طریقہ",
         download: "ڈاؤن لوڈ",
@@ -40128,13 +40128,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome کھولیں اور نیا پروفائل بنائیں",
-            s1Desc: 'Chrome کے اوپر دائیں کونے میں پروفائل آئیکن پر کلک کریں → + Add پر کلک کریں → کوئی نام دیں (مثلاً "Tools By DCX Grok") → Done۔ یہ Grok کو آپ کے ذاتی Chrome سے الگ رکھتا ہے۔',
-            s2Title: "Tools By DCX ایکسٹینشن ڈاؤن لوڈ کریں",
+            s1Desc: 'Chrome کے اوپر دائیں کونے میں پروفائل آئیکن پر کلک کریں → + Add پر کلک کریں → کوئی نام دیں (مثلاً "ToolsByDcx Grok") → Done۔ یہ Grok کو آپ کے ذاتی Chrome سے الگ رکھتا ہے۔',
+            s2Title: "ToolsByDcx ایکسٹینشن ڈاؤن لوڈ کریں",
             s2Desc: "اوپر Download Extension بٹن پر کلک کریں (Plus یا Max پلان درکار)۔ ZIP فائل محفوظ کریں — اسے نہ نکالیں۔",
             s3Title: "Developer Mode کے ذریعے انسٹال کریں",
             s3Desc: "اپنے نئے Chrome پروفائل میں chrome://extensions پر جائیں → اوپر دائیں Developer Mode آن کریں → ZIP فائل کو صفحہ پر گھسیٹیں۔ ایکسٹینشن فوراً انسٹال ہو جاتی ہے۔",
             s4Title: "Grok میں سائن ان کریں",
-            s4Desc: "ایکسٹینشن خود بخود Grok کھولے گی۔ Tools By DCX کے فراہم کردہ اکاؤنٹ کریڈنشلز سے سائن ان کریں (اپنا ای میل یا ڈیش بورڈ چیک کریں)۔",
+            s4Desc: "ایکسٹینشن خود بخود Grok کھولے گی۔ ToolsByDcx کے فراہم کردہ اکاؤنٹ کریڈنشلز سے سائن ان کریں (اپنا ای میل یا ڈیش بورڈ چیک کریں)۔",
             s5Title: "Super Grok استعمال کرنا شروع کریں",
             s5Desc: "اب آپ کے پاس مکمل Super Grok رسائی ہے — Grok 4 Think، Imagine Videos، Aurora Images، DeepSearch اور لائیو ویب ڈیٹا — آپ کے وقف Chrome پروفائل کے اندر۔"
         }
@@ -40251,10 +40251,10 @@ const GL = {
     },
     NF = {
         welcome: "स्वागत है, <1>{{name}}</1> 👋",
-        subtitle: "आपका Tools By DCX AI स्टूडियो अवलोकन",
+        subtitle: "आपका ToolsByDcx AI स्टूडियो अवलोकन",
         extConnected: "एक्सटेंशन कनेक्टेड",
         extNotDetected: "एक्सटेंशन नहीं मिला",
-        extConnectedTitle: "Tools By DCX एक्सटेंशन सक्रिय है — ऑटो-कनेक्ट तैयार",
+        extConnectedTitle: "ToolsByDcx एक्सटेंशन सक्रिय है — ऑटो-कनेक्ट तैयार",
         extNotDetectedTitle: "ऑटो-कनेक्ट के लिए एक्सटेंशन इंस्टॉल करें और डैशबोर्ड पर जाएँ",
         planBadge: "{{badge}} प्लान",
         discountTitleExpired: "अपने प्लान के नवीनीकरण में मदद चाहिए?",
@@ -40371,7 +40371,7 @@ const GL = {
     },
     CF = {
         title: "रेफर और कमाएँ",
-        subtitle: "Tools By DCX शेयर करें, जब दोस्त प्लान खरीदें तो टोकन कमाएँ",
+        subtitle: "ToolsByDcx शेयर करें, जब दोस्त प्लान खरीदें तो टोकन कमाएँ",
         stats: {
             tokensEarned: "टोकन कमाए",
             totalReferrals: "कुल रेफरल",
@@ -40439,13 +40439,13 @@ const GL = {
     },
     AF = {
         title: "सहायता और गाइड",
-        subtitle: "Tools By DCX को प्रो की तरह उपयोग करने के लिए सब कुछ",
+        subtitle: "ToolsByDcx को प्रो की तरह उपयोग करने के लिए सब कुछ",
         tabs: {
             guide: "स्टेप-बाय-स्टेप गाइड",
             videos: "वीडियो ट्यूटोरियल",
             faq: "FAQ"
         },
-        guideIntro: "Tools By DCX सेट अप करने और उपयोग शुरू करने के लिए इन चरणों का क्रम से पालन करें।",
+        guideIntro: "ToolsByDcx सेट अप करने और उपयोग शुरू करने के लिए इन चरणों का क्रम से पालन करें।",
         step: "चरण",
         quickLinks: "त्वरित लिंक",
         links: {
@@ -40466,16 +40466,16 @@ const GL = {
             s2_3: "Chrome खोलें और chrome://extensions/ पर जाएँ।",
             s2_4: 'ऊपर दाएँ कोने में "Developer Mode" टॉगल चालू करें।',
             s2_5: '"Load Unpacked" पर क्लिक करें और निकाला हुआ एक्सटेंशन फ़ोल्डर चुनें।',
-            s2_6: "Tools By DCX एक्सटेंशन आइकन आपके ब्राउज़र टूलबार में दिखेगा।",
+            s2_6: "ToolsByDcx एक्सटेंशन आइकन आपके ब्राउज़र टूलबार में दिखेगा।",
             s3Title: "एक्सटेंशन में लॉगिन करें",
-            s3_1: "अपने Chrome टूलबार में Tools By DCX आइकन पर क्लिक करें।",
+            s3_1: "अपने Chrome टूलबार में ToolsByDcx आइकन पर क्लिक करें।",
             s3_2: "वही ईमेल और पासवर्ड दर्ज करें जो पोर्टल पर रजिस्टर करने के लिए इस्तेमाल किए थे।",
             s3_3: '"Login" पर क्लिक करें — आपका प्लान स्टेटस दिखाई देगा।',
             s3_4: "एक्सटेंशन आपका अकाउंट स्वचालित रूप से सिंक कर देगा।",
             s3_5: "अगर आपको अपना प्लान (Vibe/Plus/Max) दिखे तो आप जनरेट करने के लिए तैयार हैं!",
             s4Title: "Google Flow पर वीडियो बनाएँ",
             s4_1: 'Google Flow खोलें: labs.google/fx/tools/flow (या पोर्टल मेनू से "Open Google Flow")।',
-            s4_2: "Tools By DCX एक्सटेंशन आपका सत्र स्वचालित रूप से इंजेक्ट करेगा।",
+            s4_2: "ToolsByDcx एक्सटेंशन आपका सत्र स्वचालित रूप से इंजेक्ट करेगा।",
             s4_3: 'आपको केवल "Veo 3.1" मॉडल दिखेगा — यही एकमात्र अनुमत मॉडल है।',
             s4_4: "प्रीमियम मॉडल (Nano Banana Pro, Imagen Pro) ट्रायल और Vibe पर लॉक हैं — Plus या Max में अपग्रेड करें।",
             s4_5: "अपना प्रॉम्प्ट टाइप करें और वीडियो बनाने के लिए Generate पर क्लिक करें!",
@@ -40487,23 +40487,23 @@ const GL = {
             s5_4: "Vibe प्लान खरीद = 5 टोकन ($0.15), Plus प्लान = 7 टोकन ($0.21)।",
             s5_5: "न्यूनतम निकासी 34 टोकन ($1.02) है — Binance, Easypaisa या बैंक ट्रांसफर से निकालें।"
         },
-        videosIntro: "Tools By DCX को जल्दी से शुरू करने के लिए ये ट्यूटोरियल देखें।",
+        videosIntro: "ToolsByDcx को जल्दी से शुरू करने के लिए ये ट्यूटोरियल देखें।",
         watchYoutube: "YouTube पर देखें",
         videos: {
-            v1Title: "Tools By DCX पर ChatGPT और Grok की पहुँच कैसे पाएँ",
-            v1Desc: "स्टेप-बाय-स्टेप गाइड — अपने Tools By DCX प्लान से ChatGPT Paid और Super Grok पहुँच खोलें।",
+            v1Title: "ToolsByDcx पर ChatGPT और Grok की पहुँच कैसे पाएँ",
+            v1Desc: "स्टेप-बाय-स्टेप गाइड — अपने ToolsByDcx प्लान से ChatGPT Paid और Super Grok पहुँच खोलें।",
             v1Badge: "ChatGPT और Grok",
-            v2Title: "PC / लैपटॉप पर Tools By DCX कैसे उपयोग करें",
-            v2Desc: "पूर्ण गाइड — कंप्यूटर पर एडवांस्ड टूल्स तक पहुँचने के लिए Tools By DCX का उपयोग।",
+            v2Title: "PC / लैपटॉप पर ToolsByDcx कैसे उपयोग करें",
+            v2Desc: "पूर्ण गाइड — कंप्यूटर पर एडवांस्ड टूल्स तक पहुँचने के लिए ToolsByDcx का उपयोग।",
             v2Badge: "PC / लैपटॉप",
-            v3Title: "मोबाइल पर Tools By DCX कैसे उपयोग करें",
-            v3Desc: "मोबाइल उपयोगकर्ताओं के लिए गाइड — Android पर Tools By DCX एक्सटेंशन के साथ Lemur Browser।",
+            v3Title: "मोबाइल पर ToolsByDcx कैसे उपयोग करें",
+            v3Desc: "मोबाइल उपयोगकर्ताओं के लिए गाइड — Android पर ToolsByDcx एक्सटेंशन के साथ Lemur Browser।",
             v3Badge: "मोबाइल",
-            v4Title: "Tools By DCX टूल पर वीडियो बनाने का पूर्ण वीडियो",
-            v4Desc: "पूर्ण वॉकथ्रू — Tools By DCX से AI वीडियो बनाने के लिए सब कुछ।",
+            v4Title: "ToolsByDcx टूल पर वीडियो बनाने का पूर्ण वीडियो",
+            v4Desc: "पूर्ण वॉकथ्रू — ToolsByDcx से AI वीडियो बनाने के लिए सब कुछ।",
             v4Badge: "पूर्ण गाइड",
-            v5Title: "Tools By DCX का नवीनतम ट्यूटोरियल",
-            v5Desc: "नवीनतम गाइड — Tools By DCX उपयोग करने के नए टिप्स और अपडेट।",
+            v5Title: "ToolsByDcx का नवीनतम ट्यूटोरियल",
+            v5Desc: "नवीनतम गाइड — ToolsByDcx उपयोग करने के नए टिप्स और अपडेट।",
             v5Badge: "नया"
         },
         faqIntro: "सामान्य सवालों के जवाब — सपोर्ट से संपर्क करने से पहले इन्हें पढ़ें।",
@@ -40527,7 +40527,7 @@ const GL = {
     },
     TF = {
         title: "Chrome एक्सटेंशन",
-        subtitle: "अपना Google Flow सेशन स्वतः कनेक्ट करने के लिए Tools By DCX एक्सटेंशन इंस्टॉल करें।",
+        subtitle: "अपना Google Flow सेशन स्वतः कनेक्ट करने के लिए ToolsByDcx एक्सटेंशन इंस्टॉल करें।",
         download: "एक्सटेंशन डाउनलोड करें",
         installSteps: "इंस्टॉलेशन चरण",
         alreadyInstalled: "पहले से इंस्टॉल है?"
@@ -40547,7 +40547,7 @@ const GL = {
         live: "लाइव",
         subtitlePart1: "पूर्ण",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "Tools By DCX के माध्यम से पहुँच — शामिल है",
+        subtitlePart2: "ToolsByDcx के माध्यम से पहुँच — शामिल है",
         subtitlePro: "Plus",
         subtitleAnd: "और",
         subtitleUltra: "Max",
@@ -40558,7 +40558,7 @@ const GL = {
         tryNow: "ChatGPT पर अभी आज़माएँ",
         tryLocked: "आज़माएँ — केवल Plus और Max",
         upgradeLink: "ChatGPT खोलने के लिए Plus या Max में अपग्रेड करें →",
-        extensionTitle: "Tools By DCX ChatGPT एक्सटेंशन",
+        extensionTitle: "ToolsByDcx ChatGPT एक्सटेंशन",
         extensionSub: "विशेष Chrome एक्सटेंशन — समर्पित Chrome प्रोफ़ाइल में इंस्टॉल करें",
         howToUse: "उपयोग कैसे करें",
         download: "डाउनलोड",
@@ -40592,13 +40592,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome खोलें और नई प्रोफ़ाइल बनाएँ",
-            s1Desc: 'Chrome के ऊपर दाएँ कोने में प्रोफ़ाइल आइकन पर क्लिक करें → + Add पर क्लिक करें → कोई नाम दें (जैसे "Tools By DCX") → Done। यह ChatGPT को आपके निजी Chrome से अलग रखता है।',
-            s2Title: "Tools By DCX एक्सटेंशन डाउनलोड करें",
+            s1Desc: 'Chrome के ऊपर दाएँ कोने में प्रोफ़ाइल आइकन पर क्लिक करें → + Add पर क्लिक करें → कोई नाम दें (जैसे "ToolsByDcx") → Done। यह ChatGPT को आपके निजी Chrome से अलग रखता है।',
+            s2Title: "ToolsByDcx एक्सटेंशन डाउनलोड करें",
             s2Desc: "ऊपर Download Extension बटन पर क्लिक करें (Plus या Max प्लान आवश्यक)। ZIP फ़ाइल सेव करें — इसे एक्सट्रैक्ट न करें।",
             s3Title: "Developer Mode से इंस्टॉल करें",
             s3Desc: "अपनी नई Chrome प्रोफ़ाइल में chrome://extensions पर जाएँ → ऊपर दाएँ Developer Mode चालू करें → ZIP फ़ाइल को पेज पर खींचें। एक्सटेंशन तुरंत इंस्टॉल हो जाता है।",
             s4Title: "ChatGPT में साइन इन करें",
-            s4Desc: "एक्सटेंशन स्वचालित रूप से ChatGPT खोलेगा। Tools By DCX द्वारा प्रदान किए गए अकाउंट क्रेडेंशियल्स से साइन इन करें (अपना ईमेल या डैशबोर्ड चेक करें)।",
+            s4Desc: "एक्सटेंशन स्वचालित रूप से ChatGPT खोलेगा। ToolsByDcx द्वारा प्रदान किए गए अकाउंट क्रेडेंशियल्स से साइन इन करें (अपना ईमेल या डैशबोर्ड चेक करें)।",
             s5Title: "ChatGPT उपयोग करना शुरू करें",
             s5Desc: "अब आपके पास पूर्ण ChatGPT पहुँच है — o3 reasoning, Deep Research, Create Image, फ़ाइल अपलोड, वेब ब्राउज़िंग, Custom GPTs और बहुत कुछ — आपकी समर्पित Chrome प्रोफ़ाइल के अंदर।"
         }
@@ -40609,7 +40609,7 @@ const GL = {
         live: "लाइव",
         subtitlePart1: "पूर्ण",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "Tools By DCX के माध्यम से पहुँच — विशेष रूप से",
+        subtitlePart2: "ToolsByDcx के माध्यम से पहुँच — विशेष रूप से",
         subtitleUltra: "Ultra प्लान",
         subtitleMembers: "सदस्यों के लिए",
         heroTitle: "Super Grok — अब लाइव",
@@ -40618,7 +40618,7 @@ const GL = {
         tryNow: "Grok पर अभी आज़माएँ",
         tryLocked: "आज़माएँ — केवल Max",
         upgradeLink: "Super Grok खोलने के लिए Ultra में अपग्रेड करें →",
-        extensionTitle: "Tools By DCX Grok एक्सटेंशन",
+        extensionTitle: "ToolsByDcx Grok एक्सटेंशन",
         extensionSub: "विशेष Chrome एक्सटेंशन — समर्पित Chrome प्रोफ़ाइल में इंस्टॉल करें",
         howToUse: "उपयोग कैसे करें",
         download: "डाउनलोड",
@@ -40650,13 +40650,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome खोलें और नई प्रोफ़ाइल बनाएँ",
-            s1Desc: 'Chrome के ऊपर दाएँ कोने में प्रोफ़ाइल आइकन पर क्लिक करें → + Add पर क्लिक करें → कोई नाम दें (जैसे "Tools By DCX Grok") → Done। यह Grok को आपके निजी Chrome से अलग रखता है।',
-            s2Title: "Tools By DCX एक्सटेंशन डाउनलोड करें",
+            s1Desc: 'Chrome के ऊपर दाएँ कोने में प्रोफ़ाइल आइकन पर क्लिक करें → + Add पर क्लिक करें → कोई नाम दें (जैसे "ToolsByDcx Grok") → Done। यह Grok को आपके निजी Chrome से अलग रखता है।',
+            s2Title: "ToolsByDcx एक्सटेंशन डाउनलोड करें",
             s2Desc: "ऊपर Download Extension बटन पर क्लिक करें (Plus या Max प्लान आवश्यक)। ZIP फ़ाइल सेव करें — इसे एक्सट्रैक्ट न करें।",
             s3Title: "Developer Mode से इंस्टॉल करें",
             s3Desc: "अपनी नई Chrome प्रोफ़ाइल में chrome://extensions पर जाएँ → ऊपर दाएँ Developer Mode चालू करें → ZIP फ़ाइल को पेज पर खींचें। एक्सटेंशन तुरंत इंस्टॉल हो जाता है।",
             s4Title: "Grok में साइन इन करें",
-            s4Desc: "एक्सटेंशन स्वचालित रूप से Grok खोलेगा। Tools By DCX द्वारा प्रदान किए गए अकाउंट क्रेडेंशियल्स से साइन इन करें (अपना ईमेल या डैशबोर्ड चेक करें)।",
+            s4Desc: "एक्सटेंशन स्वचालित रूप से Grok खोलेगा। ToolsByDcx द्वारा प्रदान किए गए अकाउंट क्रेडेंशियल्स से साइन इन करें (अपना ईमेल या डैशबोर्ड चेक करें)।",
             s5Title: "Super Grok उपयोग करना शुरू करें",
             s5Desc: "अब आपके पास पूर्ण Super Grok पहुँच है — Grok 4 Think, Imagine Videos, Aurora Images, DeepSearch और लाइव वेब डेटा — आपकी समर्पित Chrome प्रोफ़ाइल के अंदर।"
         }
@@ -40773,10 +40773,10 @@ const GL = {
     },
     IF = {
         welcome: "স্বাগতম, <1>{{name}}</1> 👋",
-        subtitle: "আপনার Tools By DCX AI স্টুডিও ওভারভিউ",
+        subtitle: "আপনার ToolsByDcx AI স্টুডিও ওভারভিউ",
         extConnected: "এক্সটেনশন সংযুক্ত",
         extNotDetected: "এক্সটেনশন পাওয়া যায়নি",
-        extConnectedTitle: "Tools By DCX এক্সটেনশন সক্রিয় — অটো-সংযোগ প্রস্তুত",
+        extConnectedTitle: "ToolsByDcx এক্সটেনশন সক্রিয় — অটো-সংযোগ প্রস্তুত",
         extNotDetectedTitle: "অটো-সংযোগের জন্য এক্সটেনশন ইনস্টল করে ড্যাশবোর্ডে যান",
         planBadge: "{{badge}} প্ল্যান",
         discountTitleExpired: "প্ল্যান নবায়নে সাহায্য দরকার?",
@@ -40893,7 +40893,7 @@ const GL = {
     },
     $F = {
         title: "রেফার ও আয় করুন",
-        subtitle: "Tools By DCX শেয়ার করুন, বন্ধুরা প্ল্যান কিনলে টোকেন আয় করুন",
+        subtitle: "ToolsByDcx শেয়ার করুন, বন্ধুরা প্ল্যান কিনলে টোকেন আয় করুন",
         stats: {
             tokensEarned: "অর্জিত টোকেন",
             totalReferrals: "মোট রেফারেল",
@@ -40961,13 +40961,13 @@ const GL = {
     },
     GF = {
         title: "সহায়তা ও গাইড",
-        subtitle: "Tools By DCX প্রো-এর মতো ব্যবহার করার জন্য সবকিছু",
+        subtitle: "ToolsByDcx প্রো-এর মতো ব্যবহার করার জন্য সবকিছু",
         tabs: {
             guide: "ধাপে ধাপে গাইড",
             videos: "ভিডিও টিউটোরিয়াল",
             faq: "FAQ"
         },
-        guideIntro: "Tools By DCX সেট আপ এবং ব্যবহার শুরু করতে এই ধাপগুলি ক্রমানুসারে অনুসরণ করুন।",
+        guideIntro: "ToolsByDcx সেট আপ এবং ব্যবহার শুরু করতে এই ধাপগুলি ক্রমানুসারে অনুসরণ করুন।",
         step: "ধাপ",
         quickLinks: "দ্রুত লিঙ্ক",
         links: {
@@ -40988,16 +40988,16 @@ const GL = {
             s2_3: "Chrome খুলুন এবং chrome://extensions/ এ যান।",
             s2_4: 'উপরের ডান কোণে "Developer Mode" চালু করুন।',
             s2_5: '"Load Unpacked" ক্লিক করুন এবং নিষ্কাশিত এক্সটেনশন ফোল্ডার নির্বাচন করুন।',
-            s2_6: "Tools By DCX এক্সটেনশন আইকন আপনার ব্রাউজার টুলবারে দেখা যাবে।",
+            s2_6: "ToolsByDcx এক্সটেনশন আইকন আপনার ব্রাউজার টুলবারে দেখা যাবে।",
             s3Title: "এক্সটেনশনে লগইন করুন",
-            s3_1: "আপনার Chrome টুলবারে Tools By DCX আইকনে ক্লিক করুন।",
+            s3_1: "আপনার Chrome টুলবারে ToolsByDcx আইকনে ক্লিক করুন।",
             s3_2: "পোর্টালে নিবন্ধনের জন্য ব্যবহৃত একই ইমেইল ও পাসওয়ার্ড দিন।",
             s3_3: '"Login" ক্লিক করুন — আপনার প্ল্যান স্ট্যাটাস দেখা যাবে।',
             s3_4: "এক্সটেনশন স্বয়ংক্রিয়ভাবে আপনার অ্যাকাউন্ট সিঙ্ক করবে।",
             s3_5: "আপনার প্ল্যান (Vibe/Plus/Max) দেখা গেলে আপনি জেনারেট করতে প্রস্তুত!",
             s4Title: "Google Flow-এ ভিডিও তৈরি করুন",
             s4_1: 'Google Flow খুলুন: labs.google/fx/tools/flow (অথবা পোর্টাল মেনু থেকে "Open Google Flow")।',
-            s4_2: "Tools By DCX এক্সটেনশন স্বয়ংক্রিয়ভাবে আপনার সেশন ইনজেক্ট করবে।",
+            s4_2: "ToolsByDcx এক্সটেনশন স্বয়ংক্রিয়ভাবে আপনার সেশন ইনজেক্ট করবে।",
             s4_3: 'আপনি শুধু "Veo 3.1" মডেল দেখবেন — এটিই একমাত্র অনুমোদিত মডেল।',
             s4_4: "প্রিমিয়াম মডেল (Nano Banana Pro, Imagen Pro) ট্রায়াল ও Vibe-এ লক থাকে — Plus বা Max-এ আপগ্রেড করুন।",
             s4_5: "আপনার প্রম্পট টাইপ করুন এবং ভিডিও তৈরি করতে Generate ক্লিক করুন!",
@@ -41009,23 +41009,23 @@ const GL = {
             s5_4: "Vibe প্ল্যান কেনা = ৫ টোকেন ($0.15), Plus প্ল্যান = ৭ টোকেন ($0.21)।",
             s5_5: "ন্যূনতম উত্তোলন ৩৪ টোকেন ($1.02) — Binance, Easypaisa বা ব্যাঙ্ক ট্রান্সফারের মাধ্যমে উত্তোলন করুন।"
         },
-        videosIntro: "Tools By DCX দ্রুত শুরু করতে এই টিউটোরিয়ালগুলি দেখুন।",
+        videosIntro: "ToolsByDcx দ্রুত শুরু করতে এই টিউটোরিয়ালগুলি দেখুন।",
         watchYoutube: "YouTube-এ দেখুন",
         videos: {
-            v1Title: "Tools By DCX-এ ChatGPT এবং Grok অ্যাক্সেস কীভাবে পাবেন",
-            v1Desc: "ধাপে ধাপে গাইড — আপনার Tools By DCX প্ল্যানের মাধ্যমে ChatGPT Paid এবং Super Grok অ্যাক্সেস আনলক করুন।",
+            v1Title: "ToolsByDcx-এ ChatGPT এবং Grok অ্যাক্সেস কীভাবে পাবেন",
+            v1Desc: "ধাপে ধাপে গাইড — আপনার ToolsByDcx প্ল্যানের মাধ্যমে ChatGPT Paid এবং Super Grok অ্যাক্সেস আনলক করুন।",
             v1Badge: "ChatGPT ও Grok",
-            v2Title: "PC / ল্যাপটপে Tools By DCX কীভাবে ব্যবহার করবেন",
-            v2Desc: "সম্পূর্ণ গাইড — কম্পিউটারে অ্যাডভান্সড টুলগুলি অ্যাক্সেস করতে Tools By DCX ব্যবহার।",
+            v2Title: "PC / ল্যাপটপে ToolsByDcx কীভাবে ব্যবহার করবেন",
+            v2Desc: "সম্পূর্ণ গাইড — কম্পিউটারে অ্যাডভান্সড টুলগুলি অ্যাক্সেস করতে ToolsByDcx ব্যবহার।",
             v2Badge: "PC / ল্যাপটপ",
-            v3Title: "মোবাইলে Tools By DCX কীভাবে ব্যবহার করবেন",
-            v3Desc: "মোবাইল ব্যবহারকারীদের জন্য গাইড — Android-এ Tools By DCX এক্সটেনশনের সাথে Lemur Browser।",
+            v3Title: "মোবাইলে ToolsByDcx কীভাবে ব্যবহার করবেন",
+            v3Desc: "মোবাইল ব্যবহারকারীদের জন্য গাইড — Android-এ ToolsByDcx এক্সটেনশনের সাথে Lemur Browser।",
             v3Badge: "মোবাইল",
-            v4Title: "Tools By DCX টুলে ভিডিও তৈরির সম্পূর্ণ ভিডিও",
-            v4Desc: "সম্পূর্ণ ওয়াকথ্রু — Tools By DCX ব্যবহার করে AI ভিডিও তৈরির সবকিছু।",
+            v4Title: "ToolsByDcx টুলে ভিডিও তৈরির সম্পূর্ণ ভিডিও",
+            v4Desc: "সম্পূর্ণ ওয়াকথ্রু — ToolsByDcx ব্যবহার করে AI ভিডিও তৈরির সবকিছু।",
             v4Badge: "সম্পূর্ণ গাইড",
-            v5Title: "Tools By DCX-এর সর্বশেষ টিউটোরিয়াল",
-            v5Desc: "সর্বশেষ গাইড — Tools By DCX ব্যবহারের নতুন টিপস এবং আপডেট।",
+            v5Title: "ToolsByDcx-এর সর্বশেষ টিউটোরিয়াল",
+            v5Desc: "সর্বশেষ গাইড — ToolsByDcx ব্যবহারের নতুন টিপস এবং আপডেট।",
             v5Badge: "নতুন"
         },
         faqIntro: "সাধারণ প্রশ্নের উত্তর — সাপোর্টের সাথে যোগাযোগের আগে এগুলি পড়ুন।",
@@ -41049,7 +41049,7 @@ const GL = {
     },
     VF = {
         title: "Chrome এক্সটেনশন",
-        subtitle: "Google Flow সেশন স্বয়ংক্রিয়ভাবে সংযুক্ত করতে Tools By DCX এক্সটেনশন ইনস্টল করুন।",
+        subtitle: "Google Flow সেশন স্বয়ংক্রিয়ভাবে সংযুক্ত করতে ToolsByDcx এক্সটেনশন ইনস্টল করুন।",
         download: "এক্সটেনশন ডাউনলোড",
         installSteps: "ইনস্টলেশন ধাপ",
         alreadyInstalled: "ইতিমধ্যে ইনস্টল?"
@@ -41069,7 +41069,7 @@ const GL = {
         live: "লাইভ",
         subtitlePart1: "সম্পূর্ণ",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "Tools By DCX-এর মাধ্যমে অ্যাক্সেস — অন্তর্ভুক্ত",
+        subtitlePart2: "ToolsByDcx-এর মাধ্যমে অ্যাক্সেস — অন্তর্ভুক্ত",
         subtitlePro: "Plus",
         subtitleAnd: "এবং",
         subtitleUltra: "Max",
@@ -41080,7 +41080,7 @@ const GL = {
         tryNow: "ChatGPT-এ এখন চেষ্টা করুন",
         tryLocked: "চেষ্টা করুন — শুধু Pro ও Ultra",
         upgradeLink: "ChatGPT আনলক করতে Plus বা Max-তে আপগ্রেড করুন →",
-        extensionTitle: "Tools By DCX ChatGPT এক্সটেনশন",
+        extensionTitle: "ToolsByDcx ChatGPT এক্সটেনশন",
         extensionSub: "বিশেষ Chrome এক্সটেনশন — উৎসর্গীকৃত Chrome প্রোফাইলে ইনস্টল করুন",
         howToUse: "ব্যবহার পদ্ধতি",
         download: "ডাউনলোড",
@@ -41114,13 +41114,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome খুলুন এবং নতুন প্রোফাইল তৈরি করুন",
-            s1Desc: 'Chrome-এর উপরের ডান কোণে প্রোফাইল আইকনে ক্লিক করুন → + Add ক্লিক করুন → কোনো নাম দিন (যেমন "Tools By DCX") → Done। এটি ChatGPT-কে আপনার ব্যক্তিগত Chrome থেকে আলাদা রাখে।',
-            s2Title: "Tools By DCX এক্সটেনশন ডাউনলোড করুন",
+            s1Desc: 'Chrome-এর উপরের ডান কোণে প্রোফাইল আইকনে ক্লিক করুন → + Add ক্লিক করুন → কোনো নাম দিন (যেমন "ToolsByDcx") → Done। এটি ChatGPT-কে আপনার ব্যক্তিগত Chrome থেকে আলাদা রাখে।',
+            s2Title: "ToolsByDcx এক্সটেনশন ডাউনলোড করুন",
             s2Desc: "উপরে Download Extension বোতাম ক্লিক করুন (Plus বা Max প্ল্যান প্রয়োজন)। ZIP ফাইল সংরক্ষণ করুন — এক্সট্র্যাক্ট করবেন না।",
             s3Title: "Developer Mode-এর মাধ্যমে ইনস্টল করুন",
             s3Desc: "আপনার নতুন Chrome প্রোফাইলে chrome://extensions-এ যান → উপরে ডানে Developer Mode চালু করুন → ZIP ফাইলটি পৃষ্ঠায় টেনে আনুন। এক্সটেনশন তৎক্ষণাৎ ইনস্টল হয়।",
             s4Title: "ChatGPT-এ সাইন ইন করুন",
-            s4Desc: "এক্সটেনশন স্বয়ংক্রিয়ভাবে ChatGPT খুলবে। Tools By DCX দ্বারা প্রদত্ত অ্যাকাউন্ট ক্রেডেনশিয়াল দিয়ে সাইন ইন করুন (আপনার ইমেইল বা ড্যাশবোর্ড দেখুন)।",
+            s4Desc: "এক্সটেনশন স্বয়ংক্রিয়ভাবে ChatGPT খুলবে। ToolsByDcx দ্বারা প্রদত্ত অ্যাকাউন্ট ক্রেডেনশিয়াল দিয়ে সাইন ইন করুন (আপনার ইমেইল বা ড্যাশবোর্ড দেখুন)।",
             s5Title: "ChatGPT ব্যবহার শুরু করুন",
             s5Desc: "এখন আপনার সম্পূর্ণ ChatGPT অ্যাক্সেস আছে — o3 reasoning, Deep Research, Create Image, ফাইল আপলোড, ওয়েব ব্রাউজিং, Custom GPTs এবং আরও অনেক কিছু — আপনার উৎসর্গীকৃত Chrome প্রোফাইলের ভিতরে।"
         }
@@ -41131,7 +41131,7 @@ const GL = {
         live: "লাইভ",
         subtitlePart1: "সম্পূর্ণ",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "Tools By DCX-এর মাধ্যমে অ্যাক্সেস — একচেটিয়া",
+        subtitlePart2: "ToolsByDcx-এর মাধ্যমে অ্যাক্সেস — একচেটিয়া",
         subtitleUltra: "Ultra প্ল্যান",
         subtitleMembers: "সদস্যদের জন্য",
         heroTitle: "Super Grok — এখন লাইভ",
@@ -41140,7 +41140,7 @@ const GL = {
         tryNow: "Grok-এ এখন চেষ্টা করুন",
         tryLocked: "চেষ্টা করুন — শুধু Ultra",
         upgradeLink: "Super Grok আনলক করতে Ultra-তে আপগ্রেড করুন →",
-        extensionTitle: "Tools By DCX Grok এক্সটেনশন",
+        extensionTitle: "ToolsByDcx Grok এক্সটেনশন",
         extensionSub: "বিশেষ Chrome এক্সটেনশন — উৎসর্গীকৃত Chrome প্রোফাইলে ইনস্টল করুন",
         howToUse: "ব্যবহার পদ্ধতি",
         download: "ডাউনলোড",
@@ -41172,13 +41172,13 @@ const GL = {
         },
         steps: {
             s1Title: "Chrome খুলুন এবং নতুন প্রোফাইল তৈরি করুন",
-            s1Desc: 'Chrome-এর উপরের ডান কোণে প্রোফাইল আইকনে ক্লিক করুন → + Add ক্লিক করুন → কোনো নাম দিন (যেমন "Tools By DCX Grok") → Done। এটি Grok-কে আপনার ব্যক্তিগত Chrome থেকে আলাদা রাখে।',
-            s2Title: "Tools By DCX এক্সটেনশন ডাউনলোড করুন",
+            s1Desc: 'Chrome-এর উপরের ডান কোণে প্রোফাইল আইকনে ক্লিক করুন → + Add ক্লিক করুন → কোনো নাম দিন (যেমন "ToolsByDcx Grok") → Done। এটি Grok-কে আপনার ব্যক্তিগত Chrome থেকে আলাদা রাখে।',
+            s2Title: "ToolsByDcx এক্সটেনশন ডাউনলোড করুন",
             s2Desc: "উপরে Download Extension বোতাম ক্লিক করুন (Plus বা Max প্ল্যান প্রয়োজন)। ZIP ফাইল সংরক্ষণ করুন — এক্সট্র্যাক্ট করবেন না।",
             s3Title: "Developer Mode-এর মাধ্যমে ইনস্টল করুন",
             s3Desc: "আপনার নতুন Chrome প্রোফাইলে chrome://extensions-এ যান → উপরে ডানে Developer Mode চালু করুন → ZIP ফাইলটি পৃষ্ঠায় টেনে আনুন। এক্সটেনশন তৎক্ষণাৎ ইনস্টল হয়।",
             s4Title: "Grok-এ সাইন ইন করুন",
-            s4Desc: "এক্সটেনশন স্বয়ংক্রিয়ভাবে Grok খুলবে। Tools By DCX দ্বারা প্রদত্ত অ্যাকাউন্ট ক্রেডেনশিয়াল দিয়ে সাইন ইন করুন (আপনার ইমেইল বা ড্যাশবোর্ড দেখুন)।",
+            s4Desc: "এক্সটেনশন স্বয়ংক্রিয়ভাবে Grok খুলবে। ToolsByDcx দ্বারা প্রদত্ত অ্যাকাউন্ট ক্রেডেনশিয়াল দিয়ে সাইন ইন করুন (আপনার ইমেইল বা ড্যাশবোর্ড দেখুন)।",
             s5Title: "Super Grok ব্যবহার শুরু করুন",
             s5Desc: "এখন আপনার সম্পূর্ণ Super Grok অ্যাক্সেস আছে — Grok 4 Think, Imagine Videos, Aurora Images, DeepSearch এবং লাইভ ওয়েব ডেটা — আপনার উৎসর্গীকৃত Chrome প্রোফাইলের ভিতরে।"
         }
@@ -41295,10 +41295,10 @@ const GL = {
     },
     XF = {
         welcome: "مرحبًا بعودتك، <1>{{name}}</1> 👋",
-        subtitle: "نظرة عامة على استوديو Tools By DCX AI",
+        subtitle: "نظرة عامة على استوديو ToolsByDcx AI",
         extConnected: "الإضافة متصلة",
         extNotDetected: "لم يتم اكتشاف الإضافة",
-        extConnectedTitle: "إضافة Tools By DCX نشطة — الاتصال التلقائي جاهز",
+        extConnectedTitle: "إضافة ToolsByDcx نشطة — الاتصال التلقائي جاهز",
         extNotDetectedTitle: "ثبّت الإضافة وافتح لوحة التحكم لتفعيل الاتصال التلقائي",
         planBadge: "باقة {{badge}}",
         discountTitleExpired: "تحتاج مساعدة في تجديد باقتك؟",
@@ -41415,7 +41415,7 @@ const GL = {
     },
     sI = {
         title: "أحل واربح",
-        subtitle: "شارك Tools By DCX، اكسب رموزاً عند شراء أصدقائك خطة",
+        subtitle: "شارك ToolsByDcx، اكسب رموزاً عند شراء أصدقائك خطة",
         stats: {
             tokensEarned: "الرموز المكتسبة",
             totalReferrals: "إجمالي الإحالات",
@@ -41483,13 +41483,13 @@ const GL = {
     },
     aI = {
         title: "المساعدة والدليل",
-        subtitle: "كل ما تحتاجه لاستخدام Tools By DCX كمحترف",
+        subtitle: "كل ما تحتاجه لاستخدام ToolsByDcx كمحترف",
         tabs: {
             guide: "دليل خطوة بخطوة",
             videos: "دروس فيديو",
             faq: "الأسئلة الشائعة"
         },
-        guideIntro: "اتبع هذه الخطوات بالترتيب لإعداد Tools By DCX وبدء استخدامه.",
+        guideIntro: "اتبع هذه الخطوات بالترتيب لإعداد ToolsByDcx وبدء استخدامه.",
         step: "خطوة",
         quickLinks: "روابط سريعة",
         links: {
@@ -41510,16 +41510,16 @@ const GL = {
             s2_3: "افتح Chrome واذهب إلى chrome://extensions/",
             s2_4: 'فعّل "Developer Mode" في الزاوية العلوية اليمنى.',
             s2_5: 'انقر "Load Unpacked" واختر مجلد الإضافة المستخرج.',
-            s2_6: "ستظهر أيقونة Tools By DCX في شريط أدوات المتصفح.",
+            s2_6: "ستظهر أيقونة ToolsByDcx في شريط أدوات المتصفح.",
             s3Title: "سجّل الدخول إلى الإضافة",
-            s3_1: "انقر على أيقونة Tools By DCX في شريط أدوات Chrome.",
+            s3_1: "انقر على أيقونة ToolsByDcx في شريط أدوات Chrome.",
             s3_2: "أدخل نفس البريد وكلمة المرور المستخدمين للتسجيل في البوابة.",
             s3_3: 'انقر "Login" — ستظهر حالة خطتك.',
             s3_4: "ستقوم الإضافة بمزامنة حسابك تلقائياً.",
             s3_5: "إذا ظهرت خطتك (Vibe/Plus/Max) فأنت جاهز للإنشاء!",
             s4Title: "أنشئ فيديوهات على Google Flow",
             s4_1: 'افتح Google Flow: labs.google/fx/tools/flow (أو انقر "Open Google Flow" من قائمة البوابة).',
-            s4_2: "ستحقن إضافة Tools By DCX جلستك تلقائياً.",
+            s4_2: "ستحقن إضافة ToolsByDcx جلستك تلقائياً.",
             s4_3: 'سترى فقط نموذج "Veo 3.1" — هذا هو النموذج الوحيد المسموح.',
             s4_4: "النماذج المميزة (Nano Banana Pro وImagen Pro) مقفلة في التجربة وVibe — قم بالترقية إلى Plus أو Max.",
             s4_5: "اكتب موجهك وانقر Generate لإنشاء فيديوك!",
@@ -41531,23 +41531,23 @@ const GL = {
             s5_4: "شراء خطة Vibe = 5 توكنز ($0.15)، خطة Plus = 7 توكنز ($0.21).",
             s5_5: "الحد الأدنى للسحب 34 رمزاً ($1.02) — اسحب عبر Binance أو Easypaisa أو حوالة بنكية."
         },
-        videosIntro: "شاهد هذه الدروس للبدء بسرعة في Tools By DCX.",
+        videosIntro: "شاهد هذه الدروس للبدء بسرعة في ToolsByDcx.",
         watchYoutube: "شاهد على YouTube",
         videos: {
-            v1Title: "كيفية الحصول على وصول ChatGPT و Grok على Tools By DCX",
-            v1Desc: "دليل خطوة بخطوة — افتح وصول ChatGPT المدفوع و Super Grok عبر خطة Tools By DCX.",
+            v1Title: "كيفية الحصول على وصول ChatGPT و Grok على ToolsByDcx",
+            v1Desc: "دليل خطوة بخطوة — افتح وصول ChatGPT المدفوع و Super Grok عبر خطة ToolsByDcx.",
             v1Badge: "ChatGPT و Grok",
-            v2Title: "كيفية استخدام Tools By DCX على PC / Laptop",
-            v2Desc: "دليل كامل — استخدام Tools By DCX للوصول إلى الأدوات المتقدمة على حاسوبك.",
+            v2Title: "كيفية استخدام ToolsByDcx على PC / Laptop",
+            v2Desc: "دليل كامل — استخدام ToolsByDcx للوصول إلى الأدوات المتقدمة على حاسوبك.",
             v2Badge: "PC / Laptop",
-            v3Title: "كيفية استخدام Tools By DCX على الجوال",
-            v3Desc: "دليل لمستخدمي الجوال — استخدم Lemur Browser مع إضافة Tools By DCX على Android.",
+            v3Title: "كيفية استخدام ToolsByDcx على الجوال",
+            v3Desc: "دليل لمستخدمي الجوال — استخدم Lemur Browser مع إضافة ToolsByDcx على Android.",
             v3Badge: "الجوال",
-            v4Title: "كيفية إنشاء فيديوهات على أداة Tools By DCX — فيديو كامل",
-            v4Desc: "شرح كامل — كل ما تحتاج لمعرفته لإنشاء فيديوهات AI باستخدام Tools By DCX من البداية إلى النهاية.",
+            v4Title: "كيفية إنشاء فيديوهات على أداة ToolsByDcx — فيديو كامل",
+            v4Desc: "شرح كامل — كل ما تحتاج لمعرفته لإنشاء فيديوهات AI باستخدام ToolsByDcx من البداية إلى النهاية.",
             v4Badge: "الدليل الكامل",
-            v5Title: "أحدث درس Tools By DCX",
-            v5Desc: "أحدث دليل — شاهد هذا الفيديو لأحدث النصائح والتحديثات حول استخدام Tools By DCX.",
+            v5Title: "أحدث درس ToolsByDcx",
+            v5Desc: "أحدث دليل — شاهد هذا الفيديو لأحدث النصائح والتحديثات حول استخدام ToolsByDcx.",
             v5Badge: "جديد"
         },
         faqIntro: "إجابات للأسئلة الشائعة — اقرأ هذه قبل التواصل مع الدعم.",
@@ -41571,7 +41571,7 @@ const GL = {
     },
     rI = {
         title: "إضافة Chrome",
-        subtitle: "ثبّت إضافة Tools By DCX لربط جلسة Google Flow تلقائيًا.",
+        subtitle: "ثبّت إضافة ToolsByDcx لربط جلسة Google Flow تلقائيًا.",
         download: "تنزيل الإضافة",
         installSteps: "خطوات التثبيت",
         alreadyInstalled: "مثبتة بالفعل؟"
@@ -41591,7 +41591,7 @@ const GL = {
         live: "مباشر",
         subtitlePart1: "وصول كامل إلى",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "عبر Tools By DCX — مضمن مع",
+        subtitlePart2: "عبر ToolsByDcx — مضمن مع",
         subtitlePro: "Plus",
         subtitleAnd: "و",
         subtitleUltra: "Max",
@@ -41602,7 +41602,7 @@ const GL = {
         tryNow: "جرّب الآن على ChatGPT",
         tryLocked: "جرّب الآن — Plus و Max فقط",
         upgradeLink: "قم بالترقية إلى Plus أو Max لفتح ChatGPT →",
-        extensionTitle: "إضافة Tools By DCX ChatGPT",
+        extensionTitle: "إضافة ToolsByDcx ChatGPT",
         extensionSub: "إضافة Chrome خاصة — ثبّتها في ملف Chrome مخصص",
         howToUse: "كيفية الاستخدام",
         download: "تنزيل",
@@ -41636,13 +41636,13 @@ const GL = {
         },
         steps: {
             s1Title: "افتح Chrome وأنشئ ملفاً جديداً",
-            s1Desc: 'انقر أيقونة الملف (الزاوية العلوية اليمنى من Chrome) → انقر + Add → أعطه أي اسم (مثل "Tools By DCX") → Done. هذا يبقي ChatGPT منفصلاً عن Chrome الشخصي.',
-            s2Title: "نزّل إضافة Tools By DCX",
+            s1Desc: 'انقر أيقونة الملف (الزاوية العلوية اليمنى من Chrome) → انقر + Add → أعطه أي اسم (مثل "ToolsByDcx") → Done. هذا يبقي ChatGPT منفصلاً عن Chrome الشخصي.',
+            s2Title: "نزّل إضافة ToolsByDcx",
             s2Desc: "انقر زر Download Extension أعلاه (يتطلب خطة Plus أو Max). احفظ ملف ZIP — لا تستخرجه.",
             s3Title: "ثبّت عبر Developer Mode",
             s3Desc: "في ملف Chrome الجديد، اذهب إلى chrome://extensions → فعّل Developer Mode (الأعلى يميناً) → اسحب وأفلت ملف ZIP على الصفحة. تثبت الإضافة فوراً.",
             s4Title: "سجّل الدخول إلى ChatGPT",
-            s4Desc: "ستفتح الإضافة ChatGPT تلقائياً. سجّل الدخول ببيانات الحساب التي قدّمها Tools By DCX (تحقق من بريدك أو لوحة التحكم).",
+            s4Desc: "ستفتح الإضافة ChatGPT تلقائياً. سجّل الدخول ببيانات الحساب التي قدّمها ToolsByDcx (تحقق من بريدك أو لوحة التحكم).",
             s5Title: "ابدأ استخدام ChatGPT",
             s5Desc: "لديك الآن وصول كامل إلى ChatGPT — o3 reasoning، Deep Research، Create Image، رفع الملفات، تصفّح الويب، Custom GPTs والمزيد — كل ذلك داخل ملف Chrome المخصص."
         }
@@ -41653,7 +41653,7 @@ const GL = {
         live: "مباشر",
         subtitlePart1: "وصول كامل إلى",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "عبر Tools By DCX — حصري لأعضاء",
+        subtitlePart2: "عبر ToolsByDcx — حصري لأعضاء",
         subtitleUltra: "خطة Max",
         subtitleMembers: "",
         heroTitle: "Super Grok — مباشر الآن",
@@ -41662,7 +41662,7 @@ const GL = {
         tryNow: "جرّب الآن على Grok",
         tryLocked: "جرّب الآن — Max فقط",
         upgradeLink: "قم بالترقية إلى Ultra لفتح Super Grok →",
-        extensionTitle: "إضافة Tools By DCX Grok",
+        extensionTitle: "إضافة ToolsByDcx Grok",
         extensionSub: "إضافة Chrome خاصة — ثبّتها في ملف Chrome مخصص",
         howToUse: "كيفية الاستخدام",
         download: "تنزيل",
@@ -41694,13 +41694,13 @@ const GL = {
         },
         steps: {
             s1Title: "افتح Chrome وأنشئ ملفاً جديداً",
-            s1Desc: 'انقر أيقونة الملف (الزاوية العلوية اليمنى من Chrome) → انقر + Add → أعطه أي اسم (مثل "Tools By DCX Grok") → Done. هذا يبقي Grok منفصلاً عن Chrome الشخصي.',
-            s2Title: "نزّل إضافة Tools By DCX",
+            s1Desc: 'انقر أيقونة الملف (الزاوية العلوية اليمنى من Chrome) → انقر + Add → أعطه أي اسم (مثل "ToolsByDcx Grok") → Done. هذا يبقي Grok منفصلاً عن Chrome الشخصي.',
+            s2Title: "نزّل إضافة ToolsByDcx",
             s2Desc: "انقر زر Download Extension أعلاه (يتطلب خطة Plus أو Max). احفظ ملف ZIP — لا تستخرجه.",
             s3Title: "ثبّت عبر Developer Mode",
             s3Desc: "في ملف Chrome الجديد، اذهب إلى chrome://extensions → فعّل Developer Mode (الأعلى يميناً) → اسحب وأفلت ملف ZIP على الصفحة. تثبت الإضافة فوراً.",
             s4Title: "سجّل الدخول إلى Grok",
-            s4Desc: "ستفتح الإضافة Grok تلقائياً. سجّل الدخول ببيانات الحساب التي قدّمها Tools By DCX (تحقق من بريدك أو لوحة التحكم).",
+            s4Desc: "ستفتح الإضافة Grok تلقائياً. سجّل الدخول ببيانات الحساب التي قدّمها ToolsByDcx (تحقق من بريدك أو لوحة التحكم).",
             s5Title: "ابدأ استخدام Super Grok",
             s5Desc: "لديك الآن وصول كامل إلى Super Grok — Grok 4 Think، Imagine Videos، Aurora Images، DeepSearch وبيانات الويب الحية — كل ذلك داخل ملف Chrome المخصص."
         }
@@ -41817,10 +41817,10 @@ const GL = {
     },
     mI = {
         welcome: "مرحبا بيك، <1>{{name}}</1> 👋",
-        subtitle: "نظرة عامة على استوديو Tools By DCX AI ديالك",
+        subtitle: "نظرة عامة على استوديو ToolsByDcx AI ديالك",
         extConnected: "الإكستينسيون مربوطة",
         extNotDetected: "ما لقيناش الإكستينسيون",
-        extConnectedTitle: "إكستينسيون Tools By DCX خدّامة — الاتصال التلقائي واجد",
+        extConnectedTitle: "إكستينسيون ToolsByDcx خدّامة — الاتصال التلقائي واجد",
         extNotDetectedTitle: "ركّب الإكستينسيون ودخل للداشبورد باش يخدم الاتصال التلقائي",
         planBadge: "باكاج {{badge}}",
         discountTitleExpired: "محتاج مساعدة فـ تجديد الباكاج؟",
@@ -41937,7 +41937,7 @@ const GL = {
     },
     gI = {
         title: "أحل و ربح",
-        subtitle: "شير Tools By DCX، اربح توكنز ملي صحابك يشريو بلان",
+        subtitle: "شير ToolsByDcx، اربح توكنز ملي صحابك يشريو بلان",
         stats: {
             tokensEarned: "التوكنز المربوحة",
             totalReferrals: "مجموع الإحالات",
@@ -42005,13 +42005,13 @@ const GL = {
     },
     bI = {
         title: "المساعدة و الدليل",
-        subtitle: "كل ما خصك باش تستعمل Tools By DCX كبروفيشنال",
+        subtitle: "كل ما خصك باش تستعمل ToolsByDcx كبروفيشنال",
         tabs: {
             guide: "دليل خطوة بخطوة",
             videos: "دروس فيديو",
             faq: "الأسئلة المتكررة"
         },
-        guideIntro: "تبع هاد الخطوات بالترتيب باش تسطّي و تبدا تستعمل Tools By DCX.",
+        guideIntro: "تبع هاد الخطوات بالترتيب باش تسطّي و تبدا تستعمل ToolsByDcx.",
         step: "خطوة",
         quickLinks: "روابط مزيانة",
         links: {
@@ -42032,16 +42032,16 @@ const GL = {
             s2_3: "حل Chrome و سير لـ chrome://extensions/",
             s2_4: 'فعّل "Developer Mode" فالقنط ديال فوق على اليمين.',
             s2_5: 'دير كليك على "Load Unpacked" و اختار فولدر الإضافة لي خرّجتي.',
-            s2_6: "إيكونة Tools By DCX غادي تبان فالشريط ديال أدوات المتصفح.",
+            s2_6: "إيكونة ToolsByDcx غادي تبان فالشريط ديال أدوات المتصفح.",
             s3Title: "دخل للإضافة",
-            s3_1: "دير كليك على إيكونة Tools By DCX فالشريط ديال Chrome.",
+            s3_1: "دير كليك على إيكونة ToolsByDcx فالشريط ديال Chrome.",
             s3_2: "دخّل نفس الإيميل و كلمة السر لي استعملتي فالتسجيل.",
             s3_3: 'دير كليك على "Login" — حالة البلان ديالك غادي تبان.',
             s3_4: "الإضافة غادي تسنكي الحساب ديالك أوتوماتيكياً.",
             s3_5: "إلا بان ليك البلان ديالك (Vibe/Plus/Max) راك واجد باش تجينيري!",
             s4Title: "صاوب فيديوهات على Google Flow",
             s4_1: 'حل Google Flow: labs.google/fx/tools/flow (ولا دير كليك على "Open Google Flow" من القائمة).',
-            s4_2: "إضافة Tools By DCX غادي تحقن السيشن ديالك أوتوماتيكياً.",
+            s4_2: "إضافة ToolsByDcx غادي تحقن السيشن ديالك أوتوماتيكياً.",
             s4_3: 'غادي تشوف غير نموذج "Veo 3.1" — هاد هو النموذج الوحيد المسموح.',
             s4_4: "الموديلات البريميوم (Nano Banana Pro وImagen Pro) مسدودين فالتجربة وVibe — أبضي لـ Plus ولا Max.",
             s4_5: "كتب البرومت ديالك و دير كليك على Generate باش تصاوب الفيديو!",
@@ -42053,22 +42053,22 @@ const GL = {
             s5_4: "شراء بلان Vibe = 5 طوكن ($0.15)، بلان Plus = 7 طوكن ($0.21).",
             s5_5: "أقل سحب 34 توكن ($1.02) — اسحب عبر Binance، Easypaisa، ولا تحويل بنكي."
         },
-        videosIntro: "تفرّج على هاد الدروس باش تبدا بزربة فـ Tools By DCX.",
+        videosIntro: "تفرّج على هاد الدروس باش تبدا بزربة فـ ToolsByDcx.",
         watchYoutube: "تفرّج على YouTube",
         videos: {
-            v1Title: "كيفاش تجيب وصول ChatGPT و Grok على Tools By DCX",
-            v1Desc: "دليل خطوة بخطوة — حل وصول ChatGPT المدفوع و Super Grok بالبلان ديال Tools By DCX.",
+            v1Title: "كيفاش تجيب وصول ChatGPT و Grok على ToolsByDcx",
+            v1Desc: "دليل خطوة بخطوة — حل وصول ChatGPT المدفوع و Super Grok بالبلان ديال ToolsByDcx.",
             v1Badge: "ChatGPT و Grok",
-            v2Title: "كيفاش تستعمل Tools By DCX على PC / Laptop",
-            v2Desc: "دليل كامل — كيفاش تستعمل Tools By DCX باش توصل للأدوات المتقدمة على الحاسوب.",
+            v2Title: "كيفاش تستعمل ToolsByDcx على PC / Laptop",
+            v2Desc: "دليل كامل — كيفاش تستعمل ToolsByDcx باش توصل للأدوات المتقدمة على الحاسوب.",
             v2Badge: "PC / Laptop",
-            v3Title: "كيفاش تستعمل Tools By DCX على الموبايل",
-            v3Desc: "دليل لمستعملي الموبايل — استعمل Lemur Browser مع إضافة Tools By DCX على Android.",
+            v3Title: "كيفاش تستعمل ToolsByDcx على الموبايل",
+            v3Desc: "دليل لمستعملي الموبايل — استعمل Lemur Browser مع إضافة ToolsByDcx على Android.",
             v3Badge: "موبايل",
-            v4Title: "كيفاش تصاوب فيديوهات على أداة Tools By DCX — فيديو كامل",
-            v4Desc: "شرح كامل — كل اللي خصك تعرف باش تصاوب فيديوهات AI بـ Tools By DCX من البداية للنهاية.",
+            v4Title: "كيفاش تصاوب فيديوهات على أداة ToolsByDcx — فيديو كامل",
+            v4Desc: "شرح كامل — كل اللي خصك تعرف باش تصاوب فيديوهات AI بـ ToolsByDcx من البداية للنهاية.",
             v4Badge: "الدليل الكامل",
-            v5Title: "أجدد درس Tools By DCX",
+            v5Title: "أجدد درس ToolsByDcx",
             v5Desc: "أجدد دليل — تفرّج على هاد الفيديو لأجدد النصائح و التحديثات.",
             v5Badge: "جديد"
         },
@@ -42093,7 +42093,7 @@ const GL = {
     },
     yI = {
         title: "إكستينسيون Chrome",
-        subtitle: "ركّب إكستينسيون Tools By DCX باش تربط جلسة Google Flow تلقائيًا.",
+        subtitle: "ركّب إكستينسيون ToolsByDcx باش تربط جلسة Google Flow تلقائيًا.",
         download: "حمّل الإكستينسيون",
         installSteps: "خطوات التركيب",
         alreadyInstalled: "مركّبة من قبل؟"
@@ -42113,7 +42113,7 @@ const GL = {
         live: "مباشر",
         subtitlePart1: "وصول كامل لـ",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "عبر Tools By DCX — مضمن مع",
+        subtitlePart2: "عبر ToolsByDcx — مضمن مع",
         subtitlePro: "Plus",
         subtitleAnd: "و",
         subtitleUltra: "Max",
@@ -42124,7 +42124,7 @@ const GL = {
         tryNow: "جرّب دابا على ChatGPT",
         tryLocked: "جرّب دابا — Plus و Max فقط",
         upgradeLink: "أبضي لـ Plus ولا Max باش تحل ChatGPT →",
-        extensionTitle: "إضافة Tools By DCX ChatGPT",
+        extensionTitle: "إضافة ToolsByDcx ChatGPT",
         extensionSub: "إضافة Chrome خاصة — ركّبها فبروفايل Chrome مخصص",
         howToUse: "كيفاش تستعمل",
         download: "تنزيل",
@@ -42158,13 +42158,13 @@ const GL = {
         },
         steps: {
             s1Title: "حل Chrome و صاوب بروفايل جديد",
-            s1Desc: 'دير كليك على إيكونة البروفايل (القنط ديال فوق على اليمين) → دير كليك + Add → عطيه شي اسم (مثلاً "Tools By DCX") → Done. هادشي كيخلي ChatGPT منفصل عن Chrome الشخصي.',
-            s2Title: "نزّل إضافة Tools By DCX",
+            s1Desc: 'دير كليك على إيكونة البروفايل (القنط ديال فوق على اليمين) → دير كليك + Add → عطيه شي اسم (مثلاً "ToolsByDcx") → Done. هادشي كيخلي ChatGPT منفصل عن Chrome الشخصي.',
+            s2Title: "نزّل إضافة ToolsByDcx",
             s2Desc: "دير كليك على زر Download Extension فوق (كيتطلب بلان Plus ولا Max). حفّظ فيشية ZIP — ما تخرّجهاش.",
             s3Title: "ركّب عبر Developer Mode",
             s3Desc: "فبروفايل Chrome الجديد، سير لـ chrome://extensions → فعّل Developer Mode (فوق على اليمين) → سحب فيشية ZIP للصفحة. الإضافة كتركّب فالحين.",
             s4Title: "دخل لـ ChatGPT",
-            s4Desc: "الإضافة غادي تحل ChatGPT أوتوماتيكياً. دخل بالكريدنشيالز ديال الحساب لي عطاك Tools By DCX (شوف الإيميل ولا الداشبورد).",
+            s4Desc: "الإضافة غادي تحل ChatGPT أوتوماتيكياً. دخل بالكريدنشيالز ديال الحساب لي عطاك ToolsByDcx (شوف الإيميل ولا الداشبورد).",
             s5Title: "بدا تستعمل ChatGPT",
             s5Desc: "دابا عندك وصول كامل لـ ChatGPT — o3 reasoning، Deep Research، Create Image، رفع الملفات، تصفّح الويب، Custom GPTs و بزاف — كل هادشي داخل بروفايل Chrome المخصص."
         }
@@ -42175,7 +42175,7 @@ const GL = {
         live: "مباشر",
         subtitlePart1: "وصول كامل لـ",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "عبر Tools By DCX — حصري لأعضاء",
+        subtitlePart2: "عبر ToolsByDcx — حصري لأعضاء",
         subtitleUltra: "بلان Max",
         subtitleMembers: "",
         heroTitle: "Super Grok — مباشر دابا",
@@ -42184,7 +42184,7 @@ const GL = {
         tryNow: "جرّب دابا على Grok",
         tryLocked: "جرّب دابا — Max فقط",
         upgradeLink: "أبضي لـ Ultra باش تحل Super Grok →",
-        extensionTitle: "إضافة Tools By DCX Grok",
+        extensionTitle: "إضافة ToolsByDcx Grok",
         extensionSub: "إضافة Chrome خاصة — ركّبها فبروفايل Chrome مخصص",
         howToUse: "كيفاش تستعمل",
         download: "تنزيل",
@@ -42216,13 +42216,13 @@ const GL = {
         },
         steps: {
             s1Title: "حل Chrome و صاوب بروفايل جديد",
-            s1Desc: 'دير كليك على إيكونة البروفايل → دير كليك + Add → عطيه شي اسم (مثلاً "Tools By DCX Grok") → Done. هادشي كيخلي Grok منفصل عن Chrome الشخصي.',
-            s2Title: "نزّل إضافة Tools By DCX",
+            s1Desc: 'دير كليك على إيكونة البروفايل → دير كليك + Add → عطيه شي اسم (مثلاً "ToolsByDcx Grok") → Done. هادشي كيخلي Grok منفصل عن Chrome الشخصي.',
+            s2Title: "نزّل إضافة ToolsByDcx",
             s2Desc: "دير كليك على زر Download Extension فوق (كيتطلب بلان Plus ولا Max). حفّظ فيشية ZIP — ما تخرّجهاش.",
             s3Title: "ركّب عبر Developer Mode",
             s3Desc: "فبروفايل Chrome الجديد، سير لـ chrome://extensions → فعّل Developer Mode → سحب فيشية ZIP للصفحة. الإضافة كتركّب فالحين.",
             s4Title: "دخل لـ Grok",
-            s4Desc: "الإضافة غادي تحل Grok أوتوماتيكياً. دخل بالكريدنشيالز ديال الحساب لي عطاك Tools By DCX (شوف الإيميل ولا الداشبورد).",
+            s4Desc: "الإضافة غادي تحل Grok أوتوماتيكياً. دخل بالكريدنشيالز ديال الحساب لي عطاك ToolsByDcx (شوف الإيميل ولا الداشبورد).",
             s5Title: "بدا تستعمل Super Grok",
             s5Desc: "دابا عندك وصول كامل لـ Super Grok — Grok 4 Think، Imagine Videos، Aurora Images، DeepSearch و بيانات الويب الحية — كل هادشي داخل بروفايل Chrome المخصص."
         }
@@ -42339,10 +42339,10 @@ const GL = {
     },
     EI = {
         welcome: "Bem-vindo de volta, <1>{{name}}</1> 👋",
-        subtitle: "Visão geral do seu estúdio Tools By DCX AI",
+        subtitle: "Visão geral do seu estúdio ToolsByDcx AI",
         extConnected: "Extensão Conectada",
         extNotDetected: "Extensão Não Detectada",
-        extConnectedTitle: "Extensão Tools By DCX ativa — conexão automática pronta",
+        extConnectedTitle: "Extensão ToolsByDcx ativa — conexão automática pronta",
         extNotDetectedTitle: "Instale a extensão e abra o painel para conectar automaticamente",
         planBadge: "Plano {{badge}}",
         discountTitleExpired: "Precisa de ajuda para renovar seu plano?",
@@ -42459,7 +42459,7 @@ const GL = {
     },
     RI = {
         title: "Indique e Ganhe",
-        subtitle: "Compartilhe o Tools By DCX, ganhe tokens quando seus amigos comprarem um plano",
+        subtitle: "Compartilhe o ToolsByDcx, ganhe tokens quando seus amigos comprarem um plano",
         stats: {
             tokensEarned: "TOKENS GANHOS",
             totalReferrals: "INDICAÇÕES TOTAIS",
@@ -42527,13 +42527,13 @@ const GL = {
     },
     DI = {
         title: "Ajuda e Guia",
-        subtitle: "Tudo o que você precisa para usar o Tools By DCX como um pro",
+        subtitle: "Tudo o que você precisa para usar o ToolsByDcx como um pro",
         tabs: {
             guide: "Guia passo a passo",
             videos: "Tutoriais em vídeo",
             faq: "Perguntas frequentes"
         },
-        guideIntro: "Siga estas etapas em ordem para configurar e começar a usar o Tools By DCX.",
+        guideIntro: "Siga estas etapas em ordem para configurar e começar a usar o ToolsByDcx.",
         step: "ETAPA",
         quickLinks: "Links rápidos",
         links: {
@@ -42554,16 +42554,16 @@ const GL = {
             s2_3: "Abra o Chrome e vá para chrome://extensions/",
             s2_4: 'Ative o toggle "Developer Mode" no canto superior direito.',
             s2_5: 'Clique em "Load Unpacked" e selecione a pasta da extensão extraída.',
-            s2_6: "O ícone do Tools By DCX aparecerá na barra do navegador.",
+            s2_6: "O ícone do ToolsByDcx aparecerá na barra do navegador.",
             s3Title: "Faça login na extensão",
-            s3_1: "Clique no ícone do Tools By DCX na barra do Chrome.",
+            s3_1: "Clique no ícone do ToolsByDcx na barra do Chrome.",
             s3_2: "Insira o mesmo email e senha que você usou para se cadastrar no portal.",
             s3_3: 'Clique em "Login" — o status do seu plano aparecerá.',
             s3_4: "A extensão sincronizará sua conta automaticamente.",
             s3_5: "Se você vê seu plano (Vibe/Plus/Max), está pronto para gerar!",
             s4Title: "Gere vídeos no Google Flow",
             s4_1: 'Abra o Google Flow: labs.google/fx/tools/flow (ou clique em "Open Google Flow" no menu).',
-            s4_2: "A extensão Tools By DCX injetará sua sessão automaticamente.",
+            s4_2: "A extensão ToolsByDcx injetará sua sessão automaticamente.",
             s4_3: 'Você verá apenas o modelo "Veo 3.1" — é o único modelo permitido.',
             s4_4: "Os modelos premium (Nano Banana Pro, Imagen Pro) ficam bloqueados no teste e no Vibe — faça upgrade para Plus ou Max.",
             s4_5: "Digite seu prompt e clique em Generate para criar seu vídeo!",
@@ -42575,22 +42575,22 @@ const GL = {
             s5_4: "Compra do plano Vibe = 5 tokens ($0.15), plano Plus = 7 tokens ($0.21).",
             s5_5: "Saque mínimo 34 tokens ($1.02) — saque via Binance, Easypaisa ou transferência bancária."
         },
-        videosIntro: "Assista a estes tutoriais para começar rapidamente com o Tools By DCX.",
+        videosIntro: "Assista a estes tutoriais para começar rapidamente com o ToolsByDcx.",
         watchYoutube: "Assistir no YouTube",
         videos: {
-            v1Title: "Como obter acesso ao ChatGPT e Grok no Tools By DCX",
-            v1Desc: "Guia passo a passo — desbloqueie acesso ao ChatGPT Paid e Super Grok com seu plano Tools By DCX.",
+            v1Title: "Como obter acesso ao ChatGPT e Grok no ToolsByDcx",
+            v1Desc: "Guia passo a passo — desbloqueie acesso ao ChatGPT Paid e Super Grok com seu plano ToolsByDcx.",
             v1Badge: "ChatGPT e Grok",
-            v2Title: "Como usar Tools By DCX no PC / Laptop",
-            v2Desc: "Guia completo — Como usar o Tools By DCX para acessar ferramentas avançadas no seu computador.",
+            v2Title: "Como usar ToolsByDcx no PC / Laptop",
+            v2Desc: "Guia completo — Como usar o ToolsByDcx para acessar ferramentas avançadas no seu computador.",
             v2Badge: "PC / Laptop",
-            v3Title: "Como usar Tools By DCX no celular",
-            v3Desc: "Guia passo a passo para usuários móveis — use o Lemur Browser com a extensão Tools By DCX no Android.",
+            v3Title: "Como usar ToolsByDcx no celular",
+            v3Desc: "Guia passo a passo para usuários móveis — use o Lemur Browser com a extensão ToolsByDcx no Android.",
             v3Badge: "Celular",
-            v4Title: "Como criar vídeos na ferramenta Tools By DCX — vídeo completo",
-            v4Desc: "Tutorial completo — tudo o que você precisa saber para criar vídeos com AI usando Tools By DCX do início ao fim.",
+            v4Title: "Como criar vídeos na ferramenta ToolsByDcx — vídeo completo",
+            v4Desc: "Tutorial completo — tudo o que você precisa saber para criar vídeos com AI usando ToolsByDcx do início ao fim.",
             v4Badge: "Guia completo",
-            v5Title: "Tutorial mais recente do Tools By DCX",
+            v5Title: "Tutorial mais recente do ToolsByDcx",
             v5Desc: "Guia mais recente — assista a este vídeo para as dicas e atualizações mais recentes.",
             v5Badge: "Novo"
         },
@@ -42615,7 +42615,7 @@ const GL = {
     },
     MI = {
         title: "Extensão Chrome",
-        subtitle: "Instale a extensão Tools By DCX para conectar sua sessão Google Flow automaticamente.",
+        subtitle: "Instale a extensão ToolsByDcx para conectar sua sessão Google Flow automaticamente.",
         download: "Baixar Extensão",
         installSteps: "Passos de Instalação",
         alreadyInstalled: "Já instalada?"
@@ -42635,7 +42635,7 @@ const GL = {
         live: "Ao vivo",
         subtitlePart1: "Acesso completo ao",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "via Tools By DCX — incluído nos planos",
+        subtitlePart2: "via ToolsByDcx — incluído nos planos",
         subtitlePro: "Plus",
         subtitleAnd: "e",
         subtitleUltra: "Max",
@@ -42646,7 +42646,7 @@ const GL = {
         tryNow: "Experimente agora no ChatGPT",
         tryLocked: "Experimente — apenas Plus e Max",
         upgradeLink: "Atualize para Plus ou Max para desbloquear o ChatGPT →",
-        extensionTitle: "Extensão Tools By DCX ChatGPT",
+        extensionTitle: "Extensão ToolsByDcx ChatGPT",
         extensionSub: "Extensão Chrome especial — instale em um perfil Chrome dedicado",
         howToUse: "Como usar",
         download: "Baixar",
@@ -42680,13 +42680,13 @@ const GL = {
         },
         steps: {
             s1Title: "Abra o Chrome e crie um novo perfil",
-            s1Desc: 'Clique no ícone de perfil (canto superior direito do Chrome) → clique + Add → dê um nome (ex. "Tools By DCX") → Done. Isto mantém o ChatGPT separado do seu Chrome pessoal.',
-            s2Title: "Baixe a extensão Tools By DCX",
+            s1Desc: 'Clique no ícone de perfil (canto superior direito do Chrome) → clique + Add → dê um nome (ex. "ToolsByDcx") → Done. Isto mantém o ChatGPT separado do seu Chrome pessoal.',
+            s2Title: "Baixe a extensão ToolsByDcx",
             s2Desc: "Clique no botão Download Extension acima (requer plano Plus ou Max). Salve o arquivo ZIP — não o extraia.",
             s3Title: "Instale via Developer Mode",
             s3Desc: "No seu novo perfil Chrome, vá para chrome://extensions → ative Developer Mode (canto superior direito) → arraste o ZIP para a página. A extensão instala instantaneamente.",
             s4Title: "Faça login no ChatGPT",
-            s4Desc: "A extensão abrirá o ChatGPT automaticamente. Faça login com as credenciais fornecidas pelo Tools By DCX (verifique seu email ou dashboard).",
+            s4Desc: "A extensão abrirá o ChatGPT automaticamente. Faça login com as credenciais fornecidas pelo ToolsByDcx (verifique seu email ou dashboard).",
             s5Title: "Comece a usar o ChatGPT",
             s5Desc: "Você agora tem acesso completo ao ChatGPT — o3 reasoning, Deep Research, Create Image, upload de arquivos, navegação web, Custom GPTs e mais — tudo dentro do seu perfil Chrome dedicado."
         }
@@ -42697,7 +42697,7 @@ const GL = {
         live: "Ao vivo",
         subtitlePart1: "Acesso completo ao",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "via Tools By DCX — exclusivo para membros do",
+        subtitlePart2: "via ToolsByDcx — exclusivo para membros do",
         subtitleUltra: "plano Max",
         subtitleMembers: "",
         heroTitle: "Super Grok — Ao vivo agora",
@@ -42706,7 +42706,7 @@ const GL = {
         tryNow: "Experimente agora no Grok",
         tryLocked: "Experimente — apenas Max",
         upgradeLink: "Atualize para Ultra para desbloquear Super Grok →",
-        extensionTitle: "Extensão Tools By DCX Grok",
+        extensionTitle: "Extensão ToolsByDcx Grok",
         extensionSub: "Extensão Chrome especial — instale em um perfil Chrome dedicado",
         howToUse: "Como usar",
         download: "Baixar",
@@ -42738,13 +42738,13 @@ const GL = {
         },
         steps: {
             s1Title: "Abra o Chrome e crie um novo perfil",
-            s1Desc: 'Clique no ícone de perfil → clique + Add → dê um nome (ex. "Tools By DCX Grok") → Done. Isto mantém o Grok separado do seu Chrome pessoal.',
-            s2Title: "Baixe a extensão Tools By DCX",
+            s1Desc: 'Clique no ícone de perfil → clique + Add → dê um nome (ex. "ToolsByDcx Grok") → Done. Isto mantém o Grok separado do seu Chrome pessoal.',
+            s2Title: "Baixe a extensão ToolsByDcx",
             s2Desc: "Clique no botão Download Extension acima (requer plano Plus ou Max). Salve o arquivo ZIP — não o extraia.",
             s3Title: "Instale via Developer Mode",
             s3Desc: "No seu novo perfil Chrome, vá para chrome://extensions → ative Developer Mode → arraste o ZIP para a página. A extensão instala instantaneamente.",
             s4Title: "Faça login no Grok",
-            s4Desc: "A extensão abrirá o Grok automaticamente. Faça login com as credenciais fornecidas pelo Tools By DCX (verifique seu email ou dashboard).",
+            s4Desc: "A extensão abrirá o Grok automaticamente. Faça login com as credenciais fornecidas pelo ToolsByDcx (verifique seu email ou dashboard).",
             s5Title: "Comece a usar Super Grok",
             s5Desc: "Você agora tem acesso completo ao Super Grok — Grok 4 Think, Imagine Videos, Aurora Images, DeepSearch e dados ao vivo da web — tudo dentro do seu perfil Chrome dedicado."
         }
@@ -42861,10 +42861,10 @@ const GL = {
     },
     zI = {
         welcome: "Bienvenido, <1>{{name}}</1> 👋",
-        subtitle: "Resumen de tu estudio Tools By DCX AI",
+        subtitle: "Resumen de tu estudio ToolsByDcx AI",
         extConnected: "Extensión Conectada",
         extNotDetected: "Extensión No Detectada",
-        extConnectedTitle: "La extensión Tools By DCX está activa — conexión automática lista",
+        extConnectedTitle: "La extensión ToolsByDcx está activa — conexión automática lista",
         extNotDetectedTitle: "Instala la extensión y abre el panel para conectar automáticamente",
         planBadge: "Plan {{badge}}",
         discountTitleExpired: "¿Necesitas ayuda para renovar tu plan?",
@@ -42981,7 +42981,7 @@ const GL = {
     },
     WI = {
         title: "Referir y Ganar",
-        subtitle: "Comparte Tools By DCX, gana tokens cuando tus amigos compren un plan",
+        subtitle: "Comparte ToolsByDcx, gana tokens cuando tus amigos compren un plan",
         stats: {
             tokensEarned: "TOKENS GANADOS",
             totalReferrals: "REFERIDOS TOTALES",
@@ -43049,13 +43049,13 @@ const GL = {
     },
     YI = {
         title: "Ayuda y Guía",
-        subtitle: "Todo lo que necesitas para usar Tools By DCX como un pro",
+        subtitle: "Todo lo que necesitas para usar ToolsByDcx como un pro",
         tabs: {
             guide: "Guía paso a paso",
             videos: "Tutoriales en video",
             faq: "Preguntas frecuentes"
         },
-        guideIntro: "Sigue estos pasos en orden para configurar y empezar a usar Tools By DCX.",
+        guideIntro: "Sigue estos pasos en orden para configurar y empezar a usar ToolsByDcx.",
         step: "PASO",
         quickLinks: "Enlaces rápidos",
         links: {
@@ -43076,16 +43076,16 @@ const GL = {
             s2_3: "Abre Chrome y ve a chrome://extensions/",
             s2_4: 'Activa el toggle "Developer Mode" en la esquina superior derecha.',
             s2_5: 'Haz clic en "Load Unpacked" y selecciona la carpeta de la extensión extraída.',
-            s2_6: "El ícono de Tools By DCX aparecerá en la barra de tu navegador.",
+            s2_6: "El ícono de ToolsByDcx aparecerá en la barra de tu navegador.",
             s3Title: "Inicia sesión en la extensión",
-            s3_1: "Haz clic en el ícono de Tools By DCX en la barra de Chrome.",
+            s3_1: "Haz clic en el ícono de ToolsByDcx en la barra de Chrome.",
             s3_2: "Ingresa el mismo correo y contraseña que usaste para registrarte en el portal.",
             s3_3: 'Haz clic en "Login" — aparecerá el estado de tu plan.',
             s3_4: "La extensión sincronizará tu cuenta automáticamente.",
             s3_5: "Si ves tu plan (Vibe/Plus/Max), ¡ya puedes generar!",
             s4Title: "Genera videos en Google Flow",
             s4_1: 'Abre Google Flow: labs.google/fx/tools/flow (o haz clic en "Open Google Flow" desde el menú).',
-            s4_2: "La extensión Tools By DCX inyectará tu sesión automáticamente.",
+            s4_2: "La extensión ToolsByDcx inyectará tu sesión automáticamente.",
             s4_3: 'Solo verás el modelo "Veo 3.1" — es el único modelo permitido.',
             s4_4: "Los modelos premium (Nano Banana Pro, Imagen Pro) están bloqueados en la prueba y en Vibe — actualiza a Plus o Max.",
             s4_5: "Escribe tu prompt y haz clic en Generate para crear tu video.",
@@ -43097,22 +43097,22 @@ const GL = {
             s5_4: "Compra del plan Vibe = 5 tokens ($0.15), plan Plus = 7 tokens ($0.21).",
             s5_5: "Retiro mínimo 34 tokens ($1.02) — retira vía Binance, Easypaisa o transferencia bancaria."
         },
-        videosIntro: "Mira estos tutoriales para empezar rápido con Tools By DCX.",
+        videosIntro: "Mira estos tutoriales para empezar rápido con ToolsByDcx.",
         watchYoutube: "Ver en YouTube",
         videos: {
-            v1Title: "Cómo obtener acceso a ChatGPT y Grok en Tools By DCX",
-            v1Desc: "Guía paso a paso — desbloquea acceso a ChatGPT Paid y Super Grok con tu plan Tools By DCX.",
+            v1Title: "Cómo obtener acceso a ChatGPT y Grok en ToolsByDcx",
+            v1Desc: "Guía paso a paso — desbloquea acceso a ChatGPT Paid y Super Grok con tu plan ToolsByDcx.",
             v1Badge: "ChatGPT y Grok",
-            v2Title: "Cómo usar Tools By DCX en PC / Laptop",
-            v2Desc: "Guía completa — Cómo usar Tools By DCX para acceder a herramientas avanzadas en tu computadora.",
+            v2Title: "Cómo usar ToolsByDcx en PC / Laptop",
+            v2Desc: "Guía completa — Cómo usar ToolsByDcx para acceder a herramientas avanzadas en tu computadora.",
             v2Badge: "PC / Laptop",
-            v3Title: "Cómo usar Tools By DCX en móvil",
-            v3Desc: "Guía paso a paso para usuarios móviles — usa Lemur Browser con la extensión Tools By DCX en Android.",
+            v3Title: "Cómo usar ToolsByDcx en móvil",
+            v3Desc: "Guía paso a paso para usuarios móviles — usa Lemur Browser con la extensión ToolsByDcx en Android.",
             v3Badge: "Móvil",
-            v4Title: "Cómo crear videos en Tools By DCX — video completo",
-            v4Desc: "Tutorial completo — todo lo que necesitas saber para crear videos con AI usando Tools By DCX de inicio a fin.",
+            v4Title: "Cómo crear videos en ToolsByDcx — video completo",
+            v4Desc: "Tutorial completo — todo lo que necesitas saber para crear videos con AI usando ToolsByDcx de inicio a fin.",
             v4Badge: "Guía completa",
-            v5Title: "Tutorial más reciente de Tools By DCX",
+            v5Title: "Tutorial más reciente de ToolsByDcx",
             v5Desc: "Guía más reciente — mira este video para los tips y actualizaciones más recientes.",
             v5Badge: "Nuevo"
         },
@@ -43137,7 +43137,7 @@ const GL = {
     },
     KI = {
         title: "Extensión Chrome",
-        subtitle: "Instala la extensión Tools By DCX para conectar tu sesión Google Flow automáticamente.",
+        subtitle: "Instala la extensión ToolsByDcx para conectar tu sesión Google Flow automáticamente.",
         download: "Descargar Extensión",
         installSteps: "Pasos de Instalación",
         alreadyInstalled: "¿Ya instalada?"
@@ -43157,7 +43157,7 @@ const GL = {
         live: "En vivo",
         subtitlePart1: "Acceso completo a",
         subtitleProduct: "ChatGPT",
-        subtitlePart2: "vía Tools By DCX — incluido con planes",
+        subtitlePart2: "vía ToolsByDcx — incluido con planes",
         subtitlePro: "Plus",
         subtitleAnd: "y",
         subtitleUltra: "Max",
@@ -43168,7 +43168,7 @@ const GL = {
         tryNow: "Probar ahora en ChatGPT",
         tryLocked: "Probar — solo Plus y Max",
         upgradeLink: "Actualiza a Plus o Max para desbloquear ChatGPT →",
-        extensionTitle: "Extensión Tools By DCX ChatGPT",
+        extensionTitle: "Extensión ToolsByDcx ChatGPT",
         extensionSub: "Extensión Chrome especial — instala en un perfil Chrome dedicado",
         howToUse: "Cómo usar",
         download: "Descargar",
@@ -43202,13 +43202,13 @@ const GL = {
         },
         steps: {
             s1Title: "Abre Chrome y crea un nuevo perfil",
-            s1Desc: 'Haz clic en el ícono de perfil (esquina superior derecha de Chrome) → clic + Add → ponle cualquier nombre (ej. "Tools By DCX") → Done. Esto mantiene ChatGPT separado de tu Chrome personal.',
-            s2Title: "Descarga la extensión Tools By DCX",
+            s1Desc: 'Haz clic en el ícono de perfil (esquina superior derecha de Chrome) → clic + Add → ponle cualquier nombre (ej. "ToolsByDcx") → Done. Esto mantiene ChatGPT separado de tu Chrome personal.',
+            s2Title: "Descarga la extensión ToolsByDcx",
             s2Desc: "Haz clic en el botón Download Extension arriba (requiere plan Pro o Ultra). Guarda el archivo ZIP — no lo extraigas.",
             s3Title: "Instala vía Developer Mode",
             s3Desc: "En tu nuevo perfil de Chrome, ve a chrome://extensions → activa Developer Mode (arriba derecha) → arrastra y suelta el ZIP en la página. La extensión se instala al instante.",
             s4Title: "Inicia sesión en ChatGPT",
-            s4Desc: "La extensión abrirá ChatGPT automáticamente. Inicia sesión con las credenciales proporcionadas por Tools By DCX (revisa tu correo o dashboard).",
+            s4Desc: "La extensión abrirá ChatGPT automáticamente. Inicia sesión con las credenciales proporcionadas por ToolsByDcx (revisa tu correo o dashboard).",
             s5Title: "Empieza a usar ChatGPT",
             s5Desc: "Ahora tienes acceso completo a ChatGPT — o3 reasoning, Deep Research, Create Image, subida de archivos, navegación web, Custom GPTs y más — todo dentro de tu perfil Chrome dedicado."
         }
@@ -43219,7 +43219,7 @@ const GL = {
         live: "En vivo",
         subtitlePart1: "Acceso completo a",
         subtitleProduct: "Super Grok",
-        subtitlePart2: "vía Tools By DCX — exclusivo para miembros del",
+        subtitlePart2: "vía ToolsByDcx — exclusivo para miembros del",
         subtitleUltra: "plan Max",
         subtitleMembers: "",
         heroTitle: "Super Grok — En vivo ahora",
@@ -43228,7 +43228,7 @@ const GL = {
         tryNow: "Probar ahora en Grok",
         tryLocked: "Probar — solo Ultra",
         upgradeLink: "Actualiza a Ultra para desbloquear Super Grok →",
-        extensionTitle: "Extensión Tools By DCX Grok",
+        extensionTitle: "Extensión ToolsByDcx Grok",
         extensionSub: "Extensión Chrome especial — instala en un perfil Chrome dedicado",
         howToUse: "Cómo usar",
         download: "Descargar",
@@ -43260,13 +43260,13 @@ const GL = {
         },
         steps: {
             s1Title: "Abre Chrome y crea un nuevo perfil",
-            s1Desc: 'Haz clic en el ícono de perfil → clic + Add → ponle cualquier nombre (ej. "Tools By DCX Grok") → Done. Esto mantiene Grok separado de tu Chrome personal.',
-            s2Title: "Descarga la extensión Tools By DCX",
+            s1Desc: 'Haz clic en el ícono de perfil → clic + Add → ponle cualquier nombre (ej. "ToolsByDcx Grok") → Done. Esto mantiene Grok separado de tu Chrome personal.',
+            s2Title: "Descarga la extensión ToolsByDcx",
             s2Desc: "Haz clic en el botón Download Extension arriba (requiere plan Pro o Ultra). Guarda el archivo ZIP — no lo extraigas.",
             s3Title: "Instala vía Developer Mode",
             s3Desc: "En tu nuevo perfil de Chrome, ve a chrome://extensions → activa Developer Mode → arrastra y suelta el ZIP en la página. La extensión se instala al instante.",
             s4Title: "Inicia sesión en Grok",
-            s4Desc: "La extensión abrirá Grok automáticamente. Inicia sesión con las credenciales proporcionadas por Tools By DCX (revisa tu correo o dashboard).",
+            s4Desc: "La extensión abrirá Grok automáticamente. Inicia sesión con las credenciales proporcionadas por ToolsByDcx (revisa tu correo o dashboard).",
             s5Title: "Empieza a usar Super Grok",
             s5Desc: "Ahora tienes acceso completo a Super Grok — Grok 4 Think, Imagine Videos, Aurora Images, DeepSearch y datos en vivo de la web — todo dentro de tu perfil Chrome dedicado."
         }
@@ -43558,7 +43558,7 @@ const vx = [{
     }, {
         selector: '[data-tour="nav-extension"]',
         title: "Step 1 — Download Auto Login",
-        body: "Open the App page from here. Download the current Tools By DCX App installer — this is all you need to use Google Flow and all other AI tools."
+        body: "Open the App page from here. Download the current ToolsByDcx App installer — this is all you need to use Google Flow and all other AI tools."
     }, {
         selector: '[data-tour="nav-flow"]',
         title: "Step 2 — Open Google Flow",
@@ -44920,7 +44920,7 @@ function bo() {
         toast: n
     } = yt(), [, i] = ha(), {
         brand: o
-    } = Ds(), d = !!o.tenantId, u = d && o.brandName ? o.brandName : "Tools By DCX", p = d ? `${u.replace(/\s+/g,"-")}-Extension.zip` : "Tools-By-DCX-Extension.zip", m = d ? "/api/custom-extension.zip" : "/bunny-ai/Tools-By-DCX-Extension.zip?v=2.4.6", f = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || "", g = !!f && f.replace(/^v/i, "").localeCompare("2.4.6", void 0, {
+    } = Ds(), d = !!o.tenantId, u = d && o.brandName ? o.brandName : "ToolsByDcx", p = d ? `${u.replace(/\s+/g,"-")}-Extension.zip` : "Tools-By-DCX-Extension.zip", m = d ? "/api/custom-extension.zip" : "/bunny-ai/Tools-By-DCX-Extension.zip?v=2.4.6", f = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || "", g = !!f && f.replace(/^v/i, "").localeCompare("2.4.6", void 0, {
         numeric: !0
     }) < 0, v = t ?.planActive ?? (t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : !1);
     (t ?.plan || "free").toLowerCase();
@@ -45029,7 +45029,7 @@ function bo() {
                 children: [e.jsxs("div", {
                     children: [e.jsxs("div", {
                         className: "text-red-300 font-black text-sm sm:text-base",
-                        children: ["Update Required — Tools By DCX v2.4.6 (Installed: v", f.replace(/^v/i, ""), ")"]
+                        children: ["Update Required — ToolsByDcx v2.4.6 (Installed: v", f.replace(/^v/i, ""), ")"]
                     }), e.jsxs("p", {
                         className: "text-gray-200 text-xs sm:text-sm mt-1",
                         children: ["Please remove the old extension in ", e.jsx("code", {
@@ -45073,7 +45073,7 @@ function bo() {
                     className: "flex flex-wrap items-center justify-center gap-2 mb-4 relative z-10",
                     children: [e.jsx("span", {
                         className: "text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#7c3aed]/25 text-[#c084fc] border border-[#7c3aed]/40",
-                        children: "Tools By DCX v2.4.6 · Latest Release"
+                        children: "ToolsByDcx v2.4.6 · Latest Release"
                     }), e.jsxs("span", {
                         className: "text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5",
                         children: [e.jsx("span", {
@@ -45401,13 +45401,13 @@ function fU() {
                 if (v.ok) {
                     const N = await v.json();
                     if (N && N.connected === !0) {
-                        d || (n(!0), o("Tools By DCX"));
+                        d || (n(!0), o("ToolsByDcx"));
                         return
                     }
                 }
             } catch {}
             if (document.documentElement.getAttribute("data-bunnyflow-extension")) {
-                d || (n(!0), o("Tools By DCX"));
+                d || (n(!0), o("ToolsByDcx"));
                 return
             }
             if (!document.documentElement.getAttribute("data-bf-ext-bridge")) {
@@ -45421,7 +45421,7 @@ function fU() {
                 if (!(v !== "__bf_ext_pong__" && v !== "BUNNYFLOW_PONG_EXTENSION") && (m = !0, window.removeEventListener("message", f), !d)) {
                     n(v === "BUNNYFLOW_PONG_EXTENSION" ? !0 : g.data.connected === !0);
                     const N = g.data.brand;
-                    o(typeof N == "string" ? N : "Tools By DCX")
+                    o(typeof N == "string" ? N : "ToolsByDcx")
                 }
             };
             window.addEventListener("message", f), window.postMessage({
@@ -45835,7 +45835,7 @@ function gU() {
                         color: "#ffffff",
                         margin: "0 0 8px"
                     },
-                    children: ["Welcome to ", a.brandName || "Tools By DCX", "! 🎉"]
+                    children: ["Welcome to ", a.brandName || "ToolsByDcx", "! 🎉"]
                 }), e.jsxs("p", {
                     style: {
                         fontSize: "15px",
@@ -45926,11 +45926,11 @@ function gU() {
                         })
                     }), !n && d.enforced && T !== "heavy" && e.jsxs("div", {
                         className: `flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-[12px] font-black ${d.exhausted?"border-red-500/40 bg-red-500/10 text-red-300":"border-[#a855f7]/40 bg-[#a855f7]/10 text-[#d8b4fe]"}`,
-                        title: T === "free" ? "Free Tools By DCX credits remaining (resets periodically)" : "Flow credits remaining this plan period",
+                        title: T === "free" ? "Free ToolsByDcx credits remaining (resets periodically)" : "Flow credits remaining this plan period",
                         "data-testid": "badge-credits",
                         children: [e.jsx(ra, {
                             className: "h-3.5 w-3.5"
-                        }), d.creditsRemaining.toLocaleString(), " ", T === "free" ? "Tools By DCX Credits" : "AI Tools By DCX Credits"]
+                        }), d.creditsRemaining.toLocaleString(), " ", T === "free" ? "ToolsByDcx Credits" : "AI ToolsByDcx Credits"]
                     }), T === "heavy" && e.jsxs("div", {
                         className: "flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-[12px] font-black border-rose-500/40 bg-rose-500/10 text-rose-300",
                         title: "Omni Flash credits remaining",
@@ -46342,11 +46342,11 @@ function wU() {
 }
 const Nd = "https://storage.googleapis.com/pinhole-about-assets-prod-us/gallery",
     vU = [{
-        name: "Tools By DCX Veo Server 01 — Turbo Cluster",
+        name: "ToolsByDcx Veo Server 01 — Turbo Cluster",
         sub: "1080p 60fps · Low Latency",
         status: "Online"
     }, {
-        name: "Tools By DCX Veo Server 02 — Cinema Pro Cluster",
+        name: "ToolsByDcx Veo Server 02 — Cinema Pro Cluster",
         sub: "Whisk Ingredients & Dialogue",
         status: "Online"
     }],
@@ -46434,8 +46434,8 @@ function kU() {
             S = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || d;
         if (!(!!S || i)) {
             N("missing"), t({
-                title: "Install Tools By DCX Extension (v2.4.6)",
-                description: "Download & install Tools By DCX v2.4.6 from the Extension page to connect your Google Flow Video server.",
+                title: "Install ToolsByDcx Extension (v2.4.6)",
+                description: "Download & install ToolsByDcx v2.4.6 from the Extension page to connect your Google Flow Video server.",
                 variant: "destructive"
             });
             return
@@ -46443,7 +46443,7 @@ function kU() {
         if (_m(S)) {
             N("outdated"), t({
                 title: "Extension Update Required (v2.4.6)",
-                description: "Please remove your old extension and install Tools By DCX v2.4.6 from the Extension page.",
+                description: "Please remove your old extension and install ToolsByDcx v2.4.6 from the Extension page.",
                 variant: "destructive"
             });
             return
@@ -46461,15 +46461,15 @@ function kU() {
                 variant: "destructive"
             }) : E.data.upgradeRequired ? (N("outdated"), t({
                 title: "Extension Update Required (v2.4.6)",
-                description: "Please install Tools By DCX Extension v2.4.6 from the Extension page.",
+                description: "Please install ToolsByDcx Extension v2.4.6 from the Extension page.",
                 variant: "destructive"
             })) : E.data.needLogin ? (N("login"), t({
                 title: "Sign in Required",
-                description: "Please sign in on Tools By DCX so your extension connects automatically.",
+                description: "Please sign in on ToolsByDcx so your extension connects automatically.",
                 variant: "destructive"
             })) : t({
                 title: "Could not launch Google Flow",
-                description: E.data.error || "Please check your Tools By DCX Extension and try again.",
+                description: E.data.error || "Please check your ToolsByDcx Extension and try again.",
                 variant: "destructive"
             }))
         };
@@ -46533,10 +46533,10 @@ function kU() {
                 children: [e.jsxs("div", {
                     children: [e.jsx("h3", {
                         className: "text-purple-200 font-black text-sm sm:text-base",
-                        children: v === "outdated" ? "Update Required — Tools By DCX Extension v2.4.6" : "Install Tools By DCX Extension (v2.4.6)"
+                        children: v === "outdated" ? "Update Required — ToolsByDcx Extension v2.4.6" : "Install ToolsByDcx Extension (v2.4.6)"
                     }), e.jsx("p", {
                         className: "text-gray-300 text-xs sm:text-sm mt-1",
-                        children: v === "outdated" ? "Remove your older extension in chrome://extensions and load Tools By DCX v2.4.6 for sticky video servers & smooth performance." : "Download and load Tools By DCX Extension v2.4.6 to auto-connect your Google Flow Video server in 1 click."
+                        children: v === "outdated" ? "Remove your older extension in chrome://extensions and load ToolsByDcx v2.4.6 for sticky video servers & smooth performance." : "Download and load ToolsByDcx Extension v2.4.6 to auto-connect your Google Flow Video server in 1 click."
                     })]
                 }), e.jsx(Me, {
                     href: "/extension",
@@ -46567,7 +46567,7 @@ function kU() {
                     }), " on Autopilot"]
                 }), e.jsx("p", {
                     className: "vf-tool-hero-desc",
-                    children: "Generate shorts & long-form 1080p cinema videos in minutes with native lip-sync dialogue, fluid camera motion & seamless transitions on Tools By DCX. Any language, no editing skills needed."
+                    children: "Generate shorts & long-form 1080p cinema videos in minutes with native lip-sync dialogue, fluid camera motion & seamless transitions on ToolsByDcx. Any language, no editing skills needed."
                 }), e.jsxs("div", {
                     className: "vf-tool-cta-box",
                     children: [e.jsxs("button", {
@@ -46742,7 +46742,7 @@ function kU() {
                     className: "vf-tool-showcase-head",
                     children: [e.jsx("h3", {
                         className: "vf-tool-showcase-title",
-                        children: "Tools By DCX Veo 3.1 Cinematic Showcase"
+                        children: "ToolsByDcx Veo 3.1 Cinematic Showcase"
                     }), e.jsx("span", {
                         style: {
                             fontSize: 12,
@@ -46869,8 +46869,8 @@ function TU() {
         const k = typeof document < "u" && document.documentElement.getAttribute("data-bunnyflow-extension") || o;
         if (!(!!k || n)) {
             v("missing"), t({
-                title: "Install Tools By DCX Extension (v2.4.6)",
-                description: "Download & install Tools By DCX v2.4.6 from the Extension page to launch Nano Banana 4K.",
+                title: "Install ToolsByDcx Extension (v2.4.6)",
+                description: "Download & install ToolsByDcx v2.4.6 from the Extension page to launch Nano Banana 4K.",
                 variant: "destructive"
             });
             return
@@ -46878,7 +46878,7 @@ function TU() {
         if (Rm(k)) {
             v("outdated"), t({
                 title: "Extension Update Required (v2.4.6)",
-                description: "Please remove your old extension and install Tools By DCX v2.4.6 from the Extension page.",
+                description: "Please remove your old extension and install ToolsByDcx v2.4.6 from the Extension page.",
                 variant: "destructive"
             });
             return
@@ -46896,15 +46896,15 @@ function TU() {
                 variant: "destructive"
             }) : A.data.upgradeRequired ? (v("outdated"), t({
                 title: "Extension Update Required (v2.4.6)",
-                description: "Please install Tools By DCX Extension v2.4.6 from the Extension page.",
+                description: "Please install ToolsByDcx Extension v2.4.6 from the Extension page.",
                 variant: "destructive"
             })) : A.data.needLogin ? (v("login"), t({
                 title: "Sign in Required",
-                description: "Please sign in on Tools By DCX so your extension connects automatically.",
+                description: "Please sign in on ToolsByDcx so your extension connects automatically.",
                 variant: "destructive"
             })) : t({
                 title: "Could not launch Nano Banana 4K",
-                description: A.data.error || "Please check your Tools By DCX Extension and try again.",
+                description: A.data.error || "Please check your ToolsByDcx Extension and try again.",
                 variant: "destructive"
             }))
         };
@@ -46968,10 +46968,10 @@ function TU() {
                 children: [e.jsxs("div", {
                     children: [e.jsx("h3", {
                         className: "text-amber-300 font-black text-sm sm:text-base",
-                        children: g === "outdated" ? "Update Required — Tools By DCX Extension v2.4.6" : "Install Tools By DCX Extension (v2.4.6)"
+                        children: g === "outdated" ? "Update Required — ToolsByDcx Extension v2.4.6" : "Install ToolsByDcx Extension (v2.4.6)"
                     }), e.jsx("p", {
                         className: "text-gray-300 text-xs sm:text-sm mt-1",
-                        children: g === "outdated" ? "Remove your older extension in chrome://extensions and load Tools By DCX v2.4.6 for dedicated flicker-free Nano Banana 4K mode." : "Download and load Tools By DCX Extension v2.4.6 to auto-connect your dedicated Nano Banana Image account in 1 click."
+                        children: g === "outdated" ? "Remove your older extension in chrome://extensions and load ToolsByDcx v2.4.6 for dedicated flicker-free Nano Banana 4K mode." : "Download and load ToolsByDcx Extension v2.4.6 to auto-connect your dedicated Nano Banana Image account in 1 click."
                     })]
                 }), e.jsx(Me, {
                     href: "/extension",
@@ -47002,7 +47002,7 @@ function TU() {
                     }), " on Autopilot"]
                 }), e.jsx("p", {
                     className: "vf-tool-hero-desc",
-                    children: "Generate ultra-detailed 4K portraits, character consistency sheets, commercial product renders & typography posters with Imagen 4 on Tools By DCX. Any style, zero prompt struggle."
+                    children: "Generate ultra-detailed 4K portraits, character consistency sheets, commercial product renders & typography posters with Imagen 4 on ToolsByDcx. Any style, zero prompt struggle."
                 }), e.jsxs("div", {
                     className: "vf-tool-cta-box",
                     children: [e.jsxs("button", {
@@ -51168,7 +51168,7 @@ function tB() {
 const sB = [{
         num: "01",
         title: "Sign Up & Get Your Link",
-        desc: "Create a free Tools By DCX account. Your unique referral link is generated instantly — no setup needed.",
+        desc: "Create a free ToolsByDcx account. Your unique referral link is generated instantly — no setup needed.",
         icon: ps
     }, {
         num: "02",
@@ -51225,8 +51225,8 @@ const sB = [{
 
 function nB() {
     return Tl({
-        title: "Earn & Refer — Tools By DCX",
-        description: "Earn rewards by referring friends to Tools By DCX. Join the referral program and get credits for every signup.",
+        title: "Earn & Refer — ToolsByDcx",
+        description: "Earn rewards by referring friends to ToolsByDcx. Join the referral program and get credits for every signup.",
         path: "/earn"
     }), e.jsxs(ki, {
         children: [e.jsxs("section", {
@@ -51255,7 +51255,7 @@ function nB() {
                         })]
                     }), e.jsx("p", {
                         className: "text-xl md:text-2xl text-gray-400 max-w-xl leading-relaxed mb-10",
-                        children: "Share your Tools By DCX referral link. Earn tokens when your friends buy a plan. Withdraw as cash — straight to your account."
+                        children: "Share your ToolsByDcx referral link. Earn tokens when your friends buy a plan. Withdraw as cash — straight to your account."
                     }), e.jsxs("div", {
                         className: "flex flex-col sm:flex-row gap-4 mb-12",
                         children: [e.jsx(Qt, {
@@ -54001,7 +54001,7 @@ function fB(t) {
 
 function gB(t) {
     const s = String(t || "—").toLowerCase();
-    return s === "direct" || s === "main" || s === "bunnyflow" ? "Main Tools By DCX direct" : s === "reseller" ? "Reseller" : s === "white-label" || s === "white_label" || s === "whitelabel" ? "White-label" : String(t || "—")
+    return s === "direct" || s === "main" || s === "bunnyflow" ? "Main ToolsByDcx direct" : s === "reseller" ? "Reseller" : s === "white-label" || s === "white_label" || s === "whitelabel" ? "White-label" : String(t || "—")
 }
 
 function P0(t) {
@@ -54266,7 +54266,7 @@ function M5({
                                 }), e.jsxs("p", {
                                     children: ["Active plans, older expired plans, and white-label owner subscriptions are excluded. There are ", e.jsx("strong", {
                                         children: "no charge or credit changes"
-                                    }), "; the main Tools By DCX bonus is separate."]
+                                    }), "; the main ToolsByDcx bonus is separate."]
                                 })]
                             }) : e.jsxs("div", {
                                 className: "space-y-1.5 text-sm leading-relaxed text-violet-100/85",
@@ -54275,7 +54275,7 @@ function M5({
                                     children: "One-time scope and rules"
                                 }), e.jsxs("p", {
                                     children: ["Only ", e.jsx("strong", {
-                                        children: "Main Tools By DCX direct users"
+                                        children: "Main ToolsByDcx direct users"
                                     }), " and ", e.jsx("strong", {
                                         children: "reseller Plus/Max users"
                                     }), " are included. White-label users are excluded, and no reseller charges are added."]
@@ -58463,7 +58463,7 @@ This will:
                             children: "Admin Portal"
                         }), e.jsx("p", {
                             className: "text-gray-500 text-sm mt-1",
-                            children: "Restricted access — Tools By DCX"
+                            children: "Restricted access — ToolsByDcx"
                         })]
                     })]
                 }), e.jsxs("form", {
@@ -58662,7 +58662,7 @@ This will:
                         })
                     }), e.jsxs("span", {
                         className: "font-black text-base text-white",
-                        children: ["Tools By DCX", e.jsx("span", {
+                        children: ["ToolsByDcx", e.jsx("span", {
                             className: "text-[#a855f7]",
                             children: "Flow"
                         }), " Admin"]
@@ -58700,7 +58700,7 @@ This will:
                     })
                 }), e.jsxs("span", {
                     className: "font-black text-base text-white tracking-tight leading-none",
-                    children: ["Tools By DCX", e.jsx("span", {
+                    children: ["ToolsByDcx", e.jsx("span", {
                         className: "text-[#a855f7]",
                         children: "Flow"
                     }), " Admin"]
@@ -58735,7 +58735,7 @@ This will:
                         })
                     }), e.jsxs("span", {
                         className: "font-black text-sm text-white",
-                        children: ["Tools By DCX", e.jsx("span", {
+                        children: ["ToolsByDcx", e.jsx("span", {
                             className: "text-[#a855f7]",
                             children: "Flow"
                         }), " Admin"]
@@ -60191,7 +60191,7 @@ This will:
                                         })]
                                     }), e.jsx("p", {
                                         className: "text-[11px] text-gray-500",
-                                        children: "API Video and API Image pools are used only by the connected v1.7 extension. Existing Tools By DCX extension pools remain unchanged."
+                                        children: "API Video and API Image pools are used only by the connected v1.7 extension. Existing ToolsByDcx extension pools remain unchanged."
                                     })]
                                 })]
                             }), e.jsxs("div", {
@@ -63129,7 +63129,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                     children: [e.jsxs("div", {
                         children: [e.jsx("h2", {
                             className: "text-xl font-black text-white",
-                            children: "Tools By DCX Extension"
+                            children: "ToolsByDcx Extension"
                         }), e.jsx("p", {
                             className: "text-gray-500 text-sm mt-0.5",
                             children: "Current extension available for all users to download from their Extension page"
@@ -63190,7 +63190,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             children: "Stable customer package"
                         }), e.jsx("p", {
                             className: "text-gray-400 text-xs leading-5",
-                            children: "Tools By DCX version 1.4 is the stable customer release. Standard downloads preserve this package, and tenant-branded downloads are generated from that same source. Main uploads cannot override the stable release."
+                            children: "ToolsByDcx version 1.4 is the stable customer release. Standard downloads preserve this package, and tenant-branded downloads are generated from that same source. Main uploads cannot override the stable release."
                         }), Fi ?.sha256 && e.jsxs("p", {
                             className: "text-gray-600 text-[11px] mt-3 break-all",
                             children: ["SHA-256: ", Fi.sha256]
@@ -63213,7 +63213,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             }, {
                                 n: 3,
                                 title: "Remove old extension",
-                                desc: "If Tools By DCX is already installed → Remove it first to avoid conflicts"
+                                desc: "If ToolsByDcx is already installed → Remove it first to avoid conflicts"
                             }, {
                                 n: 4,
                                 title: "Drag & Drop ZIP",
@@ -63225,7 +63225,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             }, {
                                 n: 6,
                                 title: "Sign In",
-                                desc: "Enter Tools By DCX email + password in popup → Sign In"
+                                desc: "Enter ToolsByDcx email + password in popup → Sign In"
                             }, {
                                 n: 7,
                                 title: "Visit the site",
@@ -66920,7 +66920,7 @@ function $$({
                 children: e.jsx("a", {
                     href: "/downloads/bunnyflow-cookie-harvester-v2.0.2.zip",
                     className: "font-bold text-violet-400 hover:text-violet-300 underline underline-offset-4",
-                    children: "Download Tools By DCX Cookie Harvester v2.0.2"
+                    children: "Download ToolsByDcx Cookie Harvester v2.0.2"
                 })
             }), e.jsxs("p", {
                 children: ["1. Add a ", e.jsx("b", {
@@ -66928,7 +66928,7 @@ function $$({
                 }), " secret on the server (any long random string)."]
             }), e.jsxs("p", {
                 children: ["2. On your always-on machine/VPS, log each Google account into its own Chrome profile and load the ", e.jsx("b", {
-                    children: "Tools By DCX Cookie Harvester"
+                    children: "ToolsByDcx Cookie Harvester"
                 }), " extension there."]
             }), e.jsxs("p", {
                 children: ["3. In Options, set the API URL, the same ingest key, the ", e.jsx("b", {
@@ -68031,7 +68031,7 @@ function q$({
                     onChange: I => f(I.target.value),
                     placeholder: `Do NOT change the password.
 Do NOT log out of the account.
-Do NOT share these credentials outside Tools By DCX.`,
+Do NOT share these credentials outside ToolsByDcx.`,
                     rows: 6,
                     className: "w-full rounded-lg bg-[#12101a] border border-white/15 text-white text-xs px-3 py-2.5 outline-none focus:border-[#60a5fa] transition-colors resize-y leading-relaxed"
                 }), e.jsx("p", {
@@ -68381,7 +68381,7 @@ function W$({
                     onChange: I => f(I.target.value),
                     placeholder: `Do NOT change the password.
 Do NOT log out of the account.
-Do NOT share these credentials outside Tools By DCX.`,
+Do NOT share these credentials outside ToolsByDcx.`,
                     rows: 6,
                     className: "w-full rounded-lg bg-[#12101a] border border-white/15 text-white text-xs px-3 py-2.5 outline-none focus:border-[#facc15] transition-colors resize-y leading-relaxed"
                 }), e.jsx("p", {
@@ -68484,7 +68484,7 @@ function Y$({
                             children: "/user/cookies"
                         }), " endpoints return 410. Every user's extension is force-signed-out, no cookies are delivered, no generation requests succeed. Turn this OFF after the new build is live."]
                     }) : e.jsx(e.Fragment, {
-                        children: `Turn ON to retire the currently-running extension globally. Every user's extension will be force-signed-out instantly, cookies stop flowing, and they'll see "Please update from Tools By DCX dashboard".`
+                        children: `Turn ON to retire the currently-running extension globally. Every user's extension will be force-signed-out instantly, cookies stop flowing, and they'll see "Please update from ToolsByDcx dashboard".`
                     })
                 })]
             }), e.jsxs("button", {
@@ -68865,7 +68865,7 @@ function Z$() {
                     className: "flex-1 min-w-0",
                     children: [e.jsxs("div", {
                         className: "font-black text-base text-white leading-tight truncate",
-                        children: ["Tools By DCX", e.jsx("span", {
+                        children: ["ToolsByDcx", e.jsx("span", {
                             className: "text-[#a855f7]",
                             children: "Flow"
                         }), " Reseller"]
@@ -69256,7 +69256,7 @@ function Z$() {
                     })
                 }), e.jsxs("h1", {
                     className: "text-3xl font-black",
-                    children: ["Tools By DCX", e.jsx("span", {
+                    children: ["ToolsByDcx", e.jsx("span", {
                         className: "text-[#a855f7]",
                         children: "Flow"
                     }), " Reseller"]
@@ -71978,7 +71978,7 @@ function jG({
                     filename: Q5(s, d),
                     token: u
                 }), a({
-                    title: `${d==="auto-login"?"Tools By DCX":d[0].toUpperCase()+d.slice(1)} download started`
+                    title: `${d==="auto-login"?"ToolsByDcx":d[0].toUpperCase()+d.slice(1)} download started`
                 })
             } catch (u) {
                 a({
@@ -72012,7 +72012,7 @@ function jG({
         }), [{
             kind: "auto-login",
             title: `${s} Extension`,
-            detail: "Current official release. Tools By DCX v1.5 for paid customers.",
+            detail: "Current official release. ToolsByDcx v1.5 for paid customers.",
             color: "#818cf8"
         }, {
             kind: "main",
@@ -72058,7 +72058,7 @@ function jG({
             })]
         }, d.kind)), e.jsx("p", {
             className: "text-[11px] text-gray-600",
-            children: "Main, Tools By DCX, Social, and Whisk all use the same current official packages as customer downloads. Your brand name is used for every downloaded filename."
+            children: "Main, ToolsByDcx, Social, and Whisk all use the same current official packages as customer downloads. Your brand name is used for every downloaded filename."
         })]
     })
 }
@@ -74967,7 +74967,7 @@ function VG() {
                     })
                 }), e.jsx("p", {
                     className: "text-[11px] text-gray-600 mt-3 text-center",
-                    children: "Tools By DCX App injects your session automatically · Account switcher locked for security"
+                    children: "ToolsByDcx App injects your session automatically · Account switcher locked for security"
                 })]
             }), e.jsxs("div", {
                 className: "rounded-2xl bg-[#1a1528] border border-white/8 p-5 w-full",
@@ -74978,16 +74978,16 @@ function VG() {
                     className: "space-y-3",
                     children: [{
                         n: "1",
-                        text: "Make sure Tools By DCX App is installed and running"
+                        text: "Make sure ToolsByDcx App is installed and running"
                     }, {
                         n: "2",
-                        text: 'Click "Open Whisk" below — your session is auto-injected via Tools By DCX App'
+                        text: 'Click "Open Whisk" below — your session is auto-injected via ToolsByDcx App'
                     }, {
                         n: "3",
                         text: "Whisk opens with your Plus account — all AI image generation tools unlocked"
                     }, {
                         n: "4",
-                        text: "Tools By DCX App uses dedicated Whisk sessions (separate from Flow sessions)"
+                        text: "ToolsByDcx App uses dedicated Whisk sessions (separate from Flow sessions)"
                     }].map(o => e.jsxs("div", {
                         className: "flex items-start gap-3",
                         children: [e.jsx("div", {
@@ -76312,7 +76312,7 @@ function CS({
         brand: s
     } = Ds(), {
         user: a
-    } = zt(), n = !!s.tenantId, i = n && s.brandName ? s.brandName : "Tools By DCX", [o, d] = h.useState(!0), u = [{
+    } = zt(), n = !!s.tenantId, i = n && s.brandName ? s.brandName : "ToolsByDcx", [o, d] = h.useState(!0), u = [{
         title: "Download Chrome Extension",
         description: `Download and install the official ${n?`${i} Social`:"Social Bunny"} Chrome Extension in your browser.`
     }, {
@@ -76624,7 +76624,7 @@ const cV = {
     name: "ChatGPT",
     heading: "Work it out",
     eyebrow: "Chrome Extension / ChatGPT",
-    description: "From the first question to the finished draft, ChatGPT is a flexible workspace for thinking, writing, and building. Access it directly via Tools By DCX Chrome Extension.",
+    description: "From the first question to the finished draft, ChatGPT is a flexible workspace for thinking, writing, and building. Access it directly via ToolsByDcx Chrome Extension.",
     url: "https://chatgpt.com",
     domain: "chatgpt.com",
     accent: "#a6dfca",
@@ -76634,7 +76634,7 @@ const cV = {
     }),
     requiresMaxOrHeavy: !0,
     plan: "Max members",
-    accessLine: "Your ChatGPT access is available through the Tools By DCX Chrome Extension.",
+    accessLine: "Your ChatGPT access is available through the ToolsByDcx Chrome Extension.",
     features: [{
         icon: qn,
         title: "Talk through an idea",
@@ -76692,7 +76692,7 @@ function xV() {
                     children: "The End"
                 }), e.jsx("p", {
                     className: "text-gray-400 text-sm leading-relaxed mb-6",
-                    children: "OpenArt shared access is no longer available on Tools By DCX. This service has been discontinued."
+                    children: "OpenArt shared access is no longer available on ToolsByDcx. This service has been discontinued."
                 }), e.jsx(Me, {
                     href: "/dashboard",
                     children: e.jsx("div", {
@@ -76749,20 +76749,20 @@ const hV = {
         desc: "Use Chrome on a desktop computer for the best experience."
     }, {
         icon: rs,
-        title: "Step 2 — Download Tools By DCX App",
-        desc: "Download and install the official Tools By DCX App."
+        title: "Step 2 — Download ToolsByDcx App",
+        desc: "Download and install the official ToolsByDcx App."
     }, {
         icon: jl,
-        title: "Step 3 — Launch Tools By DCX App",
-        desc: "Open Tools By DCX App on your computer."
+        title: "Step 3 — Launch ToolsByDcx App",
+        desc: "Open ToolsByDcx App on your computer."
     }, {
         icon: zE,
-        title: "Step 4 — Sign into Tools By DCX",
-        desc: "Sign into your account inside Tools By DCX App."
+        title: "Step 4 — Sign into ToolsByDcx",
+        desc: "Sign into your account inside ToolsByDcx App."
     }, {
         icon: jl,
         title: "Step 5 — Open gemini.google.com",
-        desc: "Open Gemini — Tools By DCX App will sign you in automatically using the shared session."
+        desc: "Open Gemini — ToolsByDcx App will sign you in automatically using the shared session."
     }];
 
 function pV() {
@@ -77010,7 +77010,7 @@ function pV() {
                             children: [e.jsx("span", {
                                 className: "text-red-400 font-bold",
                                 children: "Important:"
-                            }), " Do NOT change the password, do NOT log out, and do NOT share these credentials outside Tools By DCX. Violations will immediately cancel your access without a refund."]
+                            }), " Do NOT change the password, do NOT log out, and do NOT share these credentials outside ToolsByDcx. Violations will immediately cancel your access without a refund."]
                         })]
                     })]
                 })
@@ -77128,7 +77128,7 @@ function pV() {
                         }), e.jsxs("div", {
                             children: [e.jsx("p", {
                                 className: "text-white font-black text-sm",
-                                children: "Tools By DCX App"
+                                children: "ToolsByDcx App"
                             }), e.jsx("p", {
                                 className: "text-gray-500 text-xs mt-0.5",
                                 children: "Optional: Auto-signs you into Gemini using the shared Max session."
@@ -77260,7 +77260,7 @@ const fV = {
     name: "Meta AI",
     heading: "Ideas, in motion",
     eyebrow: "Chrome Extension / Meta AI",
-    description: "Bring a question, a rough thought, or a creative brief. Meta AI gives you a space to explore, make, and keep going with the Tools By DCX Chrome Extension.",
+    description: "Bring a question, a rough thought, or a creative brief. Meta AI gives you a space to explore, make, and keep going with the ToolsByDcx Chrome Extension.",
     url: "https://www.meta.ai",
     domain: "meta.ai",
     accent: "#a5cbfa",
@@ -77270,7 +77270,7 @@ const fV = {
     }),
     requiresMaxOrHeavy: !0,
     plan: "Max members",
-    accessLine: "Your Meta AI access is available through the Tools By DCX Chrome Extension.",
+    accessLine: "Your Meta AI access is available through the ToolsByDcx Chrome Extension.",
     features: [{
         icon: qn,
         title: "Start a conversation",
@@ -77511,7 +77511,7 @@ function bV() {
                         }), "Choose Your Platform — Download Official Surfshark App"]
                     }), e.jsx("span", {
                         className: "text-xs text-gray-400 hidden sm:inline",
-                        children: "100% Free with your Tools By DCX account"
+                        children: "100% Free with your ToolsByDcx account"
                     })]
                 }), e.jsxs("div", {
                     className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5",
@@ -77746,7 +77746,7 @@ function bV() {
                         }), " server, and click", " ", e.jsx("strong", {
                             className: "text-white",
                             children: "Connect"
-                        }), " before generating videos on Tools By DCX!"]
+                        }), " before generating videos on ToolsByDcx!"]
                     }), e.jsx("div", {
                         className: "pt-2",
                         children: e.jsxs("button", {
@@ -78292,7 +78292,7 @@ function SV() {
 function CV() {
     const {
         brand: t
-    } = Ds(), s = !!t.tenantId, a = t.brandName || (s ? "AI Platform" : "Tools By DCX"), n = SV(), [i, o] = h.useState(n ? "done" : "confirm"), [d, u] = h.useState(NV), [p, m] = h.useState(!1), f = h.useRef(null), g = h.useRef([]);
+    } = Ds(), s = !!t.tenantId, a = t.brandName || (s ? "AI Platform" : "ToolsByDcx"), n = SV(), [i, o] = h.useState(n ? "done" : "confirm"), [d, u] = h.useState(NV), [p, m] = h.useState(!1), f = h.useRef(null), g = h.useRef([]);
     h.useEffect(() => {
         if (!(i !== "confirm" || p)) {
             if (d <= 0) {
@@ -78900,7 +78900,7 @@ function r2() {
                         })
                     }), e.jsx("span", {
                         className: "text-xl font-black text-white tracking-tight",
-                        children: "Tools By DCX"
+                        children: "ToolsByDcx"
                     })]
                 }), e.jsx("h1", {
                     className: "text-3xl font-black text-white mb-2",
@@ -81533,7 +81533,7 @@ function iz({
                             children: "BF"
                         }), e.jsx("span", {
                             className: "font-semibold tracking-tight text-sm",
-                            children: "Tools By DCX"
+                            children: "ToolsByDcx"
                         })]
                     })
                 }), e.jsx("button", {
@@ -81845,7 +81845,7 @@ function iz({
                             className: "w-full h-full rounded-full bg-purple-600 flex items-center justify-center text-xs font-medium text-white z-20 relative overflow-hidden",
                             children: e.jsx("img", {
                                 src: "/bunny-logo.png",
-                                alt: "Tools By DCX",
+                                alt: "ToolsByDcx",
                                 className: "w-full h-full object-cover"
                             })
                         })]
@@ -82337,7 +82337,7 @@ function l2() {
                         className: "flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 text-xs font-black shadow-lg shadow-purple-600/30",
                         children: "BF"
                     }), e.jsx("span", {
-                        children: "Tools By DCX"
+                        children: "ToolsByDcx"
                     })]
                 })
             }), e.jsx(Me, {
@@ -84066,7 +84066,7 @@ function Wm() {
                                 color: "#ffffff",
                                 letterSpacing: "-0.02em"
                             },
-                            children: ["Tools By DCX", e.jsx("span", {
+                            children: ["ToolsByDcx", e.jsx("span", {
                                 style: {
                                     color: "#a855f7"
                                 },
@@ -84251,7 +84251,7 @@ function Wm() {
                                             fontSize: 11,
                                             fontWeight: 800
                                         },
-                                        children: "● Tools By DCX AI API Connected"
+                                        children: "● ToolsByDcx AI API Connected"
                                     }) : e.jsx("span", {
                                         style: {
                                             display: "inline-flex",
@@ -84265,7 +84265,7 @@ function Wm() {
                                             fontSize: 11,
                                             fontWeight: 800
                                         },
-                                        children: "● Tools By DCX Cloud API Active"
+                                        children: "● ToolsByDcx Cloud API Active"
                                     })
                                 })]
                             }), e.jsxs("div", {
@@ -84328,7 +84328,7 @@ function Wm() {
                                     margin: "0 auto",
                                     lineHeight: 1.6
                                 },
-                                children: At ? "Deleted generations will appear here so you can restore them anytime." : "Type a prompt in the box below and press Send (→). Your prompt is rendered on our Tools By DCX AI Cloud API, and the generated MP4 video will appear right here in your private account."
+                                children: At ? "Deleted generations will appear here so you can restore them anytime." : "Type a prompt in the box below and press Send (→). Your prompt is rendered on our ToolsByDcx AI Cloud API, and the generated MP4 video will appear right here in your private account."
                             })]
                         }) : e.jsx("div", {
                             className: "gflow-tiles-grid",
@@ -84427,7 +84427,7 @@ function Wm() {
                                                     textOverflow: "ellipsis",
                                                     textAlign: "center"
                                                 },
-                                                children: "Tools By DCX AI API"
+                                                children: "ToolsByDcx AI API"
                                             }), e.jsx("div", {
                                                 style: {
                                                     position: "absolute",
@@ -85129,7 +85129,7 @@ function Wm() {
                                     id: "omni-gen-btn",
                                     className: "gflow-submit-circle-btn",
                                     disabled: Ie,
-                                    title: "Generate in Tools By DCX Studio",
+                                    title: "Generate in ToolsByDcx Studio",
                                     children: oa.send
                                 })]
                             })]

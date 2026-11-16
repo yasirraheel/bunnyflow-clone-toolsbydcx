@@ -18,7 +18,7 @@ class BrandConfigController extends Controller
         ];
         return response()->json(['brand' => [
             'tenantId' => null,
-            'brandName' => 'Tools By DCX',
+            'brandName' => 'ToolsByDcx',
             'logoUrl' => '/bunny-logo.png',
             'primaryColor' => '#7c3aed',
             'supportEmail' => 'support@toolsbydcx.com',

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/* Small same-origin auth API for the Tools By DCX SPA. */
+/* Small same-origin auth API for the ToolsByDcx SPA. */
 
 const JSON_FLAGS = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 
@@ -31,7 +31,7 @@ try {
         ]
     );
 } catch (Throwable $e) {
-    error_log('Tools By DCX auth DB connection failed: ' . $e->getMessage());
+    error_log('ToolsByDcx auth DB connection failed: ' . $e->getMessage());
     respond(['error' => 'Authentication service is temporarily unavailable.'], 503);
 }
 
@@ -82,7 +82,7 @@ try {
 } catch (UnauthorizedException $e) {
     respond(['error' => $e->getMessage()], 401);
 } catch (Throwable $e) {
-    error_log('Tools By DCX auth API error: ' . $e->getMessage());
+    error_log('ToolsByDcx auth API error: ' . $e->getMessage());
     respond(['error' => 'Unexpected server error.'], 500);
 }
 
@@ -100,11 +100,11 @@ function brandConfig(PDO $pdo): never
             ];
         }
     } catch (Throwable $e) {
-        error_log('Tools By DCX plan config read failed: ' . $e->getMessage());
+        error_log('ToolsByDcx plan config read failed: ' . $e->getMessage());
     }
     respond(['brand' => [
         'tenantId' => null,
-        'brandName' => 'Tools By DCX',
+        'brandName' => 'ToolsByDcx',
         'logoUrl' => '/bunny-logo.png',
         'primaryColor' => '#7c3aed',
         'supportEmail' => 'support@toolsbydcx.com',
@@ -320,7 +320,7 @@ function forgotPassword(PDO $pdo, array $config, array $input): never
         );
         $insert->execute(['user_id' => $user['id'], 'token_hash' => hash('sha256', $raw)]);
         $link = rtrim($config['app']['base_url'], '/') . '/reset-password?token=' . urlencode($raw);
-        $subject = 'Reset your Tools By DCX password';
+        $subject = 'Reset your ToolsByDcx password';
         $message = "Open this link within 60 minutes to reset your password:\n\n{$link}\n";
         $headers = 'From: ' . $config['app']['mail_from'] . "\r\n" . 'Content-Type: text/plain; charset=UTF-8';
         sendMail($config, $email, $subject, $message, $config['app']['mail_from']);
@@ -347,7 +347,7 @@ function sendMail(array $config, string $to, string $subject, string $body, stri
             smtpCommand($socket, 'MAIL FROM:<' . $from . '>', '250');
             smtpCommand($socket, 'RCPT TO:<' . $to . '>', '250');
             smtpCommand($socket, 'DATA', '354');
-            $headers = 'From: Tools By DCX <' . $from . ">\r\n" .
+            $headers = 'From: ToolsByDcx <' . $from . ">\r\n" .
                 'To: <' . $to . ">\r\n" .
                 'Subject: ' . $subject . "\r\n" .
                 'MIME-Version: 1.0' . "\r\n" .
@@ -359,7 +359,7 @@ function sendMail(array $config, string $to, string $subject, string $body, stri
             fclose($socket);
             return true;
         } catch (Throwable $e) {
-            error_log('Tools By DCX SMTP send failed: ' . $e->getMessage());
+            error_log('ToolsByDcx SMTP send failed: ' . $e->getMessage());
         }
     }
     return @mail($to, $subject, $body, 'From: ' . $from . "\r\n" . 'Content-Type: text/plain; charset=UTF-8');
