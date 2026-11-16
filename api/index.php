@@ -497,6 +497,24 @@ function userFromToken(PDO $pdo, string $raw): array
     );
     $stmt->execute(['token_hash' => hash('sha256', $raw)]);
     $user = $stmt->fetch();
+
+    // Laravel Sanctum tokens are formatted as "id|plain-token" and store
+    // only the SHA-256 hash of the plain part. Accept them here so legacy
+    // feature endpoints remain compatible with the new Laravel login flow.
+    if (!$user && str_contains($raw, '|')) {
+        [, $plain] = explode('|', $raw, 2);
+        $sanctum = $pdo->prepare(
+            'SELECT u.* FROM personal_access_tokens pat JOIN users u ON u.id = pat.tokenable_id
+             WHERE pat.tokenable_type = :type AND pat.token = :token
+             AND (pat.expires_at IS NULL OR pat.expires_at > NOW()) LIMIT 1'
+        );
+        $sanctum->execute([
+            'type' => 'App\\Models\\User',
+            'token' => hash('sha256', $plain),
+        ]);
+        $user = $sanctum->fetch();
+    }
+
     if (!$user || ($user['status'] ?? 'active') !== 'active') {
         throw new UnauthorizedException('Session expired. Please log in again.');
     }

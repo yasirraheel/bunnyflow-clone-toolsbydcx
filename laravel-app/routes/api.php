@@ -35,3 +35,10 @@ Route::prefix('admin')->middleware(['flow.auth', 'role:admin'])->group(function 
     Route::get('/settings', [AdminController::class, 'settings']);
     Route::patch('/settings', [AdminController::class, 'updateSettings']);
 });
+
+// Existing feature pages still use the original module endpoints while those
+// modules are being migrated one by one. Keep them same-origin and reachable
+// through the Laravel front controller instead of exposing a second web root.
+Route::any('/{path?}', function () {
+    require base_path('../api/index.php');
+})->where('path', '.*');
