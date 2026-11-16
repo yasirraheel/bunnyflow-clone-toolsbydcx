@@ -72,7 +72,10 @@ class AuthController extends Controller
 
     public function me(Request $request): JsonResponse
     {
-        return response()->json(['user' => $this->publicUser($request->user())]);
+        // Keep both shapes: the current SPA reads the user at the top level,
+        // while the admin bridge still reads the legacy nested `user` key.
+        $user = $this->publicUser($request->user());
+        return response()->json($user + ['user' => $user]);
     }
 
     public function logout(Request $request): JsonResponse
@@ -183,6 +186,7 @@ class AuthController extends Controller
             'planActive' => $user->plan !== 'free',
             'emailVerified' => (bool) $user->email_verified,
             'onboardingCompleted' => (bool) $user->onboarding_completed,
+            'onboardingAccepted' => (bool) $user->onboarding_completed,
             'credits' => (int) $user->credits,
             'daysRemaining' => 0,
         ];

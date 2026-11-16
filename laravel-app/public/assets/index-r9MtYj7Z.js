@@ -19448,6 +19448,7 @@ function bR({
                 id: A.userId,
                 email: A.email,
                 username: A.username || A.name || A.email.split("@")[0],
+                role: A.role || "user",
                 plan: A.plan,
                 planExpiresAt: A.planExpiresAt ?? null,
                 planActive: A.planActive ?? !0,
@@ -19455,6 +19456,7 @@ function bR({
                 credits: A.credits ?? 0,
                 emailVerified: A.emailVerified ?? !0,
                 onboardingCompleted: A.onboardingCompleted ?? !0,
+                onboardingAccepted: A.onboardingAccepted ?? A.onboardingCompleted ?? !0,
                 createdByResellerId: A.createdByResellerId ?? null
             }
         } catch {}
@@ -19569,6 +19571,7 @@ function bR({
                 userId: u.id,
                 email: u.email,
                 username: u.username,
+                role: u.role,
                 name: u.username,
                 token: n,
                 sessionToken: n,
@@ -19582,6 +19585,7 @@ function bR({
                 planActive: C.planActive ?? !1,
                 emailVerified: C.emailVerified ?? !0,
                 onboardingCompleted: C.onboardingCompleted ?? !0,
+                onboardingAccepted: C.onboardingAccepted ?? C.onboardingCompleted ?? !0,
                 createdByResellerId: C.createdByResellerId ?? null,
                 isHeavy: C.isHeavy ?? !1,
                 heavyCredits: C.heavyCredits ?? 0,
@@ -19597,7 +19601,7 @@ function bR({
         }))
     }, [u ?.id, u ?.plan, u ?.credits, u ?.daysRemaining, u ?.extension2Credits, u ?.heavyCredits, n]);
     const w = (C, P) => {
-            localStorage.setItem("flow_token", C), Am(C, ml());
+            localStorage.setItem("flow_token", C), Am(C, ml()), P ?.role === "admin" ? localStorage.setItem("admin_key", C) : localStorage.removeItem("admin_key");
             const A = P,
                 I = !!(A.planActive && !A.planExpiresAt),
                 E = I ? null : A.daysRemaining ?? A.credits ?? A.creditsLeft ?? 0,
@@ -19606,6 +19610,7 @@ function bR({
                     userId: P.id,
                     email: P.email,
                     username: P.username,
+                    role: P.role,
                     name: P.username,
                     token: C,
                     sessionToken: C,
@@ -19617,6 +19622,7 @@ function bR({
                     plan: P.plan,
                     planExpiresAt: A.planExpiresAt ?? null,
                     planActive: A.planActive ?? !1,
+                    onboardingAccepted: P.onboardingAccepted ?? P.onboardingCompleted ?? !0,
                     isHeavy: A.isHeavy ?? !1,
                     heavyCredits: A.heavyCredits ?? 0,
                     extension2Credits: A.extension2Credits ?? 0,
@@ -19645,7 +19651,7 @@ function bR({
             try {
                 window.dispatchEvent(new CustomEvent("__bf_logout__"))
             } catch {}
-            localStorage.removeItem("flow_token"), localStorage.removeItem("__flow_auth__"), i(null), d(null), a.setQueryData(Ox(), null), a.clear()
+            localStorage.removeItem("flow_token"), localStorage.removeItem("admin_key"), localStorage.removeItem("__flow_auth__"), i(null), d(null), a.setQueryData(Ox(), null), a.clear()
         };
     return e.jsx(A3.Provider, {
         value: {
@@ -38322,7 +38328,7 @@ function vL() {
         login: s
     } = zt(), {
         brand: a
-    } = Ds(), n = !!a.tenantId, i = a.brandName || "ToolsByDcx", o = n ? a.supportEmail : "support@toolsbydcx.local", d = wL(i, n), u = typeof window < "u" ? localStorage.getItem("flow_token") : null, p = (t ?.plan || "free").toLowerCase(), m = p !== "free", f = t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : t ?.planActive === !0, g = t ?.emailVerified !== !1, v = t ?.onboardingAccepted === !0, N = !!t && m && f && g && !v, [k, w] = h.useState(() => d.map(() => !1)), [S, C] = h.useState(!1), [P, A] = h.useState(!1), [I, E] = h.useState(null);
+    } = Ds(), n = !!a.tenantId, i = a.brandName || "ToolsByDcx", o = n ? a.supportEmail : "support@toolsbydcx.local", d = wL(i, n), u = typeof window < "u" ? localStorage.getItem("flow_token") : null, p = (t ?.plan || "free").toLowerCase(), m = p !== "free", f = t ?.planExpiresAt ? new Date(t.planExpiresAt).getTime() > Date.now() : t ?.planActive === !0, g = t ?.emailVerified !== !1, v = t ?.onboardingAccepted === !0, N = !!t && t.role !== "admin" && m && f && g && !v, [k, w] = h.useState(() => d.map(() => !1)), [S, C] = h.useState(!1), [P, A] = h.useState(!1), [I, E] = h.useState(null);
     if (!N) return null;
     const O = d.every((T, L) => k[L]),
         R = O && S && !P,
@@ -45456,6 +45462,11 @@ function gU() {
         connected: m,
         pongBrand: f
     } = fU(), g = n && m && f === "";
+    h.useEffect(() => {
+        s ?.role === "admin" && p("/admin/dashboard", {
+            replace: !0
+        })
+    }, [s ?.role, p]);
     s ?.planExpiresAt && new Date(s.planExpiresAt).getTime() > Date.now();
     const [v, N] = h.useState(() => typeof window < "u" && localStorage.getItem(xU) === "1"), k = s ?.planExpiresAt ? `${hU}${s.planExpiresAt}` : null, [w, S] = h.useState(() => typeof window > "u" || !k ? !1 : localStorage.getItem(k) === "1"), [C, P] = h.useState(() => typeof window < "u" && localStorage.getItem(mU) === "1"), [A, I] = h.useState(() => typeof window < "u" && localStorage.getItem(pU) === "1"), [E, O] = h.useState(() => {
         if (typeof window > "u") return null;
@@ -57477,6 +57488,8 @@ function Sr({
 
 function M$() {
     const {
+        user: flowUser
+    } = zt(), {
         toast: t
     } = yt(), [s, a] = h.useState(!1), [n, i] = h.useState(!1), [o, d] = h.useState(""), [u, p] = h.useState(""), [m, f] = h.useState("overview"), [g, v] = h.useState(!1), [N, k] = h.useState("all"), [w, S] = h.useState(null), [C, P] = h.useState([]), [A, I] = h.useState([]), [E, O] = h.useState([]), [R, _] = h.useState([]), [D, U] = h.useState({
         available: 0,
@@ -57533,6 +57546,12 @@ function M$() {
             })
         }
     };
+    const [, adminNavigate] = ha();
+    h.useEffect(() => {
+        flowUser && flowUser.role !== "admin" && adminNavigate("/user/dashboard", {
+            replace: !0
+        })
+    }, [flowUser ?.role, adminNavigate]);
     h.useEffect(() => {
         s && m === "refunds" && Ne()
     }, [s, m]);
