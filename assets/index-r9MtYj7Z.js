@@ -58545,7 +58545,7 @@ This will:
             icon: o0
         }, {
             id: "flow-browser",
-            label: "Flow Browser",
+            label: "Platforms",
             icon: fc
         }, {
             id: "hyperbeam",
@@ -58589,7 +58589,7 @@ This will:
             icon: Qr
         }, {
             id: "vids-accounts",
-            label: "Vids Accounts",
+            label: "Accounts",
             icon: Cl
         }, {
             id: "resellers",
@@ -58625,9 +58625,13 @@ This will:
             icon: Hx
         }, {
             id: "settings",
-            label: "Settings",
+            label: "Site Settings",
             icon: Cr
-        }],
+        }, {
+            id: "plans",
+            label: "Plans",
+            icon: dr
+        }].filter(q => ["overview", "users", "orders", "vids-accounts", "flow-browser", "settings", "plans"].includes(q.id)),
         qi = y => e.jsx("nav", {
             className: "flex-1 overflow-y-auto py-3 px-2 space-y-0.5",
             children: zi.map(q => {
@@ -63019,7 +63023,7 @@ Optional reason (audit log):`, "shared WiFi / household");
                             })]
                         })]
                     })
-                })(), m === "settings" && e.jsxs("div", {
+                })(), (m === "settings" || m === "plans") && e.jsxs("div", {
                     className: "space-y-4",
                     children: [e.jsxs("div", {
                         children: [e.jsx("h2", {
