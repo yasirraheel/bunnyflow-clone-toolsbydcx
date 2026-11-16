@@ -57853,11 +57853,32 @@ function Sr({
 }
 
 function M$() {
+    const adminSectionFromPath = () => {
+            const path = window.location.pathname.replace(/\/+$/, "") || "/";
+            return ({
+                "/admin/dashboard": "overview",
+                "/admin/users": "users",
+                "/admin/orders": "orders",
+                "/admin/accounts": "vids-accounts",
+                "/admin/platforms": "platforms",
+                "/admin/settings": "settings",
+                "/admin/plans": "plans"
+            })[path] || "overview"
+        },
+        adminPathForSection = y => ({
+            overview: "/admin/dashboard",
+            users: "/admin/users",
+            orders: "/admin/orders",
+            "vids-accounts": "/admin/accounts",
+            platforms: "/admin/platforms",
+            settings: "/admin/settings",
+            plans: "/admin/plans"
+        })[y] || "/admin/dashboard";
     const {
         user: flowUser
     } = zt(), {
         toast: t
-    } = yt(), [s, a] = h.useState(!1), [n, i] = h.useState(!1), [o, d] = h.useState(""), [u, p] = h.useState(""), [m, f] = h.useState("overview"), [g, v] = h.useState(!1), [N, k] = h.useState("all"), [w, S] = h.useState(null), [C, P] = h.useState([]), [A, I] = h.useState([]), [E, O] = h.useState([]), [R, _] = h.useState([]), [D, U] = h.useState({
+    } = yt(), [s, a] = h.useState(!1), [n, i] = h.useState(!1), [o, d] = h.useState(""), [u, p] = h.useState(""), [m, f] = h.useState(adminSectionFromPath), [g, v] = h.useState(!1), [N, k] = h.useState("all"), [w, S] = h.useState(null), [C, P] = h.useState([]), [A, I] = h.useState([]), [E, O] = h.useState([]), [R, _] = h.useState([]), [D, U] = h.useState({
         available: 0,
         claimed: 0,
         expired: 0
@@ -59004,7 +59025,7 @@ This will:
                 const ae = m === q.id;
                 return e.jsxs("button", {
                     onClick: () => {
-                        f(q.id), y ?.()
+                        window.location.assign(adminPathForSection(q.id))
                     },
                     className: `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all group text-left ${ae?"bg-[#7c3aed]/20 text-white border border-[#7c3aed]/30":"text-gray-400 hover:text-white hover:bg-white/6 border border-transparent"}`,
                     style: ae ? {
