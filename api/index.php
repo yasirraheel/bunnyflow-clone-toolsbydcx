@@ -122,8 +122,8 @@ function loginUser(PDO $pdo, array $config, array $input): never
     if ($identity === '' || $password === '') {
         throw new DomainException('Email and password are required.');
     }
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :identity OR username = :identity LIMIT 1');
-    $stmt->execute(['identity' => $identity]);
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email OR username = :username LIMIT 1');
+    $stmt->execute(['email' => $identity, 'username' => $identity]);
     $user = $stmt->fetch();
     if (!$user || !password_verify($password, (string) $user['password_hash'])) {
         throw new UnauthorizedException('Invalid email or password.');
